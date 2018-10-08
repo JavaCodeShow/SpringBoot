@@ -21,5 +21,6 @@ public class MyCacheConfig {
         Jackson2JsonRedisSerializer redisSerializer = new Jackson2JsonRedisSerializer(Object.class);
         template.setDefaultSerializer(redisSerializer);
         return template;
+
     }
 }
