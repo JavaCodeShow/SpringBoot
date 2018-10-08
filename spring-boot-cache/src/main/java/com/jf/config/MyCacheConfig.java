@@ -1,6 +1,5 @@
 package com.jf.config;
 
-import com.jf.pojo.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
