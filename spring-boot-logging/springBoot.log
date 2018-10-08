@@ -1,0 +1,17 @@
+2018-09-29 14:28:01.113  INFO 8888 --- [main] c.jf.SpringBootLoggingApplicationTests   : Starting SpringBootLoggingApplicationTests on jiangfeng with PID 8888 (started by Administrator in G:\javaDevelopment\ideaWorkSpace\project01\spring-boot-logging)
+2018-09-29 14:28:01.115 DEBUG 8888 --- [main] c.jf.SpringBootLoggingApplicationTests   : Running with Spring Boot v2.0.5.RELEASE, Spring v5.0.9.RELEASE
+2018-09-29 14:28:01.118  INFO 8888 --- [main] c.jf.SpringBootLoggingApplicationTests   : No active profile set, falling back to default profiles: default
+2018-09-29 14:28:01.294  INFO 8888 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@19e4653c: startup date [Sat Sep 29 14:28:01 CST 2018]; root of context hierarchy
+2018-09-29 14:28:03.425  INFO 8888 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-09-29 14:28:03.631  INFO 8888 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@19e4653c: startup date [Sat Sep 29 14:28:01 CST 2018]; root of context hierarchy
+2018-09-29 14:28:03.752  INFO 8888 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-09-29 14:28:03.754  INFO 8888 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-09-29 14:28:03.787  INFO 8888 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-09-29 14:28:03.788  INFO 8888 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-09-29 14:28:04.010  INFO 8888 --- [main] c.jf.SpringBootLoggingApplicationTests   : Started SpringBootLoggingApplicationTests in 4.017 seconds (JVM running for 5.579)
+2018-09-29 14:28:04.124 TRACE 8888 --- [main] c.jf.SpringBootLoggingApplicationTests   : 这是trace日志
+2018-09-29 14:28:04.125 DEBUG 8888 --- [main] c.jf.SpringBootLoggingApplicationTests   : 这是debug日志
+2018-09-29 14:28:04.125  INFO 8888 --- [main] c.jf.SpringBootLoggingApplicationTests   : 这是info日志
+2018-09-29 14:28:04.125  WARN 8888 --- [main] c.jf.SpringBootLoggingApplicationTests   : 这是warn日志
+2018-09-29 14:28:04.125 ERROR 8888 --- [main] c.jf.SpringBootLoggingApplicationTests   : 这是error日志
+2018-09-29 14:28:04.130  INFO 8888 --- [Thread-2] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@19e4653c: startup date [Sat Sep 29 14:28:01 CST 2018]; root of context hierarchy
