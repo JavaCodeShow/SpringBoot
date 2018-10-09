@@ -83,12 +83,20 @@
     </dependencies>
 
     <build>
-
         <plugins>
             <!-- 将项目打包成jar -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+
+                <!-- 默认被执行的测试 -->
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>LATEST</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

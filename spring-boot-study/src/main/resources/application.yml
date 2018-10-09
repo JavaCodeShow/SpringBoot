@@ -1,15 +1,19 @@
-#server:
-#  port: 8080
-#spring:
-#  profiles:
-#    active: pro
-#---
-#server:
-#  port: 8082
-#spring:
-#  profiles: pro
-#---
-#server:
-#  port: 8081
-#spring:
-#  profiles: dev
+#默认端口
+server:
+  port: 8080
+#  当前项目环境的端口，可切换为生产环境和开发环境
+spring:
+  profiles:
+    active: pro
+---
+#生产环境
+server:
+  port: 8082
+spring:
+  profiles: pro
+---
+#开发环境
+server:
+  port: 8081
+spring:
+  profiles: dev
