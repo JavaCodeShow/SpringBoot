@@ -18,7 +18,7 @@ public class HelloController {
     @Value("${book.name}")
     private String bookName;
 
-    @RequestMapping("/")
+    @RequestMapping("/hello")
     @ResponseBody
     public String hello(){
         return "hello world + " + "boob.name = " + bookName ;
@@ -29,9 +29,4 @@ public class HelloController {
         map.put("hello", "你好啊");
         return "success";
     }
-    @RequestMapping("/hello")
-    public String success() {
-        return "hello";
-    }
-
 }
