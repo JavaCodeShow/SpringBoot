@@ -20,7 +20,6 @@ public class Springboot01HelloworldQuickApplicationTests {
     @Autowired
     private ApplicationContext ac;
 
-
     @Test
     public void testHelloService(){
 //        ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("classpath:beans.xml");
