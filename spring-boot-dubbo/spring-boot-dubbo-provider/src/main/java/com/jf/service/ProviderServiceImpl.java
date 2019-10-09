@@ -9,8 +9,10 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-@Service // 将服务发布出去
+@Service(interfaceClass = ProviderService.class) // 将服务发布出去
 public class ProviderServiceImpl implements ProviderService {
+
+    @Override
     public void sendHello() {
         System.out.println("hello dubbo");
     }

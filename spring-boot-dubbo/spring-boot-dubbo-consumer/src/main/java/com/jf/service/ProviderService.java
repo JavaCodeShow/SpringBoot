@@ -1,4 +1,4 @@
-package com.jf.provider.service;
+package com.jf.service;
 
 /**
  * @author 潇潇暮雨
