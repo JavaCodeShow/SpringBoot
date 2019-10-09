@@ -24,8 +24,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class RedisTest {
 
 
-    @Autowired
-    private UserMapper userMapper;
+    // @Autowired
+    // private UserMapper userMapper;
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -34,9 +34,14 @@ public class RedisTest {
     private StringRedisTemplate stringRedisTemplate;
 
     @Test
-    public void testRedis(){
-        int id = 6;
-        User user = userMapper.getUserById(id);
+    public void testRedis() {
+        // stringRedisTemplate.opsForValue().append("1","hello");
+        stringRedisTemplate.opsForValue().set("1", "hello");
+        Object o = stringRedisTemplate.opsForValue().get("1");
+        System.out.println(o);
+
+        // int id = 6;
+        // User user = userMapper.getUserById(id);
 //        stringRedisTemplate.opsForValue().set("string","hello");
 //        redisTemplate.opsForValue().set("name","jiangfeng");
 //        redisTemplate.opsForValue().set(id +"",user);

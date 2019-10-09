@@ -13,14 +13,16 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 @Configuration
 public class MyCacheConfig {
 
-    @Bean
-    public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory){
-        RedisTemplate<Object, Object> template = new RedisTemplate();
-        template.setConnectionFactory(redisConnectionFactory);
-        // 设置默认的序列化机制
-        Jackson2JsonRedisSerializer redisSerializer = new Jackson2JsonRedisSerializer(Object.class);
-        template.setDefaultSerializer(redisSerializer);
-        return template;
+    // @Bean
+    // public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory){
+    //     RedisTemplate<Object, Object> template = new RedisTemplate();
+    //     template.setConnectionFactory(redisConnectionFactory);
+    //     // 设置默认的序列化机制
+    //     Jackson2JsonRedisSerializer redisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+    //     template.setDefaultSerializer(redisSerializer);
+    //     return template;
+    //
+    // }
 
-    }
+
 }
