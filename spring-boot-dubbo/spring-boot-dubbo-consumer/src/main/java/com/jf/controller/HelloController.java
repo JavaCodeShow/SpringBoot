@@ -17,7 +17,7 @@ public class HelloController {
     @Reference
     private ProviderService providerService;
 
-    @RequestMapping("/hello")
+    @RequestMapping("/abc")
     @ResponseBody
     public String hello(){
         System.out.println("---------------------------");

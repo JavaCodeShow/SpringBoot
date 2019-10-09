@@ -51,6 +51,14 @@
             <artifactId>zkclient</artifactId>
             <version>0.11</version>
         </dependency>
+
+        <!-- 热部署 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <!-- 防止将该依赖传递到引用这个模块的项目中 -->
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>
