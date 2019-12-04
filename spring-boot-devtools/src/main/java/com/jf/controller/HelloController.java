@@ -1,6 +1,5 @@
 package com.jf.controller;
 
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HelloController {
 
-    @RequestMapping("/a")
+    @RequestMapping("/b")
     @ResponseBody
     public String hello(){
         return "热部署";
