@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.mapper.AccountMapper">
+    <select id="getAccountById" resultType="com.jf.pojo.Account">
+        select * from account where id = #{id}
+    </select>
+
+    <update id="updateAccountById" parameterType="java.lang.Integer">
+        update account set money = money + 1 where id = #{id}
+    </update>
+
+    <insert id="insertAccount" parameterType="java.lang.Integer">
+        insert into account(id, money) values (null, #{money})
+    </insert>
+</mapper>
