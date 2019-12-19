@@ -22,7 +22,7 @@ public class HelloController {
     @RequestMapping(value = {"/hello", "/hello1"})
     public String fun() {
         System.out.println(Arrays.toString(applicationContext.getBeanDefinitionNames()));
-        return "hello springBoot quick";
+        return "hello 江峰 and 林加铭";
     }
 
     @RequestMapping("/sayHello")

@@ -1,6 +1,8 @@
 package com.jf;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.jf.mapper.AccountMapper;
+import com.jf.pojo.Account;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,8 @@ public class SpringBootJdbcApplicationTests {
 
     @Autowired
     private DataSource dataSource;
-
+    @Autowired
+    private AccountMapper accountMapper;
 
     @Test
     public void contextLoads() throws SQLException {
@@ -29,4 +32,18 @@ public class SpringBootJdbcApplicationTests {
         System.out.println("------------------------------------------------");
     }
 
+    @Test
+    public void getAccountId() {
+        Account account = accountMapper.getAccountById(1);
+        System.out.println(account);
+        System.out.println(account);
+        System.out.println(account);
+    }
+
+    @Test
+    public void insertAccount() {
+        for (int i = 0; i < 100000; i++) {
+            accountMapper.insertAccount(i);
+        }
+    }
 }

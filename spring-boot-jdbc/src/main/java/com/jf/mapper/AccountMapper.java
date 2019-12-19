@@ -13,4 +13,6 @@ public interface AccountMapper {
     Account getAccountById(Integer id);
 
     int updateAccountById(Integer id);
+
+    int insertAccount(Integer money);
 }
