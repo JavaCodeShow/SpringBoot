@@ -5,15 +5,10 @@ package com.jf.pojo;
  * @create 2018-10-04   15:26
  */
 public class Account {
-    /*
-    CREATE TABLE `account` (
-    `id` int(32) NOT NULL AUTO_INCREMENT,
-     `money` double(32,0) DEFAULT NULL,
-     PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-     */
     private Integer id;
     private Double money;
+    private Integer age;
+    private String name;
 
     public Integer getId() {
         return id;
@@ -31,11 +26,29 @@ public class Account {
         this.money = money;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Account{" +
                 "id=" + id +
                 ", money=" + money +
+                ", age=" + age +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

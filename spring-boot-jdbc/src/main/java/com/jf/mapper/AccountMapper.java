@@ -3,6 +3,8 @@ package com.jf.mapper;
 import com.jf.pojo.Account;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * @author 潇潇暮雨
  * @create 2018-10-04   15:27
@@ -14,5 +16,7 @@ public interface AccountMapper {
 
     int updateAccountById(Integer id);
 
-    int insertAccount(Integer money);
+    Integer insertAccount(Account account);
+
+    List<Account> getAccountByName(String name);
 }

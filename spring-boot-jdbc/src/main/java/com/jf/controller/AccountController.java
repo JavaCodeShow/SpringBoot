@@ -3,9 +3,12 @@ package com.jf.controller;
 import com.jf.mapper.AccountMapper;
 import com.jf.pojo.Account;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -26,6 +29,13 @@ public class AccountController {
         return account;
     }
 
+    @RequestMapping("/account/search")
+    @ResponseBody
+    public List<Account> getAccountByName(@RequestParam String name) {
+        List<Account> accounts = accountMapper.getAccountByName(name);
+        return accounts;
+    }
+
     @PutMapping("/account/{id}")
     @ResponseBody
     public Integer updateAccountById(@PathVariable Integer id) {
@@ -41,5 +51,12 @@ public class AccountController {
         // }
         // return 0;
         return accountMapper.updateAccountById(id);
+    }
+
+    @PostMapping("/account")
+    @ResponseBody
+    public ResponseEntity<Account> insertAccount(@RequestBody Account account) {
+        Integer integer = accountMapper.insertAccount(account);
+        return ResponseEntity.ok(account);
     }
 }

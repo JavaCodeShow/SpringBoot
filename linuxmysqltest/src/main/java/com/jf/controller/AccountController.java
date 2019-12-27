@@ -22,7 +22,7 @@ public class AccountController {
     @RequestMapping("/")
     @ResponseBody
     public String index() {
-        return "Hello 江峰";
+        return "Hello 林加铭";
     }
 
     @RequestMapping("/account/{id}")

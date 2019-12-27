@@ -40,10 +40,10 @@ public class SpringBootJdbcApplicationTests {
         System.out.println(account);
     }
 
-    @Test
+   /* @Test
     public void insertAccount() {
         for (int i = 0; i < 100000; i++) {
             accountMapper.insertAccount(i);
         }
-    }
+    }*/
 }

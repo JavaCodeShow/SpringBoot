@@ -7,11 +7,16 @@
         select * from account where id = #{id}
     </select>
 
+    <!-- 根据名字模糊查询 -->
+    <select id="getAccountByName" parameterType="java.lang.String" resultType="com.jf.pojo.Account">
+        select * from account where name LIKE CONCAT('%',#{name},'%')
+    </select>
+
     <update id="updateAccountById" parameterType="java.lang.Integer">
         update account set money = money + 1 where id = #{id}
     </update>
 
-    <insert id="insertAccount" parameterType="java.lang.Integer">
-        insert into account(id, money) values (null, #{money})
+    <insert id="insertAccount"  useGeneratedKeys="true" keyProperty="id"  parameterType="com.jf.pojo.Account">
+        insert into account(id, money, name) values (null, #{money}, #{name})
     </insert>
 </mapper>
