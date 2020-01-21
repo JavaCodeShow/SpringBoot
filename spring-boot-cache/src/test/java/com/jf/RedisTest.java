@@ -1,14 +1,9 @@
 package com.jf;
 
-import com.jf.mapper.UserMapper;
-import com.jf.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cache.Cache;
-import org.springframework.cache.CacheManager;
-import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -36,9 +31,17 @@ public class RedisTest {
     @Test
     public void testRedis() {
         // stringRedisTemplate.opsForValue().append("1","hello");
-        stringRedisTemplate.opsForValue().set("1", "hello");
-        Object o = stringRedisTemplate.opsForValue().get("1");
-        System.out.println(o);
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < 100000; i++) {
+            stringRedisTemplate.opsForValue().set("user:" + i, i + "");
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("时间 = " + (end - start) + "(毫秒)");
+        // stringRedisTemplate.opsForValue().set("id:1", "v1");
+        // stringRedisTemplate.opsForValue().set("id:2", "v2");
+        // stringRedisTemplate.opsForValue().set("id:3", "v3");
+        // Object o = stringRedisTemplate.keys("*");
+        // System.out.println();
 
         // int id = 6;
         // User user = userMapper.getUserById(id);
