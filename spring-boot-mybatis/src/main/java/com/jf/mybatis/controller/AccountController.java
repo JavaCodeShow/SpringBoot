@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author 江峰
@@ -26,6 +29,29 @@ public class AccountController {
     public String hello() {
         return "hello";
     }
+
+    @RequestMapping("/changeI")
+    @ResponseBody
+    public String changeI() throws InterruptedException {
+        ExecutorService es = Executors.newCachedThreadPool();
+        int count = 100;
+        CountDownLatch countDownLatch = new CountDownLatch(count);
+        for (int i = 0; i < count; i++) {
+            es.execute(new Runnable() {
+                @Override
+                public void run() {
+                    accountService.changeI();
+                    countDownLatch.countDown();
+                }
+            });
+        }
+        es.shutdown();
+        System.out.println("success");
+        countDownLatch.await();
+        System.out.println("end");
+        return accountService.getI() + "";
+    }
+
 
     @RequestMapping("/account/transAccount")
     @ResponseBody

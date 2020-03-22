@@ -12,9 +12,23 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class AccountService {
-
+    private int i = 0;
     @Autowired
     private AccountMapper accountMapper;
+
+    public int getI() {
+        return this.i;
+    }
+
+    public void changeI() {
+        System.out.println(Thread.currentThread().getName() + " i = " + getI());
+        Thread.yield();
+        Thread.yield();
+        System.out.println(Thread.currentThread().getName() + ": " + ++i);
+        Thread.yield();
+        Thread.yield();
+        System.out.println(Thread.currentThread().getName() + " i = " + getI());
+    }
 
     /**
      * 账户一向账户二转money。
