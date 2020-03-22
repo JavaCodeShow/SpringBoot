@@ -1,12 +1,13 @@
-package com.jf;
+package com.jf.logging;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootLoggingApplication {
+public class LoggingApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootLoggingApplication.class, args);
+        SpringApplication.run(LoggingApplication.class, args);
     }
+
 }
