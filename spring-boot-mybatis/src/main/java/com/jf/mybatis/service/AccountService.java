@@ -4,6 +4,7 @@ import com.jf.mybatis.mapper.AccountMapper;
 import com.jf.mybatis.pojo.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -37,20 +38,15 @@ public class AccountService {
      * @param account2
      * @param money
      */
-    @Transactional
-    public String transAccount(Account account1, Account account2, Integer money) {
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
+    public void transAccount(Account account1, Account account2, Integer money) {
         account1.setMoney(account1.getMoney() - money);
         account2.setMoney(account2.getMoney() + money);
-        String res = "";
-        try {
-            Integer i1 = accountMapper.updateAccountById(account1);
-            int i = 1 / 0;
-            Integer i2 = accountMapper.updateAccountById(account2);
-        } catch (Exception e) {
-            res = "trans fail";
+        Integer i1 = accountMapper.updateAccountById(account1);
+        if (i1 == 1) {
+            throw new IllegalArgumentException("出异常了，数据将回滚" + accountMapper.getAccountById(1));
         }
-        res = " trans ok";
-        return res;
+        Integer i2 = accountMapper.updateAccountById(account2);
     }
 
 
