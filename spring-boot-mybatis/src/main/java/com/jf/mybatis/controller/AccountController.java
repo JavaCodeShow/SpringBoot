@@ -2,8 +2,9 @@ package com.jf.mybatis.controller;
 
 import com.jf.mybatis.pojo.Account;
 import com.jf.mybatis.service.AccountService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import java.util.concurrent.Executors;
  */
 @Controller
 public class AccountController {
+    private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
     @Autowired
     private AccountService accountService;
@@ -28,6 +30,10 @@ public class AccountController {
     @RequestMapping("/hello")
     @ResponseBody
     public String hello() {
+        logger.info("info 日志");
+        logger.debug("debug日志");
+        logger.error("debug日志");
+        logger.trace("trace日志");
         return "hello";
     }
 
