@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
 
@@ -22,8 +23,8 @@ public class HelloController {
 
     @RequestMapping("/user/{username}")
     @ResponseBody
-    public String user(@PathVariable("username") String username){
-        if (!username.equals("tom"))    {
+    public String user(@PathVariable("username") String username) {
+        if (!username.equals("tom")) {
             throw new UserNotExitException("user is not exit");
         }
         return "user是存在的";
@@ -36,8 +37,19 @@ public class HelloController {
 
     @RequestMapping("/hello")
     @ResponseBody
-    public String hello() {
-        return "hello hello";
+    public String hello(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        Object name = session.getAttribute("name");
+        System.out.println(name);
+        session.setAttribute("name", "jf");
+        String sessionId = session.getId();
+        String res = "";
+        if (session.isNew()) {
+            res = "session创建成功，session的id是：" + sessionId;
+        } else {
+            res = "服务器已经存在该session了，session的id是：" + sessionId;
+        }
+        return res;
     }
 
     @RequestMapping("/success")
