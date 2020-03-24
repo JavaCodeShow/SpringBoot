@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
 public class ProviderServiceImpl implements ProviderService {
 
     @Override
-    public void sendHello() {
+    public String sendHello() {
         System.out.println("hello dubbo");
+        return "I am provider";
     }
 }

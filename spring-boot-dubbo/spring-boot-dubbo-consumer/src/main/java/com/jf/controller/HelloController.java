@@ -14,18 +14,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HelloController {
 
+    // @Reference(url = "127.0.0.1:20880")
     @Reference
     private ProviderService providerService;
 
     @RequestMapping("/abc")
     @ResponseBody
     public String hello(){
-        System.out.println("---------------------------");
-        System.out.println("---------------------------");
-        System.out.println("---------------------------");
-        System.out.println("---------------------------");
-        System.out.println("---------------------------");
-        providerService.sendHello();
+        System.out.println("I am consumer");
+        String str = providerService.sendHello();
+        System.out.println(str);
         return "success";
     }
 }

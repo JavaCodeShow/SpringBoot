@@ -58,6 +58,7 @@
             <artifactId>spring-boot-devtools</artifactId>
             <!-- 防止将该依赖传递到引用这个模块的项目中 -->
             <optional>true</optional>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
