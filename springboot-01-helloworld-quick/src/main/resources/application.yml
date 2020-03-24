@@ -1,5 +1,7 @@
 server:
   port: 8080
+
+#激活指定profile
 spring:
   profiles:
     active: dev
