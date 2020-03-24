@@ -12,4 +12,27 @@
     <select id="getAccountById" parameterType="int" resultType="account">
         select * from account where id = #{id}
 	</select>
+
+    <!-- 根据id查询账户 -->
+    <select id="getAccountByMoneyAndName" parameterType="account" resultType="account">
+        select * from account
+        <where>
+            <if test="name != null and name != '' ">
+                and name = #{name}
+            </if>
+            <if test="money != null and money !='' ">
+                and money = #{money}
+            </if>
+        </where>
+    </select>
+
+    <!-- 根据moneys查询账户 -->
+    <select id="getAccountByMoneys" parameterType="int" resultType="account">
+        select * from account
+        <where>
+            <foreach collection="array" item="money" open="money in (" close=")" separator=",">
+                #{money}
+            </foreach>
+        </where>
+    </select>
 </mapper>
