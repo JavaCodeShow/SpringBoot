@@ -21,7 +21,7 @@ public class MyFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        //对请求进行预处理
+        // 对请求进行预处理
         logger.info("过滤器开始对请求进行预处理：");
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String requestUri = request.getRequestURI();
