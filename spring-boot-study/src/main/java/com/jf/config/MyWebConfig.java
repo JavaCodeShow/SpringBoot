@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 public class MyWebConfig {
 
     @Bean
-    public ServletRegistrationBean myServlet(){
+    public ServletRegistrationBean myServlet() {
         ServletRegistrationBean<MyServlet> registrationBean = new ServletRegistrationBean<>();
         registrationBean.setServlet(new MyServlet());
         registrationBean.addUrlMappings("/myServlet");
@@ -24,7 +24,7 @@ public class MyWebConfig {
     }
 
     @Bean
-    public FilterRegistrationBean myFilter(){
+    public FilterRegistrationBean myFilter() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new MyFilter());
         return registrationBean;
