@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HelloController {
 
-    @Reference(url = "127.0.0.1:20880")
-    // @Reference
+    // @Reference(url = "127.0.0.1:20880")
+    @Reference
     private ProviderService providerService;
 
     @RequestMapping("/abc")
