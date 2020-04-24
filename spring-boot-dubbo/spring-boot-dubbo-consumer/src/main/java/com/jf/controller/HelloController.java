@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HelloController {
 
-    // @Reference(url = "127.0.0.1:20880")
-    @Reference
+    /**
+     * @Reference(url = "127.0.0.1:20880") dubbo直连。绕过注册中心
+     * mock：请求超时时对服务进行降级处理。需要写一个mock类。
+     */
+    @Reference(mock = "true", timeout = 3, retries = 3)
     private ProviderService providerService;
 
     @RequestMapping("/abc")
