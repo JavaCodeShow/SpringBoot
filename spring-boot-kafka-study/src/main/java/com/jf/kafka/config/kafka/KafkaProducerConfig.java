@@ -4,7 +4,6 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
@@ -18,7 +17,6 @@ import java.util.Map;
  */
 // 设置@Configuration、@EnableKafka两个注解，声明Config并且打开KafkaTemplate能力。
 @Configuration
-@EnableKafka
 public class KafkaProducerConfig {
 
     /**
@@ -40,7 +38,7 @@ public class KafkaProducerConfig {
      * Producer 参数配置
      */
     public Map<String, Object> producerConfigs() {
-        Map<String, Object> props = new HashMap<>();
+        Map<String, Object> props = new HashMap<String, Object>();
         // 指定多个kafka集群多个地址
         // props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094");
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "139.224.103.236:9092");

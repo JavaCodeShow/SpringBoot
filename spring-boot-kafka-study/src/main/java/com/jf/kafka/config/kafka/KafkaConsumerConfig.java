@@ -21,7 +21,6 @@ import java.util.Map;
  */
 
 @Configuration
-
 public class KafkaConsumerConfig {
     private static final Logger logger = LoggerFactory.getLogger(KafkaConsumerConfig.class);
 
