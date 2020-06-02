@@ -2,6 +2,16 @@
 management:
   endpoints:
     web:
-      base-path: /actuator
+      base-path: /
       exposure:
         include: "*"
+    jmx:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      datadog:
+        application-key: ${spring.application.name}
+spring:
+  application:
+    name: prometheus-center
