@@ -5,12 +5,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author 潇潇暮雨
- * @create 2019-09-16   14:19
+ * @create 2018-09-28   22:31
  */
 @RestController
 public class HelloController {
+
     @RequestMapping("/hello")
-    public String hello() {
-        return "hello";
+    public String fun(){
+        return "hello word";
     }
+
+
 }

@@ -34,7 +34,7 @@ import java.util.Map;
 public class WebLogAspect {
     private static final Logger LOGGER = LoggerFactory.getLogger(WebLogAspect.class);
 
-    @Pointcut("execution(public * com.jf.controller..*.*(..))")
+    @Pointcut("execution(public * com.jf.prometheus.controller..*.*(..))")
     public void webLog() {
     }
 

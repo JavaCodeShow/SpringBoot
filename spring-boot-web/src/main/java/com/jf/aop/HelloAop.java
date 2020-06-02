@@ -15,7 +15,7 @@ import java.util.Arrays;
 @Component
 public class HelloAop {
     //@Before:  前置通知
-    @Before("execution(* com.jf.controller..*.*(..))")
+    @Before("execution(* com.jf.prometheus.controller..*.*(..))")
     public void beforeMethod(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().toString();
         Object result = Arrays.asList(joinPoint.getArgs());
