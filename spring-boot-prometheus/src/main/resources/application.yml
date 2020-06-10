@@ -1,8 +1,11 @@
+server:
+  port: ${port:8081}
+
 # 暴露监控
 management:
   endpoints:
     web:
-      base-path: /
+      base-path: /actuator
       exposure:
         include: "*"
     jmx:
@@ -15,3 +18,9 @@ management:
 spring:
   application:
     name: prometheus-center
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: dev
+        cluster-name: DEFAULT
