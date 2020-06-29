@@ -1,15 +1,21 @@
 package com.jf.controller;
 
+import com.jf.entities.Employee;
 import com.jf.exception.UserNotExitException;
-import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.ValidationException;
 import java.io.IOException;
 import java.util.Map;
 
@@ -18,11 +24,11 @@ import java.util.Map;
  * @create 2018-09-29   16:26
  */
 
-@Controller
+@RestController
+@Validated
 public class HelloController {
 
     @RequestMapping("/user/{username}")
-    @ResponseBody
     public String user(@PathVariable("username") String username) {
         if (!username.equals("tom")) {
             throw new UserNotExitException("user is not exit");
@@ -36,7 +42,6 @@ public class HelloController {
     }
 
     @RequestMapping("/hello")
-    @ResponseBody
     public String hello(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Object name = session.getAttribute("name");
@@ -64,4 +69,19 @@ public class HelloController {
         request.getRequestDispatcher("/user/login").forward(request, response);
     }
 
+    @RequestMapping("/abc")
+    public Employee success(@RequestBody @Validated Employee employee, BindingResult bindingResult) {
+        validData(bindingResult);
+        return employee;
+    }
+
+    private void validData(BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            StringBuffer sb = new StringBuffer();
+            for (ObjectError error : bindingResult.getAllErrors()) {
+                sb.append(((FieldError) error).getField() + "" + error.getDefaultMessage());
+            }
+            throw new ValidationException(sb.toString());
+        }
+    }
 }

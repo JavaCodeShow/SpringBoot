@@ -1,10 +1,18 @@
 package com.jf.entities;
 
+import lombok.Data;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+@Data
 public class Employee {
 
-	private Integer id;
+    private Integer id;
+
+    @NotNull(message = "不能为空")
+    @NotBlank(message = "不能为空")
     private String lastName;
 
     private String email;
@@ -60,6 +68,7 @@ public class Employee {
     public void setBirth(Date birth) {
         this.birth = birth;
     }
+
     public Employee(Integer id, String lastName, String email, Integer gender,
                     Department department) {
         super();
@@ -85,6 +94,6 @@ public class Employee {
                 ", birth=" + birth +
                 '}';
     }
-	
-	
+
+
 }
