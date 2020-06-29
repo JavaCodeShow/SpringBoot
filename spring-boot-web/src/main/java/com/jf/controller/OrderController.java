@@ -1,4 +1,4 @@
-package com.jf.prometheus.controller;
+package com.jf.controller;
 
 import com.jf.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;

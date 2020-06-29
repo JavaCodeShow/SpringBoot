@@ -17,7 +17,7 @@ management:
         application-key: ${spring.application.name}
 spring:
   application:
-    name: prometheus-center
+    name: test-ms
   cloud:
     nacos:
       discovery:

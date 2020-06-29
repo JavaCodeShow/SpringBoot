@@ -1,4 +1,4 @@
-package com.jf.prometheus.controller;
+package com.jf.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

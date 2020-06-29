@@ -1,4 +1,4 @@
-package com.jf.prometheus.controller;
+package com.jf.controller;
 
 import com.jf.exception.UserNotExitException;
 import org.springframework.stereotype.Controller;
