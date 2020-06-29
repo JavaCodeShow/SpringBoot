@@ -54,6 +54,7 @@ public class HelloController {
 
     @RequestMapping("/success")
     public String success(Map map) {
+        int i = 1 / 0;
         map.put("hello", "你好啊");
         return "success";
     }
