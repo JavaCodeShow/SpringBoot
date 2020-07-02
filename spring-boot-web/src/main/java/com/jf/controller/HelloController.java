@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import javax.validation.ValidationException;
 import java.io.IOException;
 import java.util.Map;
@@ -70,8 +71,7 @@ public class HelloController {
     }
 
     @RequestMapping("/abc")
-    public Employee success(@RequestBody @Validated Employee employee, BindingResult bindingResult) {
-        validData(bindingResult);
+    public Employee success(@RequestBody @Valid Employee employee) {
         return employee;
     }
 

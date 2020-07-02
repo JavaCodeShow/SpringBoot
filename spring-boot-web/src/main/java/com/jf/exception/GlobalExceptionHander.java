@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 /**
@@ -44,5 +47,13 @@ public class GlobalExceptionHander {
             }
         }
         return exception.getMessage();
+    }
+
+    @GetMapping("/validate1")
+    @ResponseBody
+    public String validate1(
+            @Size(min = 1, max = 10, message = "姓名长度必须为1到10") @RequestParam("name") String name,
+            @Min(value = 10, message = "年龄最小为10") @Max(value = 100, message = "年龄最大为100") @RequestParam("age") Integer age) {
+        return "validate1";
     }
 }
