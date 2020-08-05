@@ -1,5 +1,7 @@
 package com.jf.controller;
 
+import com.jf.aspect.log.LogTypeEnum;
+import com.jf.aspect.log.MethodLogger;
 import com.jf.entities.Employee;
 import com.jf.exception.UserNotExitException;
 import org.springframework.validation.BindingResult;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.ValidationException;
 import java.io.IOException;
@@ -43,19 +44,10 @@ public class HelloController {
     }
 
     @RequestMapping("/hello")
-    public String hello(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession();
-        Object name = session.getAttribute("name");
-        System.out.println(name);
-        session.setAttribute("name", "jf");
-        String sessionId = session.getId();
-        String res = "";
-        if (session.isNew()) {
-            res = "session创建成功，session的id是：" + sessionId;
-        } else {
-            res = "服务器已经存在该session了，session的id是：" + sessionId;
-        }
-        return res;
+    @MethodLogger(logType = LogTypeEnum.RESPONSE)
+    public String helloTest(String name) {
+
+        return name;
     }
 
     @RequestMapping("/success")

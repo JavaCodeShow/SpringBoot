@@ -1,0 +1,13 @@
+server:
+  port: 8011
+
+
+
+
+## 日志配置
+logging:
+  config: classpath:logback.xml
+
+spring:
+  profiles:
+    active: dev
