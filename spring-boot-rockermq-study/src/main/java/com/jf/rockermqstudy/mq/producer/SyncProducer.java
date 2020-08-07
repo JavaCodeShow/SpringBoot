@@ -20,10 +20,10 @@ public class SyncProducer {
         // 启动Producer实例
         producer.start();
         // producer.setSendMessageWithVIPChannel(false);
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 1; i++) {
             // 创建消息，并指定Topic，Tag和消息体
             Message msg = new Message("topic1",
-                    "tag1",
+                    "tag2",
                     ("Hello RocketMQ " + "李白").getBytes(RemotingHelper.DEFAULT_CHARSET)
             );
             // 发送消息到一个Broker
@@ -34,5 +34,6 @@ public class SyncProducer {
         System.out.println("main");
         // 如果不再发送消息，关闭Producer实例。
         producer.shutdown();
+
     }
 }
