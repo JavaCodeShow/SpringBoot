@@ -3,13 +3,15 @@
     <jmxConfigurator/>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
-    <property scope="context" name="appName" value="css"/>
-
+    <!-- 服务名字 -->
+    <property scope="context" name="appName" value="mq-ms"/>
     <property name="LOG_LIMIT_SIZE" value="${LOG_LIMIT:-30GB}"/>
+    <!-- 日志存放路径 -->
     <property name="LOG_FILE" value="/app/logs/${appName}/${appName}.log"/>
     <property name="HISTORY_LOG_FILE" value="/app/logs/${appName}/%d{yyyy-MM-dd}/${appName}-%i.log"/>
     <property name="ERROR_LOG_FILE" value="/app/logs/${appName}/error/${appName}_error.log"/>
     <property name="ERROR_HISTORY_LOG_FILE" value="/app/logs/${appName}/%d{yyyy-MM-dd}/error/${appName}_error-%i.log"/>
+    <!-- 日志输出格式 -->
     <property name="FILE_LOG_PATTERN"
               value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${appName} [%thread] %-5level %logger{50}.%method:%L - %msg%n"/>
 
@@ -61,12 +63,15 @@
         </encoder>
     </appender>
 
+    <!-- dev环境日志级别为DEBUG -->
     <springProfile name="dev">
         <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
         <root level="DEBUG">
             <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>
+
+    <!-- 设置日志级别 -->
     <root level="INFO">
         <appender-ref ref="FILE"/>
         <appender-ref ref="ErrorFILE"/>

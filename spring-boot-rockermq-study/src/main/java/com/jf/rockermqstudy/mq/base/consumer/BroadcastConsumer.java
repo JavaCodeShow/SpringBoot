@@ -1,30 +1,29 @@
-package com.jf.rockermqstudy.mq.consumer;
+package com.jf.rockermqstudy.mq.base.consumer;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
+import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
- * 负载均衡模式
- * 消费者采用负载均衡方式消费消息，多个消费者共同消费队列消息，每个消费者处理的消息不同
+ * 消费者采用广播的方式消费消息，每个消费者消费的消息都是相同的
  *
  * @author 江峰
- * @date 2020/8/7 18:40
+ * @date 2020/8/7 19:04
  */
-public class ClusterConsumer {
-    public static void main(String[] args) throws Exception {
+public class BroadcastConsumer {
+    public static void main(String[] args) throws MQClientException {
         // 实例化消息生产者,指定组名
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("group1");
         // 指定Namesrv地址信息.
         consumer.setNamesrvAddr("139.224.103.236:9876");
         // 订阅Topic
-        consumer.subscribe("topic1", "tag2");
+        consumer.subscribe("topic1", "tag1");
         //负载均衡模式消费
         consumer.setMessageModel(MessageModel.CLUSTERING);
         // 注册回调函数，处理消息
@@ -34,12 +33,12 @@ public class ClusterConsumer {
                                                             ConsumeConcurrentlyContext context) {
                 System.out.printf("%s Receive New Messages: %s %n",
                         Thread.currentThread().getName(), msgs);
-                msgs.forEach(messageExt -> System.out.println(Arrays.toString(messageExt.getBody())));
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
         });
         //启动消息者
         consumer.start();
         System.out.printf("Consumer Started.%n");
+
     }
 }

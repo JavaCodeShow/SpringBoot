@@ -1,4 +1,4 @@
-package com.jf.rockermqstudy.mq.producer;
+package com.jf.rockermqstudy.mq.base.producer;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendCallback;
