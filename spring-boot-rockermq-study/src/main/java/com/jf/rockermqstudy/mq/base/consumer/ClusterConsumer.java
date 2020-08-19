@@ -7,7 +7,6 @@ import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,7 +23,7 @@ public class ClusterConsumer {
         // 指定Namesrv地址信息.
         consumer.setNamesrvAddr("139.224.103.236:9876");
         // 订阅Topic
-        consumer.subscribe("TransactionTopicTest", "transactionTag");
+        consumer.subscribe("topic1", "tag1");
         //负载均衡模式消费
         consumer.setMessageModel(MessageModel.CLUSTERING);
         // 注册回调函数，处理消息
@@ -34,7 +33,9 @@ public class ClusterConsumer {
                                                             ConsumeConcurrentlyContext context) {
                 System.out.printf("%s Receive New Messages: %s %n",
                         Thread.currentThread().getName(), msgs);
-                msgs.forEach(messageExt -> System.out.println(Arrays.toString(messageExt.getBody())));
+                for (MessageExt msg : msgs) {
+                    System.out.println(new String(msg.getBody()));
+                }
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
         });

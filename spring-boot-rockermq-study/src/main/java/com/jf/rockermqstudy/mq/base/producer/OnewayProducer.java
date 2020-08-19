@@ -2,7 +2,6 @@ package com.jf.rockermqstudy.mq.base.producer;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.common.message.Message;
-import org.apache.rocketmq.remoting.common.RemotingHelper;
 
 /**
  * 单向发送消息
@@ -18,11 +17,11 @@ public class OnewayProducer {
         producer.setNamesrvAddr("139.224.103.236:9876");
         // 启动Producer实例
         producer.start();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 1; i++) {
             // 创建消息，并指定Topic，Tag和消息体
             Message msg = new Message("topic1",
                     "tag1",
-                    ("Hello RocketMQ " + "单向发送消息").getBytes(RemotingHelper.DEFAULT_CHARSET) /* Message body */
+                    ("100").getBytes() /* Message body */
             );
             // 发送单向消息，没有任何返回结果
             producer.sendOneway(msg);
