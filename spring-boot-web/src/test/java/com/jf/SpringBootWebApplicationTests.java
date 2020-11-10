@@ -18,5 +18,4 @@ public class SpringBootWebApplicationTests {
     public void testSpringEvent() {
         orderService.order();
     }
-
 }

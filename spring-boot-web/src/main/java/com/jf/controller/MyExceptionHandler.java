@@ -2,9 +2,7 @@ package com.jf.controller;
 
 import com.jf.exception.UserNotExitException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author 潇潇暮雨
@@ -12,8 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 
 // 加上@ControllerAdvice注解这个类就成为了全局异常处理类
-@ControllerAdvice
-@ResponseBody
+// @ControllerAdvice
+// @ResponseBody
 public class MyExceptionHandler {
 
     // 拦截所有(UserNotExitException)异常, 一般情况下一个方法特定处理一种异常

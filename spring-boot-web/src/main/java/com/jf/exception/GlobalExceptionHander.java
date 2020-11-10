@@ -28,9 +28,8 @@ import java.util.Set;
 public class GlobalExceptionHander {
 
     @ExceptionHandler(value = Exception.class)
-    @ResponseBody
     public String hello(Exception e) {
-        log.error("{}", e);
+        System.out.println(e.getMessage());
         return e.getMessage();
     }
 
