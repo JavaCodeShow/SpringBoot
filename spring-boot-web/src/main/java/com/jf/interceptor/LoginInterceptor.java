@@ -20,7 +20,6 @@ public class LoginInterceptor implements HandlerInterceptor {
         } else {
             return true;
         }
-
     }
 
 }

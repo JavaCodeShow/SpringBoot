@@ -1,10 +1,12 @@
 package com.jf.config;
 
 import com.jf.entity.Department;
+import com.jf.interceptor.LoginInterceptor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -28,10 +30,11 @@ public class MyMvcConfig implements WebMvcConfigurer {
     public Department hello() {
         return new Department();
     }
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**")
-//                .excludePathPatterns("/index.html", "/", "/user/login");
-//
-//    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**")
+                .excludePathPatterns("/index.html", "/", "/user/login");
+
+    }
 }
