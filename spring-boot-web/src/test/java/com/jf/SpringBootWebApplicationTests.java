@@ -1,5 +1,6 @@
 package com.jf;
 
+import com.jf.factory.PersonFactory;
 import com.jf.service.OrderService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,4 +19,12 @@ public class SpringBootWebApplicationTests {
     public void testSpringEvent() {
         orderService.order();
     }
+
+
+    @Test
+    public void testPersonFactory() {
+        PersonFactory.match(1).say();
+        PersonFactory.match(2).say();
+    }
+
 }
