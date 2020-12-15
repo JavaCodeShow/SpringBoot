@@ -1,6 +1,7 @@
 package com.jf;
 
 import com.jf.factory.PersonFactory;
+import com.jf.factory.plugin.PersonProvider;
 import com.jf.service.OrderService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +15,8 @@ public class SpringBootWebApplicationTests {
 
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private PersonProvider eventRetryPluginProvider;
 
     @Test
     public void testSpringEvent() {
@@ -25,6 +28,12 @@ public class SpringBootWebApplicationTests {
     public void testPersonFactory() {
         PersonFactory.match(1).say();
         PersonFactory.match(2).say();
+    }
+
+    @Test
+    public void testPlugin() {
+        eventRetryPluginProvider.get(1).say();
+        eventRetryPluginProvider.get(2).say();
     }
 
 }
