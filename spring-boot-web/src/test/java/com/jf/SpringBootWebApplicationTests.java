@@ -1,7 +1,7 @@
 package com.jf;
 
-import com.jf.factory.PersonFactory;
-import com.jf.factory.plugin.PersonProvider;
+import com.jf.factory.caseone.plugin.PersonProvider;
+import com.jf.factory.casetwo.PersonFactory;
 import com.jf.service.OrderService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +15,7 @@ public class SpringBootWebApplicationTests {
 
     @Autowired
     private OrderService orderService;
+
     @Autowired
     private PersonProvider eventRetryPluginProvider;
 

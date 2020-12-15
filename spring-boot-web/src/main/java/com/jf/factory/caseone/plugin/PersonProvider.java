@@ -1,4 +1,4 @@
-package com.jf.factory.plugin;
+package com.jf.factory.caseone.plugin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.jf.factory.plugin;
+package com.jf.factory.caseone.plugin;
 
 import com.google.common.collect.ImmutableMap;
 

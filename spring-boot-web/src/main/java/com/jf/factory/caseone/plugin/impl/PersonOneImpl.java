@@ -1,6 +1,6 @@
-package com.jf.factory.plugin.impl;
+package com.jf.factory.caseone.plugin.impl;
 
-import com.jf.factory.plugin.PersonPlugin;
+import com.jf.factory.caseone.plugin.PersonPlugin;
 import org.springframework.stereotype.Component;
 
 /**
