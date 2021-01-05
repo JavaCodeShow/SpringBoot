@@ -60,18 +60,35 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- 热部署 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
             <scope>runtime</scope>
         </dependency>
+
+        <!-- 引入swagger-ui包  -->
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>22.0</version>
-            <scope>compile</scope>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.2.2</version>
         </dependency>
+
+        <!-- 引入swagger包  -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
+        <!-- 引入swagger-bootstrap-ui包 -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>swagger-bootstrap-ui</artifactId>
+            <version>1.8.3</version>
+        </dependency>
+
     </dependencies>
 
     <build>
