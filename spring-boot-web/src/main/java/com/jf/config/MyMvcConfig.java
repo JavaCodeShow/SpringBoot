@@ -1,7 +1,6 @@
 package com.jf.config;
 
 import com.jf.entity.Department;
-import com.jf.interceptor.LoginInterceptor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,8 +32,8 @@ public class MyMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/index.html", "/", "/user/login");
+        // registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**")
+        //         .excludePathPatterns("/index.html", "/", "/user/login");
 
     }
 }

@@ -1,10 +1,11 @@
-package com.jf.factory;
+package com.jf.factory.casetwo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,18 +22,15 @@ public class PersonFactory {
     private static final Map<Integer, Person> map = new HashMap<>();
 
     @Autowired
-    private Map<String, Person> personMap;
+    private List<Person> personList;
 
     @PostConstruct
     public void init() {
-        map.put(1,
-                personMap.get(PersonNameConstant.MAN_NAME));
-        map.put(2,
-                personMap.get(PersonNameConstant.WOMAN_NAME));
+        personList.forEach(person -> map.put(person.getKey(), person));
     }
 
-    public static Person match(Integer target) {
-        return map.get(target);
+    public static Person match(Integer key) {
+        return map.get(key);
     }
 
 }

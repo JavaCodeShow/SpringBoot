@@ -1,4 +1,4 @@
-package com.jf.factory;
+package com.jf.factory.casetwo;
 
 /**
  * @author 江峰
@@ -6,6 +6,6 @@ package com.jf.factory;
  * @create 2020-12-09 10:51:11
  * @since
  */
-public interface Person {
+public interface Person extends FactoryPlugin {
     void say();
 }

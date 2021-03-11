@@ -1,7 +1,6 @@
-package com.jf.factory.impl;
+package com.jf.factory.casetwo.impl;
 
-import com.jf.factory.Person;
-import com.jf.factory.PersonNameConstant;
+import com.jf.factory.casetwo.Person;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,8 +9,13 @@ import org.springframework.stereotype.Component;
  * @create 2020-12-09 10:52:00
  * @since
  */
-@Component(value = PersonNameConstant.WOMAN_NAME)
+@Component
 public class Woman implements Person {
+    @Override
+    public Integer getKey() {
+        return 2;
+    }
+
     @Override
     public void say() {
         System.out.println("I am woman");

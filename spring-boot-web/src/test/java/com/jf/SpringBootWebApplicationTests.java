@@ -1,6 +1,7 @@
 package com.jf;
 
-import com.jf.factory.PersonFactory;
+import com.jf.factory.caseone.plugin.PersonProvider;
+import com.jf.factory.casetwo.PersonFactory;
 import com.jf.service.OrderService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +16,9 @@ public class SpringBootWebApplicationTests {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private PersonProvider eventRetryPluginProvider;
 
     // @Autowired()
     // @Qualifier("baseAsyncExecutor")
@@ -43,6 +47,12 @@ public class SpringBootWebApplicationTests {
     @Async("baseAsyncExecutor")
     void hello() {
         System.out.println("hello");
+    }
+
+    @Test
+    public void testPlugin() {
+        eventRetryPluginProvider.get(1).say();
+        eventRetryPluginProvider.get(2).say();
     }
 
 }
