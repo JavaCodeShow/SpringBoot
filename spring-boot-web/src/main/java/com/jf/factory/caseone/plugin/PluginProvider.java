@@ -1,8 +1,8 @@
 package com.jf.factory.caseone.plugin;
 
-import com.google.common.collect.ImmutableMap;
-
 import java.util.List;
+
+import com.google.common.collect.ImmutableMap;
 
 /**
  * 描述:
@@ -13,25 +13,25 @@ import java.util.List;
  */
 public abstract class PluginProvider<K, P extends Plugin<K>> {
 
-    private ImmutableMap<K, P> pluginMap;
+	private ImmutableMap<K, P> pluginMap;
 
-    public PluginProvider(List<P> plugins) {
-        ImmutableMap.Builder<K, P> builder = ImmutableMap.builder();
+	public PluginProvider(List<P> plugins) {
+		ImmutableMap.Builder<K, P> builder = ImmutableMap.builder();
 
-        for (P plugin : plugins) {
-            builder.put(plugin.getKey(), plugin);
-        }
-        pluginMap = builder.build();
-    }
+		for (P plugin : plugins) {
+			builder.put(plugin.getKey(), plugin);
+		}
+		pluginMap = builder.build();
+	}
 
-    /**
-     * 获取指定 plugin
-     *
-     * @param key
-     * @return
-     */
-    public P get(K key) {
-        return pluginMap.get(key);
-    }
+	/**
+	 * 获取指定 plugin
+	 *
+	 * @param key
+	 * @return
+	 */
+	public P get(K key) {
+		return pluginMap.get(key);
+	}
 
 }

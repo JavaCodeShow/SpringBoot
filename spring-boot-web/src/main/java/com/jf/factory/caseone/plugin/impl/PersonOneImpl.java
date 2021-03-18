@@ -1,7 +1,8 @@
 package com.jf.factory.caseone.plugin.impl;
 
-import com.jf.factory.caseone.plugin.PersonPlugin;
 import org.springframework.stereotype.Component;
+
+import com.jf.factory.caseone.plugin.PersonPlugin;
 
 /**
  * 描述:
@@ -12,13 +13,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class PersonOneImpl implements PersonPlugin {
-    @Override
-    public Integer getKey() {
-        return 1;
-    }
+	@Override
+	public Integer getKey() {
+		return 1;
+	}
 
-    @Override
-    public void say() {
-        System.out.println("I am one");
-    }
+	@Override
+	public void say() {
+		System.out.println("I am one");
+	}
 }

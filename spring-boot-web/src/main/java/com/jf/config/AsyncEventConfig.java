@@ -7,18 +7,16 @@ import org.springframework.context.event.SimpleApplicationEventMulticaster;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 
 /**
- * Spring事件异步监听配置。
- * 当SimpleApplicationEventMulticaster中的Executor不为null，就会执行异步通知。
+ * Spring事件异步监听配置。 当SimpleApplicationEventMulticaster中的Executor不为null，就会执行异步通知。
  */
 @Configuration
 public class AsyncEventConfig {
 
-    @Bean(name = "applicationEventMulticaster")
-    public ApplicationEventMulticaster simpleApplicationEventMulticaster() {
-        SimpleApplicationEventMulticaster eventMulticaster
-                = new SimpleApplicationEventMulticaster();
+	@Bean(name = "applicationEventMulticaster")
+	public ApplicationEventMulticaster simpleApplicationEventMulticaster() {
+		SimpleApplicationEventMulticaster eventMulticaster = new SimpleApplicationEventMulticaster();
 
-        eventMulticaster.setTaskExecutor(new SimpleAsyncTaskExecutor());
-        return eventMulticaster;
-    }
+		eventMulticaster.setTaskExecutor(new SimpleAsyncTaskExecutor());
+		return eventMulticaster;
+	}
 }

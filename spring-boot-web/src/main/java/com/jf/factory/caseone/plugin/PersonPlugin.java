@@ -7,6 +7,6 @@ package com.jf.factory.caseone.plugin;
  * @create: 2020-12-15 13:43
  * @since: 2.20.1
  */
-public interface PersonPlugin extends Plugin<Integer>{
-    void say();
+public interface PersonPlugin extends Plugin<Integer> {
+	void say();
 }

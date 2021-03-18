@@ -1,6 +1,14 @@
 package com.jf.aspect.log;
 
-import com.alibaba.fastjson.JSONObject;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -12,13 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * AOP日志处理类
@@ -29,47 +31,54 @@ import java.util.stream.Stream;
 @Aspect
 @Component
 public class LoggerHandler {
-    /**
-     * 切点 --- 包含HttpLogger注解
-     */
-    @Pointcut("@annotation(com.jf.aspect.log.MethodLogger)")
-    protected void methodLogger() {
-    }
+	/**
+	 * 切点 --- 包含HttpLogger注解
+	 */
+	@Pointcut("@annotation(com.jf.aspect.log.MethodLogger)")
+	protected void methodLogger() {
+	}
 
-    @Around("methodLogger()")
-    public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+	@Around("methodLogger()")
+	public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
 
-        long start = System.currentTimeMillis();
+		long start = System.currentTimeMillis();
 
-        Signature signature = joinPoint.getSignature();
-        MethodSignature msg = (MethodSignature) signature;
-        Object target = joinPoint.getTarget();
-        // 获取注解标注的方法
-        Method method = target.getClass().getMethod(msg.getName(), msg.getParameterTypes());
+		Signature signature = joinPoint.getSignature();
+		MethodSignature msg = (MethodSignature) signature;
+		Object target = joinPoint.getTarget();
+		// 获取注解标注的方法
+		Method method = target.getClass().getMethod(msg.getName(),
+				msg.getParameterTypes());
 
-        Logger log = LoggerFactory.getLogger(joinPoint.getSignature().getDeclaringType());
-        String methodName = joinPoint.getSignature().getName();
-        // 通过方法获取注解
-        MethodLogger methodLogger = method.getAnnotation(MethodLogger.class);
-        // 是否打印入参数
-        if (methodLogger.logType().equals(LogTypeEnum.FULL)
-                || methodLogger.logType().equals(LogTypeEnum.REQUEST_PARAM)) {
-            Object[] args = joinPoint.getArgs();
-            Stream<?> stream = CollectionUtils.isEmpty(Arrays.asList(args)) ? Stream.empty() : Arrays.stream(args);
-            List<Object> logArgs = stream
-                    .filter(arg -> (!(arg instanceof HttpServletRequest) && !(arg instanceof HttpServletResponse)))
-                    .collect(Collectors.toList());
-            log.info("method: {}, args: {}", methodName, JSONObject.toJSONString(logArgs));
-        }
+		Logger log = LoggerFactory
+				.getLogger(joinPoint.getSignature().getDeclaringType());
+		String methodName = joinPoint.getSignature().getName();
+		// 通过方法获取注解
+		MethodLogger methodLogger = method.getAnnotation(MethodLogger.class);
+		// 是否打印入参数
+		if (methodLogger.logType().equals(LogTypeEnum.FULL)
+				|| methodLogger.logType().equals(LogTypeEnum.REQUEST_PARAM)) {
+			Object[] args = joinPoint.getArgs();
+			Stream<?> stream = CollectionUtils.isEmpty(Arrays.asList(args))
+					? Stream.empty()
+					: Arrays.stream(args);
+			List<Object> logArgs = stream
+					.filter(arg -> (!(arg instanceof HttpServletRequest)
+							&& !(arg instanceof HttpServletResponse)))
+					.collect(Collectors.toList());
+			log.info("method: {}, args: {}", methodName,
+					JSONObject.toJSONString(logArgs));
+		}
 
-        Object result = joinPoint.proceed();
-        long elapsedTime = System.currentTimeMillis() - start;
-        if (methodLogger.logType().equals(LogTypeEnum.REQUEST_PARAM)) {
-            // 不打印出参数，针对列表类型的不打印
-            log.info("method: {}, 耗时: {}", methodName, elapsedTime);
-        } else {
-            log.info("method: {}, result: {}, 耗时: {}ms", methodName, JSONObject.toJSONString(result), elapsedTime);
-        }
-        return result;
-    }
+		Object result = joinPoint.proceed();
+		long elapsedTime = System.currentTimeMillis() - start;
+		if (methodLogger.logType().equals(LogTypeEnum.REQUEST_PARAM)) {
+			// 不打印出参数，针对列表类型的不打印
+			log.info("method: {}, 耗时: {}", methodName, elapsedTime);
+		} else {
+			log.info("method: {}, result: {}, 耗时: {}ms", methodName,
+					JSONObject.toJSONString(result), elapsedTime);
+		}
+		return result;
+	}
 }

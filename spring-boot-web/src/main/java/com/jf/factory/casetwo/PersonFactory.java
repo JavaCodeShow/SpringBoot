@@ -1,12 +1,13 @@
 package com.jf.factory.casetwo;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * 策略工厂模式
@@ -19,18 +20,18 @@ import java.util.Map;
 @Component
 public class PersonFactory {
 
-    private static final Map<Integer, Person> map = new HashMap<>();
+	private static final Map<Integer, Person> map = new HashMap<>();
 
-    @Autowired
-    private List<Person> personList;
+	@Autowired
+	private List<Person> personList;
 
-    @PostConstruct
-    public void init() {
-        personList.forEach(person -> map.put(person.getKey(), person));
-    }
+	@PostConstruct
+	public void init() {
+		personList.forEach(person -> map.put(person.getKey(), person));
+	}
 
-    public static Person match(Integer key) {
-        return map.get(key);
-    }
+	public static Person match(Integer key) {
+		return map.get(key);
+	}
 
 }

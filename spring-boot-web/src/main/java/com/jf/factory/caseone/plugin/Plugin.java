@@ -9,11 +9,11 @@ package com.jf.factory.caseone.plugin;
  */
 public interface Plugin<K> {
 
-    /**
-     * get plugin key
-     *
-     * @return
-     */
-    K getKey();
+	/**
+	 * get plugin key
+	 *
+	 * @return
+	 */
+	K getKey();
 
 }

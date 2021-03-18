@@ -7,9 +7,8 @@ package com.jf.aspect.log;
  * @date 2020/8/1 14:34
  */
 public enum LogTypeEnum {
-    REQUEST_PARAM,
-    RESPONSE,
-    FULL;
-    private LogTypeEnum() {
-    }
+	REQUEST_PARAM, RESPONSE, FULL;
+
+	private LogTypeEnum() {
+	}
 }

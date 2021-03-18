@@ -1,6 +1,5 @@
 package com.jf.entity;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class Department {
 
-    private Integer id;
-    private String departmentName;
+	private Integer id;
+	private String departmentName;
 }

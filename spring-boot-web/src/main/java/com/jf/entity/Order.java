@@ -22,12 +22,12 @@ import lombok.NoArgsConstructor;
 @ApiModel(description = "订单实体")
 public class Order {
 
-    @ApiModelProperty(value = "订单主键id")
-    private Integer id;
+	@ApiModelProperty(value = "订单主键id")
+	private Integer id;
 
-    @ApiModelProperty(value = "订单名字")
-    private String name;
+	@ApiModelProperty(value = "订单名字")
+	private String name;
 
-    @ApiModelProperty(value = "订单id")
-    private Integer orderId;
+	@ApiModelProperty(value = "订单id")
+	private Integer orderId;
 }
