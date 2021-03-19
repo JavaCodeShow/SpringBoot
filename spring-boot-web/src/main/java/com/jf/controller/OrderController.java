@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jf.entity.Order;
+import com.jf.domain.entity.Order;
 import com.jf.service.OrderService;
 
 import io.swagger.annotations.Api;

@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jf.aspect.log.LogTypeEnum;
 import com.jf.aspect.log.MethodLogger;
-import com.jf.entity.Department;
-import com.jf.entity.Employee;
-import com.jf.exception.UserNotExitException;
+import com.jf.config.exception.UserNotExitException;
+import com.jf.domain.entity.Department;
+import com.jf.domain.entity.Employee;
 
 import lombok.extern.slf4j.Slf4j;
 

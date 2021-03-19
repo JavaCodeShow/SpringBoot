@@ -66,7 +66,7 @@ public class LoggerHandler {
 					.filter(arg -> (!(arg instanceof HttpServletRequest)
 							&& !(arg instanceof HttpServletResponse)))
 					.collect(Collectors.toList());
-			log.info("method: {}, args: {}", methodName,
+			log.info("请求方法: {}, 请求参数: {}", methodName,
 					JSONObject.toJSONString(logArgs));
 		}
 
@@ -74,9 +74,9 @@ public class LoggerHandler {
 		long elapsedTime = System.currentTimeMillis() - start;
 		if (methodLogger.logType().equals(LogTypeEnum.REQUEST_PARAM)) {
 			// 不打印出参数，针对列表类型的不打印
-			log.info("method: {}, 耗时: {}", methodName, elapsedTime);
+			log.info("请求方法: {}, 耗时: {}", methodName, elapsedTime);
 		} else {
-			log.info("method: {}, result: {}, 耗时: {}ms", methodName,
+			log.info("请求方法: {}, 返回结果: {}, 耗时: {}ms", methodName,
 					JSONObject.toJSONString(result), elapsedTime);
 		}
 		return result;

@@ -1,4 +1,4 @@
-package com.jf.exception;
+package com.jf.config.exception;
 
 import java.util.Set;
 
