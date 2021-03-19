@@ -1,2 +1,1 @@
-这个是学习SpringBoot相关的代码。在这里进行记录下来。以便后期持续学习以及回顾。
-包含SpringBoot的基础知识，与Mybatis的整合，与缓存的整合，与Dubbo的整合等等。
+这个是学习SpringBoot相关的代码。在这里进行记录下来。以便后期持续学习以及回顾。 包含SpringBoot的基础知识，与Mybatis的整合，与缓存的整合，与Dubbo的整合等等。
