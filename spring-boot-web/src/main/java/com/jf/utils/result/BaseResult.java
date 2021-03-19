@@ -3,12 +3,10 @@ package com.jf.utils.result;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import com.jf.common.meta.ResultCodeEnum;
 import com.jf.utils.time.LocalDateTimeUtil;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  * 描述: 返回统一数据结构
@@ -18,9 +16,6 @@ import lombok.ToString;
  * @since: 2.20.1.1
  */
 @Data
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
 public class BaseResult<T> implements Serializable {
 
 	/**
@@ -49,32 +44,101 @@ public class BaseResult<T> implements Serializable {
 	 */
 	private String msg;
 
+	/**
+	 * 成功返回，无数据
+	 */
+	public BaseResult() {
+		this.setResultCode(ResultCodeEnum.SUCCESS);
+		this.setSuccess(Boolean.TRUE);
+	}
+
+	/**
+	 * 成功返回，有数据
+	 * 
+	 * @param data
+	 */
+	public BaseResult(T data) {
+		this.data = data;
+		this.setSuccess(Boolean.TRUE);
+		this.setResultCode(ResultCodeEnum.SUCCESS);
+	}
+
+	/**
+	 * 成功返回，有数据，自定义code
+	 * 
+	 * @param data
+	 * @param code
+	 */
+	public BaseResult(T data, Integer code) {
+		this(data, code, ResultCodeEnum.SUCCESS.message());
+	}
+
+	/**
+	 * 成功返回，有数据，自定义msg
+	 * 
+	 * @param data
+	 * @param msg
+	 */
+	public BaseResult(T data, String msg) {
+		this(data, ResultCodeEnum.SUCCESS.code(), msg);
+	}
+
+	/**
+	 * 成功返回，有数据，自定义code和msg
+	 * 
+	 * @param data
+	 * @param code
+	 * @param msg
+	 */
+	public BaseResult(T data, Integer code, String msg) {
+		this.code = code;
+		this.msg = msg;
+		this.data = data;
+		this.success = Boolean.TRUE;
+	}
+
+	private void setResultCode(ResultCodeEnum code) {
+		this.code = code.code();
+		this.msg = code.message();
+	}
+
+	/**
+	 * 失败返回,自定义 code和msg
+	 * 
+	 * @param code
+	 * @param msg
+	 * @return
+	 */
+	public BaseResult ofFail(Integer code, String msg) {
+		BaseResult result = new BaseResult();
+		result.setCode(code);
+		result.setMsg(msg);
+		result.setSuccess(Boolean.FALSE);
+		return result;
+	}
+
+	/**
+	 * 失败返回,自定义 code
+	 * 
+	 * @param code
+	 * @return
+	 */
+	public BaseResult ofFail(Integer code) {
+		return ofFail(code, ResultCodeEnum.ERROR.message());
+	}
+
+	/**
+	 * 失败返回,自定义 code
+	 * 
+	 * @param msg
+	 * @return
+	 */
+	public BaseResult ofFail(String msg) {
+		return ofFail(ResultCodeEnum.ERROR.code(), msg);
+	}
+
 	public boolean getSuccess() {
 		return this.success;
 	}
 
-	public BaseResult<T> ofSuccess(T data) {
-		BaseResult baseResult = new BaseResult();
-		baseResult.success = true;
-		baseResult.setCode(200);
-		baseResult.setData(data);
-		return baseResult;
-	}
-
-	public BaseResult ofFail(Integer code, String msg) {
-		BaseResult baseResult = new BaseResult();
-		baseResult.success = false;
-		baseResult.code = code;
-		baseResult.msg = msg;
-		return baseResult;
-	}
-
-	public BaseResult<T> ofFail(T data, Integer code, String msg) {
-		BaseResult baseResult = new BaseResult();
-		baseResult.success = false;
-		baseResult.code = code;
-		baseResult.msg = msg;
-		baseResult.setData(data);
-		return baseResult;
-	}
 }
