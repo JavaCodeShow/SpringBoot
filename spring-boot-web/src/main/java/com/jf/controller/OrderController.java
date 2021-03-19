@@ -24,7 +24,6 @@ public class OrderController {
 			order = OrderDTO.builder().id(1).orderId(111).name("秀儿，是你吗")
 					.build();
 		}
-		BaseResult baseResult = new BaseResult().ofSuccess(order);
 
 		return new BaseResult().ofSuccess(order);
 	}
