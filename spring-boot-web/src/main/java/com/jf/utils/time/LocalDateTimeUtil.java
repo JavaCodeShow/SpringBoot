@@ -16,16 +16,21 @@ import com.jf.common.constant.TimeStyleConstant;
  * @since: 2.20.1.1
  */
 
-public class LocalDateTimeUtil {
+public final class LocalDateTimeUtil {
 
-	public static void main(String[] args) {
+	/**
+	 * 对LocalDateTime 格式化为:yyyy-MM-dd HH:mm:ss
+	 *
+	 *
+	 * @param localDateTime
+	 * @return
+	 */
+	public static String getLocalDateTimeStr(LocalDateTime localDateTime) {
 
-		System.out.println(formatLocalDateTime(LocalDateTime.now(),
-				TimeStyleConstant.FORMAT_YYYYMMDD24HHMMSS));
-
-		System.out.println(parseStrToLocalDate("2021-03-19",
-				TimeStyleConstant.FORMAT_YYMMDD));
-
+		Objects.requireNonNull(localDateTime, "localDateTime");
+		DateTimeFormatter formatter = DateTimeFormatter
+				.ofPattern(TimeStyleConstant.FORMAT_YYYYMMDD24HHMMSS);
+		return localDateTime.format(formatter);
 	}
 
 	/**

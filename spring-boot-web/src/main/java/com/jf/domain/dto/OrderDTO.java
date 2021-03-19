@@ -1,4 +1,4 @@
-package com.jf.domain.entity;
+package com.jf.domain.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(description = "订单实体")
-public class Order {
+public class OrderDTO {
 
 	@ApiModelProperty(value = "订单主键id")
 	private Integer id;
