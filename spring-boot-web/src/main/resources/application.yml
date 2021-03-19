@@ -1,3 +1,6 @@
+server:
+  port: 8082
+
 #线程池配置参数
 task:
   pool:
