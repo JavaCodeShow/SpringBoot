@@ -6,12 +6,13 @@ import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import com.jf.aspect.log.MethodLogger;
-import com.jf.config.exception.ServiceException;
+import com.jf.common.aspect.log.MethodLogger;
+import com.jf.common.exception.ServiceException;
+import com.jf.common.meta.ErrorCodeMeta;
+import com.jf.common.utils.result.BaseResult;
+import com.jf.common.utils.result.PageQueryRequest;
+import com.jf.common.utils.result.PageQueryResponse;
 import com.jf.domain.dto.OrderDTO;
-import com.jf.utils.result.BaseResult;
-import com.jf.utils.result.PageQueryRequest;
-import com.jf.utils.result.PageQueryResponse;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,7 +35,7 @@ public class OrderController {
 					.build();
 		}
 		if (id == 1) {
-			throw new ServiceException("css-111", "优惠券兑换错误");
+			throw new ServiceException(ErrorCodeMeta.COUPON_ERROR);
 		}
 		if (id == 2) {
 			throw new NullPointerException();

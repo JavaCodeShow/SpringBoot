@@ -26,6 +26,12 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>com.jf</groupId>
+            <artifactId>jf-common-utils</artifactId>
+            <version>1.0</version>
+        </dependency>
+
         <!-- AOP -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
