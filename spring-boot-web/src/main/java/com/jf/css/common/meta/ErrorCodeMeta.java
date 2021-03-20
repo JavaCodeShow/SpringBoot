@@ -1,7 +1,7 @@
 package com.jf.css.common.meta;
 
 import com.jf.common.exception.BaseResponseInfoInterface;
-import com.jf.css.common.constant.SystemNameConstant;
+import com.jf.css.common.constant.CommonConstant;
 
 import lombok.Getter;
 
@@ -15,7 +15,7 @@ import lombok.Getter;
 public enum ErrorCodeMeta implements BaseResponseInfoInterface {
 	// @formatter:off
 
-    COUPON_ERROR(SystemNameConstant.SYSTEM_NAME + "-" + "10000", "优惠券兑换错误");
+    COUPON_ERROR(CommonConstant.SYSTEM_CODE + "-" + "10000", "优惠券兑换错误");
 
     // @formatter:on
 
