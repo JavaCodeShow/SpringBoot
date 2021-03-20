@@ -3,14 +3,12 @@ package com.jf.controller;
 import com.jf.aspect.log.MethodLogger;
 import com.jf.domain.dto.OrderDTO;
 import com.jf.utils.result.BaseResult;
-import com.jf.utils.result.PageQueryResult;
+import com.jf.utils.result.PageQueryRequest;
+import com.jf.utils.result.PageQueryResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,15 +34,15 @@ public class OrderController {
 
 
     @ApiOperation(value = "分页查询订单")
-    @GetMapping("/list")
+    @PostMapping("/list")
     @MethodLogger
-    public PageQueryResult<List<OrderDTO>> orderList() {
+    public PageQueryResponse<List<OrderDTO>> orderList(@RequestBody PageQueryRequest<OrderDTO> request) {
 
         OrderDTO order = OrderDTO.builder().id(1).orderId(111).name("秀儿，是你吗")
                 .build();
         List<OrderDTO> orderList = new ArrayList<>();
         orderList.add(order);
 
-        return PageQueryResult.success(orderList, 10);
+        return PageQueryResponse.success(orderList, 10);
     }
 }

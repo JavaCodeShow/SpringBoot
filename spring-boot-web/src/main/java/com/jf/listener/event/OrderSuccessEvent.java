@@ -1,4 +1,4 @@
-package com.jf.event;
+package com.jf.listener.event;
 
 import org.springframework.context.ApplicationEvent;
 

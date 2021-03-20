@@ -10,7 +10,7 @@ import lombok.Data;
  * @since
  */
 @Data
-public class PageQueryResult<T> extends BaseResult<T> {
+public class PageQueryResponse<T> extends BaseResult<T> {
 
     //总记录数
     private Integer total;
@@ -24,13 +24,13 @@ public class PageQueryResult<T> extends BaseResult<T> {
     //当前页码
     private Integer currPage;
 
-    public PageQueryResult() {
+    public PageQueryResponse() {
 
     }
 
 
-    public static <T> PageQueryResult<T> success(T data, Integer total) {
-        PageQueryResult<T> result = new PageQueryResult<>();
+    public static <T> PageQueryResponse<T> success(T data, Integer total) {
+        PageQueryResponse<T> result = new PageQueryResponse<>();
         result.setData(data);
         result.setTotal(total);
         result.setResultCode(ResultCodeEnum.SUCCESS);
@@ -38,8 +38,8 @@ public class PageQueryResult<T> extends BaseResult<T> {
         return result;
     }
 
-    public static <T> PageQueryResult<T> failure() {
-        PageQueryResult<T> result = new PageQueryResult<>();
+    public static <T> PageQueryResponse<T> failure() {
+        PageQueryResponse<T> result = new PageQueryResponse<>();
         result.setResultCode(ResultCodeEnum.ERROR);
         result.setSuccess(Boolean.FALSE);
         return result;
