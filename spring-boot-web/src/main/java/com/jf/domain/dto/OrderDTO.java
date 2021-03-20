@@ -1,5 +1,7 @@
 package com.jf.domain.dto;
 
+import javax.validation.constraints.NotNull;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -22,6 +24,7 @@ import lombok.NoArgsConstructor;
 @ApiModel(description = "订单实体")
 public class OrderDTO {
 
+	@NotNull(message = "id不能为空")
 	@ApiModelProperty(value = "订单主键id")
 	private Integer id;
 

@@ -1,5 +1,9 @@
 package com.jf.common.meta;
 
+import com.jf.config.exception.BaseResponseInfoInterface;
+
+import lombok.Getter;
+
 /**
  * 描述: 状态码
  *
@@ -7,46 +11,69 @@ package com.jf.common.meta;
  * @create: 2021-03-19 18:36
  * @since: 2.20.1.1
  */
-public enum ResultCodeEnum {
+@Getter
+public enum ResultCodeEnum implements BaseResponseInfoInterface {
 
 	// @formatter:off
-	
-	UNKNOWN_ERROR(404, "未知错误"),
-	ERROR(201, "失败"),
-	SUCCESS(200, "成功");
-	
-	// @formatter:on
 
-	private Integer code;
+    SUCCESS("200", "成功"),
+    ERROR("201", "失败"),
+    PARAMS_NOT_MATCH("400", "参数校验不通过，请检查请求参数!"),
+    NOT_FOUND("404", "未找到该资源!"),
+    INTERNAL_SERVER_ERROR("500", "服务器内部错误!"),
+    SERVER_BUSY("503", "系统繁忙，请稍后再试!");
+
+    // @formatter:on
+
+	private String code;
 
 	private String message;
 
-	ResultCodeEnum(Integer code, String message) {
+	ResultCodeEnum(String code, String message) {
 		this.code = code;
 		this.message = message;
 	}
 
-	public Integer code() {
-		return this.code;
-	}
-
-	public String message() {
-		return this.message;
-	}
-
-	public static String getMessage(String name) {
+	/**
+	 * 根据code获取该code对应的枚举
+	 *
+	 * @param code
+	 * @return
+	 */
+	public static ResultCodeEnum getEnumByCode(String code) {
 		for (ResultCodeEnum item : ResultCodeEnum.values()) {
-			if (item.name().equals(name)) {
+			if (item.getCode().equals(code)) {
+				return item;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 根据code获取该code对应的枚举的描述
+	 *
+	 * @param code
+	 * @return
+	 */
+	public static String getMessageByCode(String code) {
+		for (ResultCodeEnum item : ResultCodeEnum.values()) {
+			if (item.getCode().equals(code)) {
 				return item.message;
 			}
 		}
-		return name;
+		return null;
 	}
 
-	public static Integer getCode(String name) {
+	/**
+	 * 根据描述获取对应的枚举
+	 *
+	 * @param msg
+	 * @return
+	 */
+	public static ResultCodeEnum getEnumByMessage(String msg) {
 		for (ResultCodeEnum item : ResultCodeEnum.values()) {
-			if (item.name().equals(name)) {
-				return item.code;
+			if (item.getMessage().equals(msg)) {
+				return item;
 			}
 		}
 		return null;

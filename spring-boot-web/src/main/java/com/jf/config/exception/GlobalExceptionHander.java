@@ -1,18 +1,18 @@
 package com.jf.config.exception;
 
-import java.util.Set;
+import java.util.List;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import javax.validation.ValidationException;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
+import org.springframework.util.CollectionUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
-import org.springframework.validation.BindException;
-import org.springframework.web.bind.annotation.*;
+import com.jf.common.meta.ResultCodeEnum;
+import com.jf.utils.result.BaseResult;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,38 +24,80 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @ControllerAdvice
-@Component
-@RestController
 @Slf4j
 public class GlobalExceptionHander {
 
-	@ExceptionHandler(value = Exception.class)
-	public String hello(Exception e) {
-		System.out.println(e.getMessage());
-		return e.getMessage();
+	/**
+	 * 处理自定义的业务异常
+	 *
+	 * @param e
+	 * @return
+	 */
+	@ExceptionHandler(value = ServiceException.class)
+	@ResponseBody
+	public BaseResult ServiceExceptionHandler(ServiceException e) {
+
+		log.error("发生业务异常！原因是：errorCode = [{}],errorMsg = [{}]",
+				e.getErrorCode(), e.getErrorMsg());
+		return BaseResult.fail(e.getErrorCode(), e.getErrorMsg());
+
 	}
 
-	@ExceptionHandler(BindException.class)
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public String handle(ValidationException exception) {
-		if (exception instanceof ConstraintViolationException) {
-			ConstraintViolationException exs = (ConstraintViolationException) exception;
+	/**
+	 * 处理空指针的异常
+	 *
+	 * @param e
+	 * @return
+	 */
+	@ExceptionHandler(value = NullPointerException.class)
+	@ResponseBody
+	public BaseResult exceptionHandler(NullPointerException e) {
 
-			Set<ConstraintViolation<?>> violations = exs
-					.getConstraintViolations();
-			for (ConstraintViolation<?> item : violations) {
-				// 打印验证不通过的信息
-				System.out.println(item.getMessage());
+		log.error("发生空指针异常！原因是:", e);
+		return BaseResult.fail(ResultCodeEnum.SERVER_BUSY);
+
+	}
+
+	/**
+	 * 处理表单异常
+	 *
+	 * @param e
+	 * @return
+	 */
+	@ExceptionHandler(value = MethodArgumentNotValidException.class)
+	@ResponseBody
+	public BaseResult exceptionHandler(MethodArgumentNotValidException e) {
+
+		BindingResult bindingResult = e.getBindingResult();
+		// 判断是否有错误的消息，如果存在就是用异常中的消息，没有就是用默认的消息
+		if (bindingResult.hasErrors()) {
+			List<ObjectError> allErrors = bindingResult.getAllErrors();
+			if (!CollectionUtils.isEmpty(allErrors)) {
+				// 这里列出了全部的错误消息，一般只取第一条即可。
+				FieldError fieldError = (FieldError) allErrors.get(0);
+				log.error("参数校验不通过，请检查请求参数! 原因是: field = [{}], message = [{}]",
+						fieldError.getField(), fieldError.getDefaultMessage());
+				return BaseResult.fail(fieldError.getField(),
+						fieldError.getDefaultMessage());
 			}
 		}
-		return exception.getMessage();
+		log.error("参数校验不通过，请检查请求参数!");
+		return BaseResult.fail(ResultCodeEnum.PARAMS_NOT_MATCH);
+
 	}
 
-	@GetMapping("/validate1")
+	/**
+	 * 处理其他异常
+	 *
+	 * @param e
+	 * @return
+	 */
+	@ExceptionHandler(value = Exception.class)
 	@ResponseBody
-	public String validate1(
-			@Size(min = 1, max = 10, message = "姓名长度必须为1到10") @RequestParam("name") String name,
-			@Min(value = 10, message = "年龄最小为10") @Max(value = 100, message = "年龄最大为100") @RequestParam("age") Integer age) {
-		return "validate1";
+	public BaseResult exceptionHandler(Exception e) {
+
+		log.error("未知异常！原因是:", e);
+		return BaseResult.fail(ResultCodeEnum.SERVER_BUSY);
+
 	}
 }
