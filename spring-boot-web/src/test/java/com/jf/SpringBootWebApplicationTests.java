@@ -7,9 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.jf.factory.caseone.plugin.PersonProvider;
-import com.jf.factory.casetwo.PersonFactory;
-import com.jf.service.OrderService;
+import com.jf.css.factory.caseone.plugin.PersonProvider;
+import com.jf.css.factory.casetwo.PersonFactory;
+import com.jf.css.service.OrderService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
