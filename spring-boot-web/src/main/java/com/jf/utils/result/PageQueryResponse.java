@@ -12,6 +12,8 @@ import lombok.Data;
 @Data
 public class PageQueryResponse<T> extends BaseResult<T> {
 
+    private static final long serialVersionUID = -2653797671530890726L;
+
     //总记录数
     private Integer total;
 

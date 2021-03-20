@@ -17,6 +17,8 @@ import java.time.LocalDateTime;
 @Data
 public class BaseResult<T> implements Serializable {
 
+    private static final long serialVersionUID = -2893410163392884394L;
+
     /**
      * 是否成功
      */

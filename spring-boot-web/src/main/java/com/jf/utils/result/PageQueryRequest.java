@@ -3,6 +3,8 @@ package com.jf.utils.result;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.Valid;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -13,7 +15,9 @@ import java.util.Objects;
  */
 @Setter
 @ToString
-public class PageQueryRequest<T> {
+public class PageQueryRequest<T> implements Serializable {
+
+    private static final long serialVersionUID = 3006162444172551276L;
 
     private static final int DEFAULT_SIZE = 10;
 
@@ -30,6 +34,7 @@ public class PageQueryRequest<T> {
     /**
      * 查询条件
      */
+    @Valid
     private T data;
 
     /**
