@@ -146,8 +146,8 @@ public class RedisServiceImpl implements RedisService {
 		}
 		// 如果锁超时 ***
 		String currentValue = stringRedisTemplate.opsForValue().get(lockKey);
-		if (!StringUtils.isEmpty(currentValue) && Long.parseLong(currentValue)
-				+ (expire * 1000L) < System.currentTimeMillis()) {
+		if (!StringUtils.isEmpty(currentValue)
+				&& Long.parseLong(currentValue) < System.currentTimeMillis()) {
 			// key删除
 			stringRedisTemplate.delete(lockKey);
 			// 再次获取
