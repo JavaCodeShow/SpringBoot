@@ -52,3 +52,6 @@ build/
 .gradle/
 .vscode/
 .tmp
+
+# --- JRebel
+/**/rebel.xml
