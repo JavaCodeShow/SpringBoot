@@ -1,6 +1,7 @@
 package com.jf.css.utils.lock;
 
 import java.lang.reflect.Method;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.jf.common.common.meta.ResultCodeEnum;
 import com.jf.common.exception.ServiceException;
+import com.jf.common.utils.time.LocalDateTimeUtil;
 import com.jf.css.service.RedisService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -41,28 +43,21 @@ public class LockMethodInterceptor {
 
 		final String lockKey = cacheKeyGenerator.getLockKey(pjp);
 		log.info("redis lock key is [{}]", lockKey);
-		String expireTimeStr = String
-				.valueOf(System.currentTimeMillis() + (lock.expire() * 1000L));
 
-		boolean remove = true;
+		String lockValue = UUID.randomUUID().toString();
 
-		try {
-			// 采用原生 API 来实现分布式锁
-			final boolean success = remove = redisService.tryLock(lockKey,
-					expireTimeStr, lock.expire());
-			if (!success) {
-				// 重复提交异常不删除key
-				throw new ServiceException(ResultCodeEnum.RESUBMIT);
-			}
-			return pjp.proceed();
+		// 采用原生 API 来实现分布式锁
+		final boolean success = redisService.tryLock(lockKey, lockValue,
+				lock.expire());
 
-		} finally {
-			// 在设定时间之后会自动解锁
-			// if (remove) {
-			// // 需要将value传过去，只能解自己的锁
-			// redisService.unLock(lockKey, expireTimeStr);
-			// log.info("un lock = [{}]", lockKey);
-			// }
+		if (!success) {
+			// 重复提交异常不删除key
+			throw new ServiceException(ResultCodeEnum.RESUBMIT);
 		}
+
+		log.info("success = [{}], 时间 = [{}]", success,
+				LocalDateTimeUtil.getLocalDateTimeStr());
+
+		return pjp.proceed();
 	}
 }

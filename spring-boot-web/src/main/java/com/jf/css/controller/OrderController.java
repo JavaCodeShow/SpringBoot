@@ -2,8 +2,12 @@ package com.jf.css.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.Executor;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +31,44 @@ public class OrderController {
 
 	@Autowired
 	private RedisService redisService;
+
+	@Autowired
+	@Qualifier("baseAsyncExecutor")
+	private Executor baseAsyncExecutor;
+
+	@ApiOperation(value = "模拟秒杀")
+	@RequestMapping("/secskill")
+	public BaseResult secskill() {
+
+		AtomicInteger productNum = new AtomicInteger(2);
+
+		String lockValue = UUID.randomUUID().toString();
+		int threadCount = 1000;
+		AtomicInteger execThreadNum = new AtomicInteger(1);
+
+		for (int i = 0; i < threadCount; i++) {
+			baseAsyncExecutor.execute(() -> {
+				log.info("第[{}]个线程", execThreadNum.getAndIncrement());
+				try {
+					boolean success = redisService.tryLock("productId",
+							lockValue, 10);
+					if (success && productNum.get() > 0) {
+						productNum.decrementAndGet();
+					}
+					log.info("线程名字 = [{}], success = [{}], 剩余数量 = [{}]",
+							Thread.currentThread().getName(), success,
+							productNum);
+				} finally {
+					redisService.unLock("productId", lockValue);
+				}
+				if (execThreadNum.get() == 1000) {
+					System.out.println("exit");
+				}
+			});
+		}
+
+		return BaseResult.success();
+	}
 
 	@ApiOperation(value = "根据订单id查询订单")
 	@GetMapping("/{id}")

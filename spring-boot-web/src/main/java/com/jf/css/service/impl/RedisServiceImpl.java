@@ -1,6 +1,7 @@
 package com.jf.css.service.impl;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -9,7 +10,6 @@ import javax.annotation.Resource;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import com.jf.css.service.RedisService;
 
@@ -131,55 +131,60 @@ public class RedisServiceImpl implements RedisService {
 	 *            过期时间 单位秒
 	 * @param lockKey
 	 *            key
-	 * @param keyValue
-	 *            key的值，一般是当前时间毫秒
-	 * @return
+	 * @param lockValue
+	 *            : 一般是UUID.randomUUID().toString()
+	 *
+	 * @return lockValue ==> 值不为空, 获取到锁，lockValue为空,没有获取到锁)
 	 */
 	@Override
-	public boolean tryLock(String lockKey, String keyValue, int expire) {
+	public boolean tryLock(String lockKey, String lockValue, int expire) {
 
 		Boolean result = redisTemplate.opsForValue().setIfAbsent(lockKey,
-				keyValue, expire, TimeUnit.SECONDS);
+				lockValue, expire, TimeUnit.SECONDS);
 
 		log.info("get lock = [{}]", result);
 
-		if (null != result && result) {
+		// 获取到锁，立即返回
+		if (Objects.nonNull(result) && result) {
 			return true;
 		}
 
-		// 如果锁超时 ***
-		String currentValue = stringRedisTemplate.opsForValue().get(lockKey);
-
-		// 这里由于分布式环境下各个服务器的时间可能是不一样的。可能会导致redis里面实际未过期，
-		// 但是在这个服务器里面判断为过期了。
-		if (!StringUtils.isEmpty(currentValue)
-				&& Long.parseLong(currentValue) < System.currentTimeMillis()) {
-
-			// key删除
-			stringRedisTemplate.delete(lockKey);
-			// 再次获取
-			Boolean res = stringRedisTemplate.opsForValue().setIfAbsent(lockKey,
-					keyValue, expire, TimeUnit.SECONDS);
-			return null != res && res;
-		}
+		// // 获取锁的超时时间，超过这个时间则放弃获取锁
+		// long end = System.currentTimeMillis() + (expire * 1000L);
+		//
+		// while (System.currentTimeMillis() < end) {
+		// // 如果锁超时 ***
+		// String currentValue = stringRedisTemplate.opsForValue()
+		// .get(lockKey);
+		// if (lockValue.equals(currentValue)) {
+		// // 当redis里面存储的值相等时，才会进行删除
+		// stringRedisTemplate.delete(lockKey);
+		// // 再次获取
+		// Boolean res = stringRedisTemplate.opsForValue().setIfAbsent(
+		// lockKey, lockValue, expire, TimeUnit.SECONDS);
+		// if (Objects.nonNull(res) && res) {
+		// return true;
+		// }
+		// }
+		// }
 		return false;
 	}
 
 	@Override
-	public void unLock(String lockKey, String keyValue) {
+	public void unLock(String lockKey, String lockValue) {
 
-		String value = stringRedisTemplate.opsForValue().get(lockKey);
-		if (keyValue.equals(value)) {
+		String currentValue = stringRedisTemplate.opsForValue().get(lockKey);
+		if (lockValue.equals(currentValue)) {
 			// 当redis里面存储的值相等时，才会进行删除
 			stringRedisTemplate.delete(lockKey);
 		}
 	}
 
 	@Override
-	public void setIfAbsent(String lockKey, String keyValue, long expire) {
+	public void setIfAbsent(String lockKey, String lockValue, long expire) {
 
-		stringRedisTemplate.opsForValue().setIfAbsent(lockKey, keyValue, expire,
-				TimeUnit.SECONDS);
+		stringRedisTemplate.opsForValue().setIfAbsent(lockKey, lockValue,
+				expire, TimeUnit.SECONDS);
 	}
 
 }

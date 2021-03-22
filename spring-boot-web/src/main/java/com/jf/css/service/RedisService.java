@@ -136,11 +136,11 @@ public interface RedisService {
 	 *            过期时间 单位秒
 	 * @param lockKey
 	 *            key
-	 * @param keyValue
+	 * @param lockValue
 	 *            key的值，一般是当前时间毫秒
-	 * @return
+	 * @return lockValue ==> 值不为空, 获取到锁，值为空,没有获取到锁)
 	 */
-	boolean tryLock(String lockKey, String keyValue, int expire);
+	boolean tryLock(String lockKey, String lockValue, int expire);
 
 	/**
 	 * 解锁
@@ -157,11 +157,11 @@ public interface RedisService {
 	 *
 	 * @param lockKey
 	 *            redisKey
-	 * @param keyValue
+	 * @param lockValue
 	 *            key的value
 	 * @param expire
 	 *            过期时间
 	 */
-	void setIfAbsent(String lockKey, String keyValue, long expire);
+	void setIfAbsent(String lockKey, String lockValue, long expire);
 
 }
