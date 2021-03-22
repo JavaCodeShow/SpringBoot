@@ -7,14 +7,15 @@ import com.jf.css.common.constant.CommonConstant;
 /**
  * 防重复提交
  *
- * @author zhangyunhe
+ * @author 江峰
  * @date 2020/6/19 11:47 上午
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-public @interface CacheLock {
+public @interface ReSubmitLock {
+
 	/**
 	 * redis 锁key的前缀
 	 *

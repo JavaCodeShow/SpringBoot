@@ -17,7 +17,7 @@ import com.jf.common.utils.result.PageQueryRequest;
 import com.jf.common.utils.result.PageQueryResponse;
 import com.jf.css.domain.dto.OrderDTO;
 import com.jf.css.service.RedisService;
-import com.jf.css.utils.lock.CacheLock;
+import com.jf.css.utils.lock.ReSubmitLock;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -73,7 +73,7 @@ public class OrderController {
 	@ApiOperation(value = "根据订单id查询订单")
 	@GetMapping("/{id}")
 	@MethodLogger
-	@CacheLock
+	@ReSubmitLock
 	public BaseResult<OrderDTO> getOrderById(@PathVariable Integer id) {
 
 		OrderDTO order = new OrderDTO();

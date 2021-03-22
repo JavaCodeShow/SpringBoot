@@ -20,7 +20,7 @@ public class LockKeyGenerator implements CacheKeyGenerator {
 
 		MethodSignature signature = (MethodSignature) pjp.getSignature();
 		Method method = signature.getMethod();
-		CacheLock lockAnnotation = method.getAnnotation(CacheLock.class);
+		ReSubmitLock lockAnnotation = method.getAnnotation(ReSubmitLock.class);
 
 		// TODO 同一个人同一个方法(userId 和userType需要取系统具体的值)
 		return CommonConstant.SYSTEM_CODE + lockAnnotation.delimiter()

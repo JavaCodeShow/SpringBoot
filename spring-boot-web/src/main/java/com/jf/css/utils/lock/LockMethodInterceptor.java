@@ -33,13 +33,13 @@ public class LockMethodInterceptor {
 	@Resource
 	private RedisService redisService;
 
-	@Around("@annotation(com.jf.css.utils.lock.CacheLock)")
+	@Around("@annotation(com.jf.css.utils.lock.ReSubmitLock)")
 	public Object interceptor(ProceedingJoinPoint pjp) throws Throwable {
 
 		MethodSignature signature = (MethodSignature) pjp.getSignature();
 		Method method = signature.getMethod();
 
-		CacheLock lock = method.getAnnotation(CacheLock.class);
+		ReSubmitLock lock = method.getAnnotation(ReSubmitLock.class);
 
 		final String lockKey = cacheKeyGenerator.getLockKey(pjp);
 		log.info("redis lock key is [{}]", lockKey);
