@@ -140,14 +140,21 @@ public class RedisServiceImpl implements RedisService {
 
 		Boolean result = redisTemplate.opsForValue().setIfAbsent(lockKey,
 				keyValue, expire, TimeUnit.SECONDS);
+
 		log.info("get lock = [{}]", result);
+
 		if (null != result && result) {
 			return true;
 		}
+
 		// 如果锁超时 ***
 		String currentValue = stringRedisTemplate.opsForValue().get(lockKey);
+
+		// 这里由于分布式环境下各个服务器的时间可能是不一样的。可能会导致redis里面实际未过期，
+		// 但是在这个服务器里面判断为过期了。
 		if (!StringUtils.isEmpty(currentValue)
 				&& Long.parseLong(currentValue) < System.currentTimeMillis()) {
+
 			// key删除
 			stringRedisTemplate.delete(lockKey);
 			// 再次获取
