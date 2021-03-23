@@ -1,9 +1,12 @@
-package com.jf.css.utils.lock.redission.lock;
+package com.jf.css.service.impl.redis;
 
 import java.util.concurrent.TimeUnit;
 
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.springframework.stereotype.Service;
+
+import com.jf.css.service.redis.RedissonLockService;
 
 /**
  * 描述: redisson实现分布式锁接口实现类
@@ -12,11 +15,12 @@ import org.redisson.api.RedissonClient;
  * @create: 2021-03-23 18:48
  * @since: 2.22.1
  */
-public class RedissonDistributeLocker implements DistributeLocker {
+@Service
+public class RedissonLockServiceImpl implements RedissonLockService {
 
 	private RedissonClient redissonClient;
 
-	public RedissonDistributeLocker(RedissonClient redissonClient) {
+	public RedissonLockServiceImpl(RedissonClient redissonClient) {
 		this.redissonClient = redissonClient;
 	}
 

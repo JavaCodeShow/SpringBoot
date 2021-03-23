@@ -1,4 +1,4 @@
-package com.jf.css.service;
+package com.jf.css.service.redis;
 
 import java.util.Map;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package com.jf.css.utils.lock.redission.lock;
+package com.jf.css.service.redis;
 
 import java.util.concurrent.TimeUnit;
 
@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
  * @create: 2021-03-23 18:46
  * @since: 2.22.1
  */
-public interface DistributeLocker {
+public interface RedissonLockService {
 
 	/**
 	 * 加锁

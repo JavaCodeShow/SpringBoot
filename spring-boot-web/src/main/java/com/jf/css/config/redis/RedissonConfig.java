@@ -8,9 +8,6 @@ import org.redisson.config.Config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.jf.css.utils.lock.redission.lock.RedissonDistributeLocker;
-import com.jf.css.utils.lock.redission.lock.RedissonLockUtils;
-
 /**
  * 描述: redisson bean管理
  *
@@ -20,15 +17,6 @@ import com.jf.css.utils.lock.redission.lock.RedissonLockUtils;
  */
 @Configuration
 public class RedissonConfig {
-
-	@Bean
-	public RedissonDistributeLocker redissonLocker(
-			RedissonClient redissonClient) {
-		RedissonDistributeLocker locker = new RedissonDistributeLocker(
-				redissonClient);
-		RedissonLockUtils.setLocker(locker);
-		return locker;
-	}
 
 	/**
 	 * Redisson客户端注册 单机模式

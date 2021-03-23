@@ -1,17 +1,16 @@
-package com.jf.css.service.impl;
+package com.jf.css.service.impl.redis;
 
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
-import com.jf.css.service.RedisService;
+import com.jf.css.service.redis.RedisService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,10 +24,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RedisServiceImpl implements RedisService {
 
-	@Resource
+	@Autowired
 	private RedisTemplate<String, String> redisTemplate;
 
-	@Resource
+	@Autowired
 	private StringRedisTemplate stringRedisTemplate;
 
 	@Override

@@ -1,4 +1,4 @@
-package com.jf.css.utils.lock.redis.lock;
+package com.jf.css.utils.lock;
 
 import java.lang.annotation.*;
 
@@ -24,11 +24,11 @@ public @interface ReSubmitLock {
 	String prefix() default CommonConstant.SYSTEM_CODE;
 
 	/**
-	 * 过期秒数,默认为5秒
+	 * 过期秒数,默认为10秒
 	 *
 	 * @return 轮询锁的时间
 	 */
-	int expire() default 5;
+	int leaseTime() default 10;
 
 	/**
 	 * <p>

@@ -16,8 +16,8 @@ import com.jf.common.utils.result.BaseResult;
 import com.jf.common.utils.result.PageQueryRequest;
 import com.jf.common.utils.result.PageQueryResponse;
 import com.jf.css.domain.dto.OrderDTO;
-import com.jf.css.service.RedisService;
-import com.jf.css.utils.lock.redis.lock.ReSubmitLock;
+import com.jf.css.service.redis.RedisService;
+import com.jf.css.utils.lock.ReSubmitLock;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
