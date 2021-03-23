@@ -1,4 +1,4 @@
-package com.jf.css.utils.lock;
+package com.jf.css.utils.lock.redis.lock;
 
 import java.lang.reflect.Method;
 import java.util.UUID;
@@ -33,7 +33,7 @@ public class LockMethodInterceptor {
 	@Resource
 	private RedisService redisService;
 
-	@Around("@annotation(com.jf.css.utils.lock.ReSubmitLock)")
+	@Around("@annotation(com.jf.css.utils.lock.redis.lock.ReSubmitLock)")
 	public Object interceptor(ProceedingJoinPoint pjp) throws Throwable {
 
 		MethodSignature signature = (MethodSignature) pjp.getSignature();

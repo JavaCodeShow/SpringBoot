@@ -1,4 +1,4 @@
-package com.jf.css.utils.lock;
+package com.jf.css.utils.lock.redis.lock;
 
 import java.lang.reflect.Method;
 
