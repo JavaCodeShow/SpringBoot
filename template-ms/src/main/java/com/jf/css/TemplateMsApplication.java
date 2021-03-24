@@ -9,9 +9,9 @@ import com.jf.common.utils.config.JfCommonUtilsConfig;
 
 @SpringBootApplication
 @Import({ JfCommonUtilsConfig.class, JfCommonRedisConfig.class })
-public class SpringBootWebApplication {
+public class TemplateMsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootWebApplication.class, args);
+		SpringApplication.run(TemplateMsApplication.class, args);
 	}
 }

@@ -10,7 +10,7 @@ import com.jf.css.service.OrderService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SpringBootWebApplicationTests {
+public class TemplateMsApplicationTests {
 
 	@Autowired
 	private OrderService orderService;

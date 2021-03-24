@@ -1,6 +1,6 @@
 package com.jf.css.common.meta;
 
-import com.jf.common.exception.BaseResponseInfoInterface;
+import com.jf.common.utils.common.meta.BaseResponseInfoInterface;
 import com.jf.css.common.constant.CommonConstant;
 
 import lombok.Getter;
