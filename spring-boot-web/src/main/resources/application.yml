@@ -30,6 +30,10 @@ spring:
     #集群
     #cluster.nodes: IP:7001
 
+  redisson:
+    address: "redis://139.224.103.236:6379"
+
+
 # 监控相关配置
 # 开启监控
 management:
