@@ -85,4 +85,15 @@ public class RedisTest {
 		System.out.println("exit");
 	}
 
+	@Test
+	public void testLock() {
+		System.out.println("测试lock");
+
+		// 默认过期时间是30秒钟
+		redissonLockService.lock("name");
+
+		System.out.println("exit");
+
+	}
+
 }
