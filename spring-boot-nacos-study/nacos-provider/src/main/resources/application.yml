@@ -1,0 +1,20 @@
+server:
+  port: 8084
+
+# 监控相关配置
+# 开启监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+spring:
+  application:
+    name: service-provider
+  cloud:
+    nacos:
+      discovery:
+        namespace: dev
+        server-addr: 127.0.0.1:8848
+
