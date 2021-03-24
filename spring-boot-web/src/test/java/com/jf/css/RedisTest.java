@@ -1,5 +1,6 @@
 package com.jf.css;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
@@ -7,10 +8,14 @@ import org.junit.runner.RunWith;
 import org.redisson.api.RBucket;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.jf.css.service.redis.RedisService;
+import com.jf.common.redis.service.RedisService;
+import com.jf.common.redis.service.RedissonLockService;
+import com.jf.common.utils.utils.time.LocalDateTimeUtil;
 
 /**
  * 描述:
@@ -29,6 +34,13 @@ public class RedisTest {
 	@Autowired
 	private RedisService redisService;
 
+	@Autowired
+	private RedissonLockService redissonLockService;
+
+	@Autowired
+	@Qualifier("baseAsyncExecutor")
+	private ThreadPoolTaskExecutor baseAsyncExecutor;
+
 	/**
 	 * 使用redissonClient 也可以操作redis的五大数据类型进行操作，<br>
 	 * 但是比较麻烦。直接使用 StringRedisTemplate/RedisTemplate操作即可。 两者不冲突
@@ -46,6 +58,31 @@ public class RedisTest {
 
 		System.out.println("redis    " + redisService.get("keyStr"));
 
+	}
+
+	@Test
+	public void testTryLock() throws InterruptedException {
+		int threadCount = 10;
+		System.out.println("测试tryLock");
+		CountDownLatch latch = new CountDownLatch(threadCount);
+		for (int i = 0; i < threadCount; i++) {
+			baseAsyncExecutor.execute(() -> {
+				try {
+					boolean success = redissonLockService.tryLock("name", 5, 10,
+							TimeUnit.SECONDS);
+					System.out.println(
+							"线程名字 = " + Thread.currentThread().getName()
+									+ "   getLock = " + success + "   time = "
+									+ LocalDateTimeUtil.getLocalDateTimeStr());
+					latch.countDown();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			});
+		}
+
+		latch.await();
+		System.out.println("exit");
 	}
 
 }

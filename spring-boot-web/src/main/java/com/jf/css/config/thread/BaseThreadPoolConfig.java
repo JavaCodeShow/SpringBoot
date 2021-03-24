@@ -58,7 +58,7 @@ public class BaseThreadPoolConfig {
 		// setRejectedExecutionHandler：当pool已经达到max size的时候，如何处理新任务
 		// CallerRunsPolicy：不在新线程中执行任务，而是由调用者所在的线程来执行
 		executor.setRejectedExecutionHandler(
-				new ThreadPoolExecutor.CallerRunsPolicy());
+				new ThreadPoolExecutor.AbortPolicy());
 
 		// 等待所有任务结束后再关闭线程池
 		executor.setWaitForTasksToCompleteOnShutdown(true);
