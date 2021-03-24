@@ -1,7 +1,7 @@
-package com.jf.css.common.meta;
+package com.jf.css.meta.enums;
 
-import com.jf.common.utils.common.meta.BaseResponseInfoInterface;
-import com.jf.css.common.constant.CommonConstant;
+import com.jf.common.utils.meta.enums.BaseResponseInfoInterface;
+import com.jf.css.meta.constant.CommonConstant;
 
 import lombok.Getter;
 
