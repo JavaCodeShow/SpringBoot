@@ -2,14 +2,15 @@ package com.jf.css.controller;
 
 import java.util.concurrent.TimeUnit;
 
-import org.redisson.api.RBucket;
-import org.redisson.api.RedissonClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jf.common.aspect.log.MethodLogger;
 import com.jf.common.utils.result.BaseResult;
+import com.jf.css.domain.dto.OrderDTO;
 import com.jf.css.utils.lock.DistributeLock;
+import com.jf.css.utils.lock.ReSubmitLock;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,22 +22,21 @@ import lombok.extern.slf4j.Slf4j;
  * @since: 2.22.1
  */
 @RestController
+@RequestMapping("/redis")
 @Slf4j
 public class RedisTestController {
 
-	@Autowired
-	private RedissonClient redissonClient;
-
-	@GetMapping(value = "testLock")
+	@GetMapping(value = "/testDistributeLock")
+	@MethodLogger
 	@DistributeLock(lockKey = "css:order:orderId")
-	public BaseResult testLock() {
+	public BaseResult testDistributeLock() {
 
 		System.out.println("执行相关业务...");
 		System.out.println("执行相关业务.....");
 		System.out.println("执行相关业务......");
 
 		try {
-			TimeUnit.SECONDS.sleep(4);
+			TimeUnit.SECONDS.sleep(6);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -44,17 +44,20 @@ public class RedisTestController {
 		return BaseResult.success();
 	}
 
-	@GetMapping("/testData")
-	public void testData() {
+	/**
+	 * 测试防止重复提交
+	 * 
+	 * @return
+	 */
+	@GetMapping("/testReSubmitLock")
+	@MethodLogger
+	@ReSubmitLock
+	public BaseResult<OrderDTO> testReSubmitLock() {
 
-		// 插入 字符串
-		RBucket<String> keyObj = redissonClient.getBucket("keyStr");
-		keyObj.set("testStr", 300l, TimeUnit.SECONDS);
+		OrderDTO order = OrderDTO.builder().id(1).orderId(111).name("秀儿，是你吗")
+				.build();
 
-		// 查询 字符串
-		RBucket<String> keyGet = redissonClient.getBucket("keyStr");
-		System.out.println(keyGet.get());
-
+		return BaseResult.success(order);
 	}
 
 }

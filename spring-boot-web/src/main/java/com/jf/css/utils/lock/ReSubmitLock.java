@@ -24,9 +24,8 @@ public @interface ReSubmitLock {
 	String prefix() default CommonConstant.SYSTEM_CODE;
 
 	/**
-	 * 过期秒数,默认为10秒
-	 *
-	 * @return 轮询锁的时间
+	 * 持有该锁的时间 <br>
+	 * 默认10秒钟客户端没有主动解锁，则主动释放锁
 	 */
 	int leaseTime() default 10;
 

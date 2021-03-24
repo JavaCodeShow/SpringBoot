@@ -75,9 +75,12 @@ public class LockMethodInterceptor {
 	 * @throws Throwable
 	 */
 	@Around("@annotation(com.jf.css.utils.lock.DistributeLock)")
-	public BaseResult checkLock(ProceedingJoinPoint pjp) throws Throwable {
+	public Object distributeLockInterceptor(ProceedingJoinPoint pjp)
+			throws Throwable {
+
 		// 当前线程名
 		String threadName = Thread.currentThread().getName();
+
 		log.info("线程 = [{}]------进入分布式锁aop------", threadName);
 
 		// 获取该注解的实例对象
@@ -98,7 +101,7 @@ public class LockMethodInterceptor {
 			try {
 				log.info("线程 = [{}] 获取锁成功", threadName);
 
-				return (BaseResult) pjp.proceed();
+				return pjp.proceed();
 			} finally {
 				if (redissonLockService.isLocked(lockKey)) {
 					log.info("锁的key的值 = [{}], 被线程 = [{}]持有", lockKey,
