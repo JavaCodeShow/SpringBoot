@@ -19,10 +19,18 @@ spring:
         server-addr: 127.0.0.1:8848
 
 
-# 开启feign客户端对hystrix的支持。不然不会生效。
+# 开启feign客户端对hystrix的支持。不然feign里面对于hystrix的操作不会生效。
 feign:
   hystrix:
     enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000 # hystrix的超时时间
 
 #ribbon的超时时间
 ribbon:
