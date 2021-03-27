@@ -25,11 +25,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class OrderController {
 
-
-
 	@Autowired
 	private OrderService orderService;
-
 
 	@ApiOperation(value = "根据订单id查询订单")
 	@GetMapping("/{id}")

@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
-import com.jf.css.listener.event.OrderSuccessEvent;
+import com.jf.css.listener.order.event.OrderSuccessEvent;
 import com.jf.css.service.OrderService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class OrderServiceImpl implements OrderService {
 
 	@Autowired
@@ -17,9 +20,11 @@ public class OrderServiceImpl implements OrderService {
 	public void order() {
 
 		// 下单成功
-		System.out.println("下单成功...");
-		// 发布通知
+		log.info("下单成功...");
+
+		// 发布通知（各个listener是异步执行的）
 		applicationContext.publishEvent(new OrderSuccessEvent(this));
-		System.out.println("main线程结束...");
+
+		log.info("发布下单成功消息结束...");
 	}
 }
