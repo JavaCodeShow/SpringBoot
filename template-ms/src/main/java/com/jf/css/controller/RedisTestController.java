@@ -1,13 +1,19 @@
 package com.jf.css.controller;
 
+import java.util.UUID;
+import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jf.common.redis.lock.DistributeLock;
 import com.jf.common.redis.lock.ReSubmitLock;
+import com.jf.common.redis.service.RedisService;
 import com.jf.common.utils.aspect.log.MethodLogger;
 import com.jf.common.utils.result.BaseResult;
 import com.jf.css.domain.dto.OrderDTO;
@@ -25,6 +31,46 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/redis")
 @Slf4j
 public class RedisTestController {
+
+	@Autowired
+	private RedisService redisService;
+
+	@Autowired
+	@Qualifier("baseAsyncExecutor")
+	private Executor baseAsyncExecutor;
+
+	@GetMapping("/secskill")
+	public BaseResult secskill() {
+
+		AtomicInteger productNum = new AtomicInteger(2);
+
+		String lockValue = UUID.randomUUID().toString();
+		int threadCount = 1000;
+		AtomicInteger execThreadNum = new AtomicInteger(1);
+
+		for (int i = 0; i < threadCount; i++) {
+			baseAsyncExecutor.execute(() -> {
+				log.info("第[{}]个线程", execThreadNum.getAndIncrement());
+				try {
+					boolean success = redisService.tryLock("productId",
+							lockValue, 10);
+					if (success && productNum.get() > 0) {
+						productNum.decrementAndGet();
+					}
+					log.info("线程名字 = [{}], success = [{}], 剩余数量 = [{}]",
+							Thread.currentThread().getName(), success,
+							productNum);
+				} finally {
+					redisService.unLock("productId", lockValue);
+				}
+				if (execThreadNum.get() == 1000) {
+					System.out.println("exit");
+				}
+			});
+		}
+
+		return BaseResult.success();
+	}
 
 	@GetMapping(value = "/testDistributeLock")
 	@MethodLogger

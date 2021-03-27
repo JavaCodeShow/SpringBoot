@@ -15,6 +15,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public void order() {
+
 		// 下单成功
 		System.out.println("下单成功...");
 		// 发布通知
