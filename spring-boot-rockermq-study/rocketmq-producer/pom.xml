@@ -12,7 +12,7 @@
     </parent>
 
     <groupId>com.jf.rocketmqstudy</groupId>
-    <artifactId>jf-rocketmq-consumer</artifactId>
+    <artifactId>rocketmq-producer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
@@ -40,6 +40,13 @@
             <groupId>org.apache.rocketmq</groupId>
             <artifactId>rocketmq-spring-boot-starter</artifactId>
             <version>2.2.0</version>
+        </dependency>
+
+        <!-- nacos -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <version>2.2.0.RELEASE</version>
         </dependency>
 
         <!-- 单元测试 -->

@@ -21,7 +21,6 @@
             <maxFileSize>100MB</maxFileSize>
             <maxHistory>10</maxHistory>
             <totalSizeCap>10GB</totalSizeCap>
-
         </rollingPolicy>
     </appender>
 

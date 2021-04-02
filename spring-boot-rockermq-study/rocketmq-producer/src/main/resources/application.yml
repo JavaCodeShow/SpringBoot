@@ -1,0 +1,34 @@
+server:
+  port: 8082
+
+
+spring:
+  profiles:
+    active: dev
+
+  application:
+    name: rocketmq-producer
+  cloud:
+    nacos:
+      discovery:
+        namespace: dev
+        server-addr: 139.224.103.236:8848
+
+# RocketMQ
+rocketmq:
+  name-server: 139.224.103.236:9876
+  producer:
+    group: producer-group
+
+
+## 日志配置
+logging:
+  config: classpath:logback-spring.xml
+
+# 监控相关配置
+# 开启监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

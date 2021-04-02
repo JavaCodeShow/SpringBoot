@@ -2,12 +2,14 @@ package com.jf.rocketmqstudy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
-public class MQProducerApplication {
+@EnableDiscoveryClient
+public class MQConsumerStudyApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MQProducerApplication.class, args);
+		SpringApplication.run(MQConsumerStudyApplication.class, args);
 	}
 
 }
