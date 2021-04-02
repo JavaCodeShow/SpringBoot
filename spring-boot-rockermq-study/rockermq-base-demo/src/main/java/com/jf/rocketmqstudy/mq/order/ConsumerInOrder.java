@@ -1,4 +1,4 @@
-package com.jf.rockermqstudy.mq.order;
+package com.jf.rocketmqstudy.mq.order;
 
 import java.util.List;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package com.jf.rockermqstudy.mq.order;
+package com.jf.rocketmqstudy.mq.order;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.jf.rockermqstudy.mq.base.producer;
+package com.jf.rocketmqstudy.mq.base.producer;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.common.message.Message;

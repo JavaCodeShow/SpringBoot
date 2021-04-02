@@ -1,4 +1,4 @@
-package com.jf.rockermqstudy.mq.transaction;
+package com.jf.rocketmqstudy.mq.transaction;
 
 import java.io.UnsupportedEncodingException;
 import java.util.concurrent.TimeUnit;

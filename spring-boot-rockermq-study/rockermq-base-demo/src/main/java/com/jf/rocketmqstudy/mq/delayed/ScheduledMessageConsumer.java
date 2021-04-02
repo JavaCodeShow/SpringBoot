@@ -1,4 +1,4 @@
-package com.jf.rockermqstudy.mq.delayed;
+package com.jf.rocketmqstudy.mq.delayed;
 
 import java.util.List;
 
