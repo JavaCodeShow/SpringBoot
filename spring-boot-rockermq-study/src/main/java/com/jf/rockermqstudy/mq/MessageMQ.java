@@ -7,6 +7,6 @@ import org.apache.rocketmq.client.exception.MQClientException;
  * @date 2020/8/7 18:23
  */
 public class MessageMQ {
-    public static void main(String[] args) throws MQClientException {
-    }
+	public static void main(String[] args) throws MQClientException {
+	}
 }

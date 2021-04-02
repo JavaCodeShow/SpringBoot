@@ -8,9 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @Slf4j
 public class HelloController {
-    @RequestMapping("/")
-    public String hello() {
-        log.info("hello world");
-        return "Hello RockerMQ ";
-    }
+
+	@RequestMapping("/")
+	public String hello() {
+		log.info("hello world");
+		return "Hello RockerMQ ";
+	}
+
 }
