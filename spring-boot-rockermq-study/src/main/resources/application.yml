@@ -2,12 +2,13 @@ server:
   port: 8011
 
 
-
-
-## 日志配置
 spring:
   profiles:
     active: dev
 
-#logging:
-#    config: classpath:logback-spring.xml
+  application:
+    name: rocketmq-study-ms
+
+## 日志配置
+logging:
+  config: classpath:logback-spring.xml
