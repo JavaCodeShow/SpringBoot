@@ -30,6 +30,7 @@ public class HelloController {
 
 	@Autowired
 	RedisService redisService;
+
 	@Autowired
 	private RedisTemplate redisTemplate;
 
@@ -48,7 +49,7 @@ public class HelloController {
 	@MethodLogger
 	public BaseResult batchSet() {
 
-		String keyName = "zset2";
+		String keyName = "zset1";
 		for (int i = 0; i < 100; i++) {
 			int count = 100000;
 			int start = count * i;
@@ -79,12 +80,14 @@ public class HelloController {
 	 */
 	@GetMapping("/set")
 	@MethodLogger
-	public BaseResult set() {
+	public BaseResult<String> set() {
 
 		redisService.set("name", "江峰");
-
-		return BaseResult.success();
+		String name = redisService.get("name");
+		redisTemplate.opsForSet().add("set1", "江峰");
+		return BaseResult.success(name);
 	}
+
 
 	/**
 	 * 往set里面批量插入数据
@@ -100,9 +103,9 @@ public class HelloController {
 		// RedisZSetCommands.Aggregate.MIN, RedisZSetCommands.Weights.of(1));
 		List<String> keyNameList = new ArrayList<>();
 		keyNameList.add("zset2");
-		// keyNameList.add("zset4");
+		keyNameList.add("zset3");
 		Long size = redisTemplate.opsForZSet().intersectAndStore("zset1",
-				"zset2", "zset3");
+				keyNameList, "zset4");
 
 		log.info("size = [{}]", size);
 		// Set zset3 = redisTemplate.opsForZSet().range("zset5", 0, -1);
