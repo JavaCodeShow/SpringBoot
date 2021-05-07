@@ -21,5 +21,6 @@ public class TestConsumer implements RocketMQListener<String> {
 	@Override
 	public void onMessage(String message) {
 		log.info("Receive message：" + message);
+		// throw new ServiceException("200", "消息消费失败");
 	}
 }
