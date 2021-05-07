@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 @RocketMQMessageListener(topic = "CSS", selectorExpression = "ORDER_CANCEL", consumerGroup = "springboot-mq-consumer-1")
-public class TestConsumer implements RocketMQListener<String> {
+public class OrderCancelListener implements RocketMQListener<String> {
 
 	@Override
 	public void onMessage(String message) {
