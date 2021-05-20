@@ -3,11 +3,14 @@ package com.jf.redisstudy.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.csp.sentinel.Entry;
 import com.alibaba.csp.sentinel.SphU;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
@@ -26,46 +29,47 @@ public class HelloController {
 	}
 
 	@GetMapping("/hello")
-	public BaseResult hello() {
-		// 配置规则.
-		initFlowRules();
-
-		while (true) {
-			// 1.5.0 版本开始可以直接利用 try-with-resources 特性，自动 exit entry
-			try (Entry entry = SphU.entry("HelloWorld")) {
-				// 被保护的逻辑
-				System.out.println("hello world");
-			} catch (BlockException ex) {
-				// 处理被流控的逻辑
-				System.out.println("blocked!");
-			}
+	public String hello() {
+		try (Entry entry = SphU.entry("Hello")) {
+			return "Hello Sentinel";
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		return "系统繁忙，请稍后";
 	}
 
-	public static void main(String[] args) {
-		// 配置规则.
-		initFlowRules();
-
-		while (true) {
-			// 1.5.0 版本开始可以直接利用 try-with-resources 特性，自动 exit entry
-			try (Entry entry = SphU.entry("HelloWorld")) {
-				// 被保护的逻辑
-				System.out.println("hello world");
-			} catch (BlockException ex) {
-				// 处理被流控的逻辑
-				System.out.println("blocked!");
-			}
-		}
+	@SentinelResource(value = "sentinel_cloud", blockHandler = "exceptionHandler")
+	@GetMapping("/sentinel_cloud")
+	public String ann() {
+		// 使用限流规则
+		return "Hello Sentinel";
 	}
 
-	private static void initFlowRules() {
+	public String exceptionHandler(BlockException e) {
+		e.printStackTrace();
+		return "系统繁忙请稍后再试";
+	}
+
+	/**
+	 * 定义限流规则
+	 * 
+	 * @PostConstruct 此注解的含义是：本类构造方法执行结束后执行
+	 */
+	@PostConstruct
+	public void init() {
+		// 1.创建存放限流规则的集合
 		List<FlowRule> rules = new ArrayList<>();
+		// 2.创建限流规则
 		FlowRule rule = new FlowRule();
-		rule.setResource("HelloWorld");
+		// 定义资源，表示Sentinel会对哪个资源生效
+		rule.setResource("Hello");
+		// 定义限流的类型(此处使用QPS作为限流类型)
 		rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
-		// Set limit QPS to 20.
-		rule.setCount(20);
+		// 定义QPS每秒通过的请求数
+		rule.setCount(2);
+		// 3.将限流规则存放到集合中
 		rules.add(rule);
+		// 4.加载限流规则
 		FlowRuleManager.loadRules(rules);
 	}
 }
