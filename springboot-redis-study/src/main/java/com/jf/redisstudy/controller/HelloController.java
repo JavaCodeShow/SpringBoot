@@ -88,7 +88,6 @@ public class HelloController {
 		return BaseResult.success(name);
 	}
 
-
 	/**
 	 * 往set里面批量插入数据
 	 *
