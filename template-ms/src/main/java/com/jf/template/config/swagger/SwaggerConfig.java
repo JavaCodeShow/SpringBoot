@@ -29,7 +29,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
 		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
 				.groupName("后端接口文档").select()
 				.apis(RequestHandlerSelectors
-						.basePackage("com.jf.css.controller"))
+						.basePackage("com.jf.template.controller"))
 				.paths(PathSelectors.any()).build();
 	}
 

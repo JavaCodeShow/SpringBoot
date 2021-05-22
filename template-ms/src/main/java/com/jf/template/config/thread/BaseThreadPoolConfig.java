@@ -29,7 +29,7 @@ public class BaseThreadPoolConfig {
 	@Autowired
 	private TaskThreadPoolProperties threadPoolProperties;
 
-	private static final String THREAD_NAME = "baseAsyncExecutor";
+	public static final String THREAD_NAME = "baseAsyncExecutor";
 
 	@Bean(value = THREAD_NAME)
 	public ThreadPoolTaskExecutor taskExecutor() {
