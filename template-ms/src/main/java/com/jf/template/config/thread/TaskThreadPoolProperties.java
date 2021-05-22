@@ -11,7 +11,7 @@ import lombok.Setter;
  * @create 2020-12-14 10:56:01
  * @since
  */
-@ConfigurationProperties(prefix = "task.pool")
+@ConfigurationProperties(prefix = "custom.task.pool")
 @Getter
 @Setter
 public class TaskThreadPoolProperties {
@@ -23,4 +23,7 @@ public class TaskThreadPoolProperties {
 	private int keepAliveSeconds;
 
 	private int queueCapacity;
+
+	private String threadNamePrefix;
+
 }

@@ -26,7 +26,6 @@ public class IndexController {
 	public BaseResult index() {
 		baseAsyncExecutor.execute(() -> {
 			log.info("异步线程");
-			System.out.println("异步线程");
 		});
 		return BaseResult.success("Hello Spring Boot");
 	}
