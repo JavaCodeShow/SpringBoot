@@ -49,6 +49,8 @@ public class OrderController {
 	public PageQueryResponse<List<OrderDTO>> orderList(
 			@RequestBody @Validated PageQueryRequest<OrderDTO> request) {
 
+		System.out.println(request);
+
 		OrderDTO order = OrderDTO.builder().id(1).orderId(111).name("秀儿，是你吗")
 				.build();
 		List<OrderDTO> orderList = new ArrayList<>();

@@ -29,7 +29,7 @@ public class BaseThreadPoolConfig {
 	@Autowired
 	private TaskThreadPoolProperties threadPoolProperties;
 
-	private static final String THREAD_NAME = "baseAsyncExecutor";
+	public static final String THREAD_NAME = "baseAsyncExecutor";
 
 	@Bean(value = THREAD_NAME)
 	public ThreadPoolTaskExecutor taskExecutor() {
@@ -53,7 +53,8 @@ public class BaseThreadPoolConfig {
 				threadPoolProperties.getKeepAliveSeconds());
 
 		// 线程名字前缀
-		executor.setThreadNamePrefix("TaskExecutePool-");
+		executor.setThreadNamePrefix(
+				threadPoolProperties.getThreadNamePrefix());
 
 		// setRejectedExecutionHandler：当pool已经达到max size的时候，如何处理新任务
 		// CallerRunsPolicy：不在新线程中执行任务，而是由调用者所在的线程来执行
