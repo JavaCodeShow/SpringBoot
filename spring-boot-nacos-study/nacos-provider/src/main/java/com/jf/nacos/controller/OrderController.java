@@ -32,7 +32,7 @@ public class OrderController {
 		}
 		if (orderId == 3) {
 			try {
-				TimeUnit.SECONDS.sleep(4);
+				TimeUnit.SECONDS.sleep(2);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

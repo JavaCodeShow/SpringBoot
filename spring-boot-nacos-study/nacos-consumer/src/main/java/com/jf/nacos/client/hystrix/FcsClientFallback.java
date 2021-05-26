@@ -2,6 +2,7 @@ package com.jf.nacos.client.hystrix;
 
 import org.springframework.stereotype.Component;
 
+import com.jf.common.utils.meta.enums.ResultCodeEnum;
 import com.jf.common.utils.result.BaseResult;
 import com.jf.nacos.client.FcsClient;
 
@@ -25,8 +26,8 @@ public class FcsClientFallback implements FallbackFactory<FcsClient> {
 			@Override
 			public BaseResult getOrderById(Integer orderId) {
 
-				// FeignUtil.decodeFeignException
-				return BaseResult.fail("666", "根据订单id查询订单失败");
+				return BaseResult.fail(ResultCodeEnum.ERROR.getCode(),
+						"根据订单id查询订单失败");
 			}
 
 		};
