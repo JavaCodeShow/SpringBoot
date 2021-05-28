@@ -10,7 +10,7 @@ import com.jf.sharding.jdbc.domain.entity.OrderConfigEntity;
 import com.jf.sharding.jdbc.mapper.OrderConfigMapper;
 
 /**
- * 描述:
+ * 描述: 分库分表测试
  *
  * @author: 江峰
  * @create: 2021-05-28 10:27
@@ -19,6 +19,7 @@ import com.jf.sharding.jdbc.mapper.OrderConfigMapper;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class OrderConfigMapperTest {
+
 	@Autowired
 	private OrderConfigMapper orderConfigMapper;
 
