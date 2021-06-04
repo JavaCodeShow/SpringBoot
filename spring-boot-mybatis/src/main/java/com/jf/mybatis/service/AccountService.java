@@ -45,10 +45,14 @@ public class AccountService {
 		account1.setMoney(account1.getMoney() - money);
 		account2.setMoney(account2.getMoney() + money);
 		Integer i1 = accountMapper.updateAccountById(account1);
-		if (i1 == 1) {
-			throw new IllegalArgumentException(
-					"出异常了，数据将回滚" + accountMapper.getAccountById(1));
-		}
+
+		// 手动异常
+		// int num = 0;
+		// if (num == 0) {
+		// throw new IllegalArgumentException(
+		// "出异常了，数据将回滚" + accountMapper.getAccountById(1));
+		// }
+
 		Integer i2 = accountMapper.updateAccountById(account2);
 	}
 
