@@ -1,4 +1,4 @@
-package com.jf.template.controller;
+package com.jf.template.controller.excel;
 
 import java.io.IOException;
 import java.io.OutputStream;
