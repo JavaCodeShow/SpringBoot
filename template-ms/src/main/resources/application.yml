@@ -9,7 +9,7 @@ custom:
       maxPoolSize: 20  # 设置最大线程数
       keepAliveSeconds: 300 # 设置线程活跃时间（秒）
       queueCapacity: 50 # 设置队列容量
-      threadNamePrefix: customTaskPoolPrefix # 线程名字前缀
+      threadNamePrefix: baseAsyncExecutor- # 线程名字前缀
 
 # redis相关配置
 spring:
