@@ -1,9 +1,6 @@
 package com.jf.redisstudy.controller;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.DefaultTypedTuple;
@@ -86,6 +83,24 @@ public class HelloController {
 		String name = redisService.get("name");
 		redisTemplate.opsForSet().add("set1", "江峰");
 		return BaseResult.success(name);
+	}
+
+	/**
+	 * 往set里面批量插入数据
+	 *
+	 * @return
+	 */
+	@GetMapping("/hmget")
+	@MethodLogger
+	public BaseResult<List<String>> hmget() {
+		String key = "hash";
+		Map<String,String> map = new HashMap<>();
+		map.put("f1","val1");
+		map.put("f2","val2");
+		redisTemplate.opsForHash().putAll(key,map);
+		List<String> stringList = Arrays.asList("f1","f2");
+		List<String> list = redisTemplate.opsForHash().multiGet(key, stringList);
+		return BaseResult.success(list);
 	}
 
 	/**

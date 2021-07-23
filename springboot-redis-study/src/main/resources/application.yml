@@ -5,7 +5,7 @@ server:
 # redis相关配置
 spring:
   redis:
-    host: 127.0.0.1
+    host: 139.224.103.236
     port: 6379
     # 连接超时时间（毫秒）
     timeout: 60000
@@ -23,4 +23,4 @@ spring:
     #集群
     #cluster.nodes: IP:7001
   redisson:
-    address: "redis://127.0.0.1:6379"
+    address: "redis://139.224.103.236:6379"
