@@ -1,14 +1,12 @@
 package com.jf.redisstudy.controller;
 
+import com.jf.common.utils.aspect.log.MethodLogger;
+import com.jf.common.utils.result.BaseResult;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.jf.common.utils.aspect.log.MethodLogger;
-import com.jf.common.utils.result.BaseResult;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 描述: redis list 作为阻塞队列
@@ -21,16 +19,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RedisListAsQueueController {
 
-	@Autowired
-	private RedisTemplate redisTemplate;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
-	static int count = 0;
+    static int count = 0;
 
-	@RequestMapping("/redis_queue_push")
-	@MethodLogger
-	public BaseResult redisQueuePush() {
-		redisTemplate.opsForList().leftPush("list", "hello" + count);
-		return BaseResult.success();
-	}
+    @RequestMapping("/redis_queue_push")
+    @MethodLogger
+    public BaseResult redisQueuePush() {
+        redisTemplate.opsForList().leftPush("list", "hello" + count);
+        return BaseResult.success();
+    }
 
 }
