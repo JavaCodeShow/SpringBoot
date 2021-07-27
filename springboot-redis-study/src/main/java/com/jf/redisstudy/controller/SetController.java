@@ -8,6 +8,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -32,10 +34,14 @@ public class SetController {
     @MethodLogger
     public BaseResult set() {
 
+        Set<String> set = new HashSet<>();
+        set.add("aaa");
+        set.add("bbb");
+        set.add("ccc");
         String keyName = "set1";
-        Long add = redisTemplate.opsForSet().add(keyName, "江峰");
-        Set members = redisTemplate.opsForSet().members(keyName);
-        log.info("members = [{}]", members);
+        redisTemplate.opsForSet().add(keyName, set.toArray());
+        Set<String> members = redisTemplate.opsForSet().members(keyName);
+        log.info("members = {}", members);
         return BaseResult.success();
     }
 }
