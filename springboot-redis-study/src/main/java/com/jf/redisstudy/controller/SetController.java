@@ -30,9 +30,9 @@ public class SetController {
      *
      * @return
      */
-    @GetMapping("/set")
+    @GetMapping("/sadd")
     @MethodLogger
-    public BaseResult set() {
+    public BaseResult sadd() {
 
         Set<String> set = new HashSet<>();
         set.add("aaa");
