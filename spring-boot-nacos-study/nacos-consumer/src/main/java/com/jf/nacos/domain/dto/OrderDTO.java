@@ -18,9 +18,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class OrderDTO {
 
-	private Integer id;
+    private Integer id;
 
-	private String name;
+    private String name;
 
-	private String reason;
+    private String reason;
 }

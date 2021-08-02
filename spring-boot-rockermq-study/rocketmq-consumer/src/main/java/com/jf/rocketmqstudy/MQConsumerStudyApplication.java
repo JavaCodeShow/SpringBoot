@@ -8,8 +8,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 public class MQConsumerStudyApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MQConsumerStudyApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MQConsumerStudyApplication.class, args);
+    }
 
 }

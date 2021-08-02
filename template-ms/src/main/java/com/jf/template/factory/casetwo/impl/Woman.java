@@ -1,8 +1,7 @@
 package com.jf.template.factory.casetwo.impl;
 
-import org.springframework.stereotype.Component;
-
 import com.jf.template.factory.casetwo.Person;
+import org.springframework.stereotype.Component;
 
 /**
  * @author 江峰
@@ -12,13 +11,13 @@ import com.jf.template.factory.casetwo.Person;
  */
 @Component
 public class Woman implements Person {
-	@Override
-	public Integer getKey() {
-		return 2;
-	}
+    @Override
+    public Integer getKey() {
+        return 2;
+    }
 
-	@Override
-	public void say() {
-		System.out.println("I am woman");
-	}
+    @Override
+    public void say() {
+        System.out.println("I am woman");
+    }
 }

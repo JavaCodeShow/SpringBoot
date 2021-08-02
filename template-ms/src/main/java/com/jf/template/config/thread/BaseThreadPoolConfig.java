@@ -1,7 +1,7 @@
 package com.jf.template.config.thread;
 
-import java.util.concurrent.ThreadPoolExecutor;
-
+import com.alibaba.fastjson.JSONObject;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -9,9 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import com.alibaba.fastjson.JSONObject;
-
-import lombok.extern.slf4j.Slf4j;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author 江峰
@@ -22,49 +20,49 @@ import lombok.extern.slf4j.Slf4j;
 
 @EnableAsync // 开启异步任务支持，然后才能使用@Async注解（@Async 注解作用应该使用在方法上，表示这个方法是异步方法。）
 @Configuration
-@EnableConfigurationProperties({ TaskThreadPoolProperties.class })
+@EnableConfigurationProperties({TaskThreadPoolProperties.class})
 @Slf4j
 public class BaseThreadPoolConfig {
 
-	@Autowired
-	private TaskThreadPoolProperties threadPoolProperties;
+    @Autowired
+    private TaskThreadPoolProperties threadPoolProperties;
 
-	public static final String THREAD_NAME = "baseAsyncExecutor";
+    public static final String THREAD_NAME = "baseAsyncExecutor";
 
-	@Bean(value = THREAD_NAME)
-	public ThreadPoolTaskExecutor taskExecutor() {
+    @Bean(value = THREAD_NAME)
+    public ThreadPoolTaskExecutor taskExecutor() {
 
-		log.info("threadPoolProperties = [{}]",
-				JSONObject.toJSONString(threadPoolProperties));
+        log.info("threadPoolProperties = [{}]",
+                JSONObject.toJSONString(threadPoolProperties));
 
-		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
 
-		// 核心线程池大小
-		executor.setCorePoolSize(threadPoolProperties.getCorePoolSize());
+        // 核心线程池大小
+        executor.setCorePoolSize(threadPoolProperties.getCorePoolSize());
 
-		// 最大线程数
-		executor.setMaxPoolSize(threadPoolProperties.getMaxPoolSize());
+        // 最大线程数
+        executor.setMaxPoolSize(threadPoolProperties.getMaxPoolSize());
 
-		// 队列容量
-		executor.setQueueCapacity(threadPoolProperties.getQueueCapacity());
+        // 队列容量
+        executor.setQueueCapacity(threadPoolProperties.getQueueCapacity());
 
-		// 活跃时间
-		executor.setKeepAliveSeconds(
-				threadPoolProperties.getKeepAliveSeconds());
+        // 活跃时间
+        executor.setKeepAliveSeconds(
+                threadPoolProperties.getKeepAliveSeconds());
 
-		// 线程名字前缀
-		executor.setThreadNamePrefix(
-				threadPoolProperties.getThreadNamePrefix());
+        // 线程名字前缀
+        executor.setThreadNamePrefix(
+                threadPoolProperties.getThreadNamePrefix());
 
-		// setRejectedExecutionHandler：当pool已经达到max size的时候，如何处理新任务
-		// CallerRunsPolicy：不在新线程中执行任务，而是由调用者所在的线程来执行
-		executor.setRejectedExecutionHandler(
-				new ThreadPoolExecutor.AbortPolicy());
+        // setRejectedExecutionHandler：当pool已经达到max size的时候，如何处理新任务
+        // CallerRunsPolicy：不在新线程中执行任务，而是由调用者所在的线程来执行
+        executor.setRejectedExecutionHandler(
+                new ThreadPoolExecutor.AbortPolicy());
 
-		// 等待所有任务结束后再关闭线程池
-		executor.setWaitForTasksToCompleteOnShutdown(true);
-		executor.initialize();
+        // 等待所有任务结束后再关闭线程池
+        executor.setWaitForTasksToCompleteOnShutdown(true);
+        executor.initialize();
 
-		return executor;
-	}
+        return executor;
+    }
 }

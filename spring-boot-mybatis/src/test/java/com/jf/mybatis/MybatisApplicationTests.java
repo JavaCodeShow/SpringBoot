@@ -71,7 +71,7 @@ class MybatisApplicationTests {
         Account account = new Account();
         // account.setName("张三");
         // account.setMoney(100);
-        int[] moneys = {99,100};
+        int[] moneys = {99, 100};
         List<Account> accountList = accountMapper.getAccountByMoneys(moneys);
         for (Account a : accountList) {
             System.out.println(a);

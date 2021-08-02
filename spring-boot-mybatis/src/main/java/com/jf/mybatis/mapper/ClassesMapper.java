@@ -1,10 +1,9 @@
 package com.jf.mybatis.mapper;
 
-import java.util.List;
-
+import com.jf.mybatis.pojo.Classes;
 import org.apache.ibatis.annotations.Mapper;
 
-import com.jf.mybatis.pojo.Classes;
+import java.util.List;
 
 /**
  * @author 江峰
@@ -12,7 +11,7 @@ import com.jf.mybatis.pojo.Classes;
  */
 @Mapper
 public interface ClassesMapper {
-	List<Classes> listClasses(int i);
+    List<Classes> listClasses(int i);
 
-	List<Classes> listClasses2(int i);
+    List<Classes> listClasses2(int i);
 }

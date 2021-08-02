@@ -1,10 +1,9 @@
 package com.jf.sharding.jdbc.mapper;
 
-import java.util.List;
-
+import com.jf.sharding.jdbc.domain.entity.OrderEntity;
 import org.apache.ibatis.annotations.Param;
 
-import com.jf.sharding.jdbc.domain.entity.OrderEntity;
+import java.util.List;
 
 /**
  * @author 江峰
@@ -14,9 +13,9 @@ import com.jf.sharding.jdbc.domain.entity.OrderEntity;
  */
 public interface OrderMapper {
 
-	OrderEntity selectById(@Param("id") Integer id);
+    OrderEntity selectById(@Param("id") Integer id);
 
-	List<OrderEntity> selectListByUserId(@Param("userId") Integer userId);
+    List<OrderEntity> selectListByUserId(@Param("userId") Integer userId);
 
-	void insert(OrderEntity order);
+    void insert(OrderEntity order);
 }

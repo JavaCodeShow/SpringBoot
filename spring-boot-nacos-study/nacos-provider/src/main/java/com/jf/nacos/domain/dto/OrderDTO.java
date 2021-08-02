@@ -13,36 +13,36 @@ package com.jf.nacos.domain.dto;
 // @NoArgsConstructor
 public class OrderDTO {
 
-	private Integer id;
+    private Integer id;
 
-	private String name;
+    private String name;
 
-	private String reason;
+    private String reason;
 
-	public OrderDTO() {
-	}
+    public OrderDTO() {
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getReason() {
-		return reason;
-	}
+    public String getReason() {
+        return reason;
+    }
 
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
 }

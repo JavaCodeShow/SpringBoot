@@ -19,17 +19,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class ThreadPoolTest {
 
-	@Autowired
-	@Qualifier("baseAsyncExecutor")
-	private ThreadPoolTaskExecutor baseAsyncExecutor;
+    @Autowired
+    @Qualifier("baseAsyncExecutor")
+    private ThreadPoolTaskExecutor baseAsyncExecutor;
 
-	@Test
-	public void testThreadPool() {
-		baseAsyncExecutor.execute(() -> {
-			System.out.println("hello");
-			System.out.println("hello");
-			System.out.println("hello");
-		});
-	}
+    @Test
+    public void testThreadPool() {
+        baseAsyncExecutor.execute(() -> {
+            System.out.println("hello");
+            System.out.println("hello");
+            System.out.println("hello");
+        });
+    }
 
 }

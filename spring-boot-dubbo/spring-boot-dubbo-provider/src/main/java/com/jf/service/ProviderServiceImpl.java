@@ -1,8 +1,7 @@
 package com.jf.service;
 
-import org.springframework.stereotype.Component;
-
 import com.alibaba.dubbo.config.annotation.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * @author 潇潇暮雨
@@ -13,9 +12,9 @@ import com.alibaba.dubbo.config.annotation.Service;
 @Service(interfaceClass = ProviderService.class) // 将服务发布出去
 public class ProviderServiceImpl implements ProviderService {
 
-	@Override
-	public String sendHello() {
-		System.out.println("hello dubbo");
-		return "I am provider";
-	}
+    @Override
+    public String sendHello() {
+        System.out.println("hello dubbo");
+        return "I am provider";
+    }
 }

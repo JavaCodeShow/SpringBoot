@@ -1,11 +1,9 @@
 package com.jf.template.mq.event.order.listener;
 
+import com.jf.template.mq.event.OrderSuccessEvent;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-
-import com.jf.template.mq.event.OrderSuccessEvent;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author 江峰
@@ -17,12 +15,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SmsListener {
 
-	/**
-	 * 发送短信
-	 */
-	@EventListener(OrderSuccessEvent.class)
-	public void sendSms() {
-		log.info("发送短信...");
-		log.info("异步执行发送短信的业务逻辑....");
-	}
+    /**
+     * 发送短信
+     */
+    @EventListener(OrderSuccessEvent.class)
+    public void sendSms() {
+        log.info("发送短信...");
+        log.info("异步执行发送短信的业务逻辑....");
+    }
 }

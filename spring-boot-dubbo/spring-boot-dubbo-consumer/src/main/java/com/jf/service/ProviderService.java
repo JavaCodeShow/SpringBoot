@@ -7,5 +7,5 @@ package com.jf.service;
 
 public interface ProviderService {
 
-	String sendHello();
+    String sendHello();
 }

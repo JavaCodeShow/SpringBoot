@@ -5,13 +5,17 @@
 <mapper namespace="com.jf.mybatis.mapper.AccountMapper">
     <!-- 根据id修改账户 -->
     <update id="updateAccountById" parameterType="account">
-        update account set money = #{money} where id = #{id}
-	</update>
+        update account
+        set money = #{money}
+        where id = #{id}
+    </update>
 
     <!-- 根据id查询账户 -->
     <select id="getAccountById" parameterType="int" resultType="account">
-        select * from account where id = #{id}
-	</select>
+        select *
+        from account
+        where id = #{id}
+    </select>
 
     <!-- 根据id查询账户 -->
     <select id="getAccountByMoneyAndName" parameterType="account" resultType="account">

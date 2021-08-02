@@ -1,14 +1,12 @@
 package com.jf.nacos.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.jf.common.utils.result.BaseResult;
 import com.jf.nacos.client.FcsClient;
 import com.jf.nacos.domain.dto.OrderDTO;
 import com.jf.nacos.service.OrderService;
-
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * 描述:
@@ -22,19 +20,19 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class OrderServiceImpl implements OrderService {
 
-	@Autowired
-	private FcsClient fcsClient;
+    @Autowired
+    private FcsClient fcsClient;
 
-	@Override
-	public OrderDTO getOrderById(Integer orderId) {
+    @Override
+    public OrderDTO getOrderById(Integer orderId) {
 
-		BaseResult<OrderDTO> result = fcsClient.getOrderById(orderId);
+        BaseResult<OrderDTO> result = fcsClient.getOrderById(orderId);
 
-		if (!result.getSuccess()) {
-			log.error(result.getMsg() + " orderId = [{}]", orderId);
-			return null;
-		}
+        if (!result.getSuccess()) {
+            log.error(result.getMsg() + " orderId = [{}]", orderId);
+            return null;
+        }
 
-		return result.getData();
-	}
+        return result.getData();
+    }
 }

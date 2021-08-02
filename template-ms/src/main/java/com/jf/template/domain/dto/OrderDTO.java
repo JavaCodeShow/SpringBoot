@@ -1,13 +1,13 @@
 package com.jf.template.domain.dto;
 
-import javax.validation.constraints.NotNull;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * 描述:
@@ -24,13 +24,13 @@ import lombok.NoArgsConstructor;
 @ApiModel(description = "订单实体")
 public class OrderDTO {
 
-	@NotNull(message = "id不能为空")
-	@ApiModelProperty(value = "订单主键id")
-	private Integer id;
+    @NotNull(message = "id不能为空")
+    @ApiModelProperty(value = "订单主键id")
+    private Integer id;
 
-	@ApiModelProperty(value = "订单名字")
-	private String name;
+    @ApiModelProperty(value = "订单名字")
+    private String name;
 
-	@ApiModelProperty(value = "订单id")
-	private Integer orderId;
+    @ApiModelProperty(value = "订单id")
+    private Integer orderId;
 }

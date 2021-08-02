@@ -7,5 +7,5 @@ package com.jf.template.meta.constant;
  * @since
  */
 public final class CommonConstant {
-	public static final String SYSTEM_CODE = "css";
+    public static final String SYSTEM_CODE = "css";
 }

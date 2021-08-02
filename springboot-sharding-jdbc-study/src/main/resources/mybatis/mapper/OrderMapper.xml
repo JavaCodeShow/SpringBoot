@@ -21,7 +21,8 @@
         WHERE user_id = #{userId}
     </select>
 
-    <insert id="insert" parameterType="com.jf.sharding.jdbc.domain.entity.OrderEntity" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.jf.sharding.jdbc.domain.entity.OrderEntity" useGeneratedKeys="true"
+            keyProperty="id">
         INSERT INTO orders (user_id)
         VALUES (#{userId})
     </insert>

@@ -1,9 +1,8 @@
 package com.jf.template.config.thread;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author 江峰
@@ -16,14 +15,14 @@ import lombok.Setter;
 @Setter
 public class TaskThreadPoolProperties {
 
-	private int corePoolSize;
+    private int corePoolSize;
 
-	private int maxPoolSize;
+    private int maxPoolSize;
 
-	private int keepAliveSeconds;
+    private int keepAliveSeconds;
 
-	private int queueCapacity;
+    private int queueCapacity;
 
-	private String threadNamePrefix;
+    private String threadNamePrefix;
 
 }

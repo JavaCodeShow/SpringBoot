@@ -1,8 +1,7 @@
 package com.jf.sharding.jdbc.mapper;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.jf.sharding.jdbc.domain.entity.OrderConfigEntity;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author 江峰

@@ -11,6 +11,6 @@ import com.jf.nacos.domain.dto.OrderDTO;
  */
 public interface OrderService {
 
-	OrderDTO getOrderById(Integer orderId);
+    OrderDTO getOrderById(Integer orderId);
 
 }

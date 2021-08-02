@@ -5,7 +5,11 @@
 <mapper namespace="com.jf.mybatis.mapper.ClassesMapper">
     <!-- 一对一关联查询 -->
     <select id="listClasses" parameterType="int" resultMap="ClassesResultMap">
-        select * from classes c,teacher t where c.teacher_id=t.t_id and c.c_id=#{id}
+        select *
+        from classes c,
+             teacher t
+        where c.teacher_id = t.t_id
+          and c.c_id = #{id}
     </select>
 
     <resultMap type="com.jf.mybatis.pojo.Classes" id="ClassesResultMap">
@@ -20,7 +24,13 @@
 
     <!-- 一对多关联查询 -->
     <select id="listClasses2" parameterType="int" resultMap="ClassesResultMap2">
-        select * from classes c,teacher t,student s where c.teacher_id=t.t_id and c.c_id=s.class_id and c.c_id=#{id}
+        select *
+        from classes c,
+             teacher t,
+             student s
+        where c.teacher_id = t.t_id
+          and c.c_id = s.class_id
+          and c.c_id = #{id}
     </select>
 
     <resultMap type="com.jf.mybatis.pojo.Classes" id="ClassesResultMap2">

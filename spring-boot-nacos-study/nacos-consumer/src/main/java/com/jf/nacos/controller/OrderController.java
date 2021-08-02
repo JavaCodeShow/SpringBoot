@@ -1,16 +1,15 @@
 package com.jf.nacos.controller;
 
-import java.util.Objects;
-
+import com.jf.common.utils.aspect.log.MethodLogger;
+import com.jf.common.utils.result.BaseResult;
+import com.jf.nacos.domain.dto.OrderDTO;
+import com.jf.nacos.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jf.common.utils.aspect.log.MethodLogger;
-import com.jf.common.utils.result.BaseResult;
-import com.jf.nacos.domain.dto.OrderDTO;
-import com.jf.nacos.service.OrderService;
+import java.util.Objects;
 
 /**
  * @author 潇潇暮雨
@@ -20,17 +19,17 @@ import com.jf.nacos.service.OrderService;
 @RestController
 public class OrderController {
 
-	@Autowired
-	private OrderService orderService;
+    @Autowired
+    private OrderService orderService;
 
-	@GetMapping("/order/{orderId}")
-	@MethodLogger
-	public BaseResult<OrderDTO> getOrderById(@PathVariable Integer orderId) {
+    @GetMapping("/order/{orderId}")
+    @MethodLogger
+    public BaseResult<OrderDTO> getOrderById(@PathVariable Integer orderId) {
 
-		OrderDTO orderDTO = orderService.getOrderById(orderId);
-		if (Objects.isNull(orderDTO)) {
-			return BaseResult.fail();
-		}
-		return BaseResult.success(orderDTO);
-	}
+        OrderDTO orderDTO = orderService.getOrderById(orderId);
+        if (Objects.isNull(orderDTO)) {
+            return BaseResult.fail();
+        }
+        return BaseResult.success(orderDTO);
+    }
 }

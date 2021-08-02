@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class HelloController {
 
-	@RequestMapping("/")
-	public String hello() {
-		log.info("hello world");
-		return "Hello RockerMQ producer";
-	}
+    @RequestMapping("/")
+    public String hello() {
+        log.info("hello world");
+        return "Hello RockerMQ producer";
+    }
 
 }

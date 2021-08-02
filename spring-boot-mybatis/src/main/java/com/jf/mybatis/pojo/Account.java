@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 public class Account {
-	private Integer id;
-	private Integer money;
-	private String name;
+    private Integer id;
+    private Integer money;
+    private String name;
 }

@@ -1,8 +1,8 @@
 package com.jf.mybatis.pojo;
 
-import java.util.List;
-
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * @author 江峰
@@ -10,8 +10,8 @@ import lombok.Data;
  */
 @Data
 public class Classes {
-	private int id;
-	private String name;
-	private Teacher teacher;
-	private List<Student> studentList;
+    private int id;
+    private String name;
+    private Teacher teacher;
+    private List<Student> studentList;
 }

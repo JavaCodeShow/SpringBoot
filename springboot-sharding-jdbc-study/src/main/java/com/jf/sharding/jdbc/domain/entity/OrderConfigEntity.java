@@ -16,7 +16,7 @@ public class OrderConfigEntity {
     private Integer id;
     /**
      * 支付超时时间
-     *
+     * <p>
      * 单位：分钟
      */
     private Integer payTimeout;

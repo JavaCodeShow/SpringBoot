@@ -8,5 +8,5 @@ package com.jf.template.factory.casetwo;
  * @since: 2.20.1
  */
 public interface FactoryPlugin {
-	Integer getKey();
+    Integer getKey();
 }

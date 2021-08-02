@@ -8,10 +8,9 @@ package com.jf.template.domain.request;
  * @since: 2.27
  */
 
-import org.springframework.web.multipart.MultipartFile;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 发送文件请求体
@@ -28,6 +27,6 @@ import lombok.*;
 @NoArgsConstructor
 public class UploadFileRequest {
 
-	@ApiModelProperty("文件")
-	private MultipartFile file;
+    @ApiModelProperty("文件")
+    private MultipartFile file;
 }

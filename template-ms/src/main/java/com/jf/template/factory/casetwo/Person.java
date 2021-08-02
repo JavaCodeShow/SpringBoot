@@ -7,5 +7,5 @@ package com.jf.template.factory.casetwo;
  * @since
  */
 public interface Person extends FactoryPlugin {
-	void say();
+    void say();
 }

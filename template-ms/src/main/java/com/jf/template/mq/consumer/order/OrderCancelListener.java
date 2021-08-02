@@ -1,10 +1,9 @@
 package com.jf.template.mq.consumer.order;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.springframework.stereotype.Component;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 描述: 监听订单取消的MQ消息
@@ -19,9 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 @RocketMQMessageListener(topic = "template-ms", selectorExpression = "ORDER_CANCEL", consumerGroup = "template-ms")
 public class OrderCancelListener implements RocketMQListener<String> {
 
-	@Override
-	public void onMessage(String message) {
-		log.info("Receive message：" + message);
-	}
+    @Override
+    public void onMessage(String message) {
+        log.info("Receive message：" + message);
+    }
 
 }
