@@ -65,13 +65,13 @@
 
         <dependency>
             <groupId>com.jf</groupId>
-            <artifactId>jf-common-utils</artifactId>
+            <artifactId>jf-common-utils-starter</artifactId>
             <version>1.0</version>
         </dependency>
 
         <dependency>
             <groupId>com.jf</groupId>
-            <artifactId>jf-common-redis</artifactId>
+            <artifactId>jf-common-redis-starter</artifactId>
             <version>1.0</version>
         </dependency>
 

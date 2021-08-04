@@ -37,7 +37,7 @@
 
         <dependency>
             <groupId>com.jf</groupId>
-            <artifactId>jf-common-utils</artifactId>
+            <artifactId>jf-common-utils-starter</artifactId>
             <version>1.0</version>
         </dependency>
 
