@@ -2,7 +2,7 @@ package com.jf.template.controller;
 
 import com.jf.common.utils.aspect.log.MethodLogger;
 import com.jf.common.utils.result.BaseResult;
-import com.jf.template.client.IdsClient;
+import com.jf.distribute.ids.client.IdsClient;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class IdsController {
     @GetMapping("/id")
     @MethodLogger
     public BaseResult<Long> getId() {
-        return idsClient.getIds();
+        return idsClient.getId();
     }
 
     @ApiOperation("获取count个id")
