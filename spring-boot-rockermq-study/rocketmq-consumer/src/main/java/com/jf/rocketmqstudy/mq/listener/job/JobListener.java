@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@RocketMQMessageListener(topic = "xxl-job-ms", selectorExpression = "ORDER_CANCEL", consumerGroup = "rocketmq-consumer")
+@RocketMQMessageListener(topic = "xxl-job-ms", selectorExpression = "ORDER_CANCEL", consumerGroup = "rocketmq-consumer1")
 public class JobListener implements RocketMQListener<String> {
 
     @Override

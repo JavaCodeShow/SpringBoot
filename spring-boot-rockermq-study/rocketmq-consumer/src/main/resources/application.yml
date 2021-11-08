@@ -18,10 +18,7 @@ spring:
 rocketmq:
   name-server: 139.224.103.236:9876
   producer:
-    group: rocketmq-consumer
-  consumer:
-    group: rocketmq-consumer
-
+    group: rocketmq-consumer1
 
 ## 日志配置
 logging:
