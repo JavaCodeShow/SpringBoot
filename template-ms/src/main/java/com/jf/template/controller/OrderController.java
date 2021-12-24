@@ -1,21 +1,23 @@
 package com.jf.template.controller;
 
-import com.jf.common.redis.lock.ReSubmitLock;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import com.jf.common.redis.annotation.ReSubmitLock;
 import com.jf.common.utils.aspect.log.MethodLogger;
 import com.jf.common.utils.result.BaseResult;
 import com.jf.common.utils.result.PageQueryRequest;
 import com.jf.common.utils.result.PageQueryResponse;
 import com.jf.template.domain.dto.OrderDTO;
 import com.jf.template.service.OrderService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Api(value = "订单controller", tags = {"订单相关操作接口"})
 @RequestMapping("/order")
