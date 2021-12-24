@@ -2,6 +2,7 @@ package com.jf.template.meta.enums;
 
 import com.jf.common.utils.meta.enums.BaseResponseInfoInterface;
 import com.jf.template.meta.constant.CommonConstant;
+
 import lombok.Getter;
 
 /**
@@ -18,9 +19,9 @@ public enum ErrorCodeMeta implements BaseResponseInfoInterface {
 
     // @formatter:on
 
-    private String code;
+	private final String code;
 
-    private String message;
+	private final String message;
 
     ErrorCodeMeta(String code, String message) {
         this.code = code;
