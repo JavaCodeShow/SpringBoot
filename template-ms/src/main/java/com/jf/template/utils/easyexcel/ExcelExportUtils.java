@@ -1,15 +1,13 @@
 package com.jf.template.utils.easyexcel;
 
-import java.io.*;
-import java.net.URLEncoder;
-import java.util.Objects;
+import com.alibaba.excel.support.ExcelTypeEnum;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-
-import com.alibaba.excel.support.ExcelTypeEnum;
-
-import lombok.extern.slf4j.Slf4j;
+import java.io.*;
+import java.net.URLEncoder;
+import java.util.Objects;
 
 /**
  * @author 江峰
@@ -76,7 +74,7 @@ public class ExcelExportUtils {
             File file = new File(filePath);
             InputStream stream = new FileInputStream(file);
             ServletOutputStream out = response.getOutputStream();
-			byte[] buff = new byte[1024];
+            byte[] buff = new byte[1024];
             int length = 0;
 
             while ((length = stream.read(buff)) > 0) {
