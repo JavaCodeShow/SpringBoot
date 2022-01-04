@@ -6,7 +6,7 @@ import com.jf.common.utils.result.BaseResult;
 import com.jf.redisstudy.domain.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,15 +24,13 @@ import java.util.List;
 public class StringController {
 
     @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    private RedisTemplate redisTemplate;
 
     @Autowired
     private GlobalCacheService globalCacheService;
 
     /**
      * 插入数据
-     *
-     * @return
      */
     @GetMapping("/set")
     @MethodLogger
@@ -40,29 +38,38 @@ public class StringController {
 
         // stringRedisTemplate.opsForValue().set("bbb", "222");
         UserDTO oneUser = UserDTO.getOneUser();
-        stringRedisTemplate.opsForValue().set("aaa", String.valueOf(oneUser));
-        // globalCacheService.set("aaa", JSON.toJSONString(oneUser));
+        // redisTemplate.opsForValue().set("aaa", oneUser);
+        globalCacheService.set("aaa", oneUser);
         return BaseResult.success();
     }
 
 
     /**
      * 批量查询数据
-     *
-     * @return
      */
-    @GetMapping("/multi_Get")
+    @GetMapping("/mGet")
     @MethodLogger
-    public BaseResult multiGet() {
+    public BaseResult mGet() {
 
         List<String> list = new ArrayList<>();
         list.add("aaa");
         list.add("bbb");
-        list.add("ccc");
-        List<String> stringList = stringRedisTemplate.opsForValue().multiGet(list);
-        log.info("stringList = " + stringList);
-        return BaseResult.success(stringList);
+        // List<UserDTO> stringList = redisTemplate.opsForValue().multiGet(list);
+        List<UserDTO> list1 = globalCacheService.mGet(list);
+        return BaseResult.success(list1);
     }
 
+    /**
+     * 批量查询数据
+     */
+    @GetMapping("/get")
+    @MethodLogger
+    public BaseResult<UserDTO> get() {
 
+        List<String> list = new ArrayList<>();
+        list.add("aaa");
+        list.add("bbb");
+        UserDTO userDTO = (UserDTO) globalCacheService.get("aaa");
+        return BaseResult.success(userDTO);
+    }
 }
