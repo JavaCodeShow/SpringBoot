@@ -28,7 +28,7 @@ public class OrderController {
 
     @ApiOperation(value = "根据订单id查询订单")
     @GetMapping("/{id}")
-    @MethodLogger
+    @MethodLogger(apiId = "6221ec540a849a4ef44d38fc")
     @ReSubmitLock
     public BaseResult<OrderDTO> getOrderById(@PathVariable Integer id) {
 
@@ -43,7 +43,7 @@ public class OrderController {
 
     @ApiOperation(value = "分页查询订单")
     @PostMapping("/list")
-    @MethodLogger
+    @MethodLogger(apiId = "6221ec540a849a4ef44d38fd")
     public PageQueryResponse<List<OrderDTO>> orderList(
             @RequestBody @Validated PageQueryRequest<OrderDTO> request) {
 

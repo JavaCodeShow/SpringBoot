@@ -28,7 +28,7 @@ public class IdsController {
 
     @ApiOperation("获取一个id")
     @GetMapping("/id")
-    @MethodLogger
+    @MethodLogger(apiId = "6221ec540a849a4ef44d38fb")
     public BaseResult<Long> getId() {
         Long id = idsProxy.getId();
         return BaseResult.success(id);
@@ -36,7 +36,7 @@ public class IdsController {
 
     @ApiOperation("获取count个id")
     @GetMapping("/id/{count}")
-    @MethodLogger
+    @MethodLogger(apiId = "6221ec540a849a4ef44d38fe")
     public BaseResult<List<Long>> batchGetId(@PathVariable Integer count) {
         List<Long> ids = idsProxy.batchGetId(count);
         return BaseResult.success(ids);

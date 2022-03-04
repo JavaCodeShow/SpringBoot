@@ -2,7 +2,6 @@ package com.jf.template.controller;
 
 import com.jf.common.redis.annotation.DistributeLock;
 import com.jf.common.redis.annotation.ReSubmitLock;
-import com.jf.common.redis.service.cache.RedisService;
 import com.jf.common.utils.aspect.log.MethodLogger;
 import com.jf.common.utils.result.BaseResult;
 import com.jf.template.domain.dto.OrderDTO;
@@ -24,19 +23,16 @@ import java.util.concurrent.TimeUnit;
  * @since: 2.22.1
  */
 @RestController
-@RequestMapping("/redis")
+@RequestMapping
 @Slf4j
 public class RedisTestController {
-
-    @Autowired
-    private RedisService redisService;
 
     @Autowired
     @Qualifier("baseAsyncExecutor")
     private Executor baseAsyncExecutor;
 
-    @GetMapping(value = "/testDistributeLock")
-    @MethodLogger
+    @GetMapping(value = "/redis/testDistributeLock")
+    @MethodLogger(apiId = "6221ec540a849a4ef44d38ff")
     @DistributeLock(lockKey = "orderId")
     public BaseResult testDistributeLock() {
 
@@ -55,16 +51,19 @@ public class RedisTestController {
 
     /**
      * 测试防止重复提交
-     *
-     * @return
      */
-    @GetMapping("/testReSubmitLock")
-    @MethodLogger
+    @GetMapping("/redis/testReSubmitLock")
+    @MethodLogger(apiId = "6221ec540a849a4ef44d3900")
     @ReSubmitLock
     public BaseResult<OrderDTO> testReSubmitLock() {
 
         OrderDTO order = OrderDTO.builder().id(1).orderId(111).name("秀儿，是你吗")
                 .build();
+        try {
+            TimeUnit.SECONDS.sleep(6);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return BaseResult.success(order);
     }
