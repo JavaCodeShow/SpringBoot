@@ -33,7 +33,7 @@ public class StringController {
      * 插入数据
      */
     @GetMapping("/set")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f4f")
     public BaseResult set() {
 
         // stringRedisTemplate.opsForValue().set("bbb", "222");
@@ -48,7 +48,7 @@ public class StringController {
      * 批量查询数据
      */
     @GetMapping("/mGet")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f50")
     public BaseResult mGet() {
 
         List<String> list = new ArrayList<>();
@@ -63,7 +63,7 @@ public class StringController {
      * 批量查询数据
      */
     @GetMapping("/get")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f54")
     public BaseResult<UserDTO> get() {
 
         List<String> list = new ArrayList<>();

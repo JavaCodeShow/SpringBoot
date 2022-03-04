@@ -37,7 +37,7 @@ public class MapController {
      * 往map里面批量插入数据
      */
     @GetMapping("/hmset")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f4b")
     public BaseResult hmset() {
         String key = "hash";
         Map<String, String> map = new HashMap<>();
@@ -51,7 +51,7 @@ public class MapController {
      * 往map里面查询数据
      */
     @GetMapping("/hGet")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f4e")
     public BaseResult hGet() {
         String key = "hash";
         String str = globalCacheService.hGet(key, "f1");
@@ -63,7 +63,7 @@ public class MapController {
      * 往map里面批量查询数据
      */
     @GetMapping("/hMGet")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f64")
     public BaseResult hMGet() {
         String key = "hash";
         List<String> stringList = Arrays.asList("f1", "f2");

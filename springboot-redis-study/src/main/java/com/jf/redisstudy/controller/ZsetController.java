@@ -33,7 +33,7 @@ public class ZsetController {
      * @return
      */
     @GetMapping("/batchZset")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f56")
     public BaseResult batchZset() {
 
         String keyName = "zset1";
@@ -66,7 +66,7 @@ public class ZsetController {
      * @return
      */
     @GetMapping("/sinterstore")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f58")
     public BaseResult<Set> sinterstore() {
 
         // Long size = redisTemplate.opsForZSet().intersectAndStore("zset1",
@@ -90,7 +90,7 @@ public class ZsetController {
      * @return
      */
     @GetMapping("/range")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f5e")
     public BaseResult<Set> range() {
 
         Set zset3 = redisTemplate.opsForZSet().range("zset3", 0, -1);
@@ -104,7 +104,7 @@ public class ZsetController {
      * @return
      */
     @GetMapping("/rangeWithScores")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f60")
     public BaseResult<Set> rangeWithScores() {
 
         Set zset3 = redisTemplate.opsForZSet().rangeWithScores("zset3", 0, 10);

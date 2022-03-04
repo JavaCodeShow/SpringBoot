@@ -34,7 +34,7 @@ public class SetController {
      * @return
      */
     @GetMapping("/sadd")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f4d")
     public BaseResult sadd() {
 
         Set<String> set = new HashSet<>();
@@ -59,7 +59,7 @@ public class SetController {
      * @return
      */
     @GetMapping("/sIsMember")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f55")
     public BaseResult sIsMember() {
 
         Boolean flag = globalCacheService.sIsMember("set1", "555");

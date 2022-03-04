@@ -25,7 +25,7 @@ public class RedisListAsQueueController {
     static int count = 0;
 
     @RequestMapping("/redis_queue_push")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f53")
     public BaseResult redisQueuePush() {
         redisTemplate.opsForList().leftPush("list", "hello" + count);
         return BaseResult.success();

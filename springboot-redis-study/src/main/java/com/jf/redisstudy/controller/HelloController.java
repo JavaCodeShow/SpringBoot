@@ -23,7 +23,7 @@ public class HelloController {
     private RedissonClient redissonClient;
 
     @RequestMapping("/")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f52")
     public String hello() {
         RLock lock = this.redissonClient.getLock("hello");
         try {

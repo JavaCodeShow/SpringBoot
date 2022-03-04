@@ -37,7 +37,7 @@ public class RedisTestController {
     private DistributeLockService distributeLockService;
 
     @GetMapping(value = "/redis/testDistributeLock")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f51")
     @DistributeLock(lockKey = "orderId")
     public BaseResult testDistributeLock() {
 
@@ -60,7 +60,7 @@ public class RedisTestController {
      * @return
      */
     @GetMapping("/redis/testReSubmitLock")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f5a")
     @ReSubmitLock
     public BaseResult testReSubmitLock() {
 
@@ -74,7 +74,7 @@ public class RedisTestController {
      * @return
      */
     @GetMapping("/redis/distributeLockService_tryLock")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f62")
     public BaseResult<Boolean> testDistributeLockServiceTryLock() {
 
         String lockKeyName = LockKeyGenerator.generateLockKey(GlobalLockKeyEnum.MIN_PRICE, "111");
@@ -99,7 +99,7 @@ public class RedisTestController {
      * @return
      */
     @GetMapping("/redis/cache")
-    @MethodLogger
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f67")
     public BaseResult<String> testCache() {
 
         String cacheKeyName = CacheKeyGenerator.generateCacheKey(GlobalCacheKeyEnum.MIN_PRICE, "222");
