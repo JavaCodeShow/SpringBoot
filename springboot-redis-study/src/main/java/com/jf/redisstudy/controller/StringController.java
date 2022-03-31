@@ -1,5 +1,6 @@
 package com.jf.redisstudy.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jf.common.redis.service.cache.GlobalCacheService;
 import com.jf.common.utils.aspect.log.MethodLogger;
 import com.jf.common.utils.result.BaseResult;
@@ -39,10 +40,9 @@ public class StringController {
         // stringRedisTemplate.opsForValue().set("bbb", "222");
         UserDTO oneUser = UserDTO.getOneUser();
         // redisTemplate.opsForValue().set("aaa", oneUser);
-        globalCacheService.set("aaa", oneUser);
+        // globalCacheService.set("aaa", oneUser);
         return BaseResult.success();
     }
-
 
     /**
      * 批量查询数据
@@ -55,7 +55,7 @@ public class StringController {
         list.add("aaa");
         list.add("bbb");
         // List<UserDTO> stringList = redisTemplate.opsForValue().multiGet(list);
-        List<UserDTO> list1 = globalCacheService.mGet(list);
+        List<String> list1 = globalCacheService.mGet(list);
         return BaseResult.success(list1);
     }
 
@@ -66,10 +66,8 @@ public class StringController {
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f54")
     public BaseResult<UserDTO> get() {
 
-        List<String> list = new ArrayList<>();
-        list.add("aaa");
-        list.add("bbb");
-        UserDTO userDTO = (UserDTO) globalCacheService.get("aaa");
+        String aaa = globalCacheService.get("aaa");
+        UserDTO userDTO = JSONObject.parseObject(aaa, UserDTO.class);
         return BaseResult.success(userDTO);
     }
 }
