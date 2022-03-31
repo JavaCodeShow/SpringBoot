@@ -2,19 +2,18 @@ package com.jf.redisstudy.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.jf.common.redis.generator.CacheKeyGenerator;
 import com.jf.common.redis.service.cache.GlobalCacheService;
 import com.jf.common.utils.aspect.log.MethodLogger;
 import com.jf.common.utils.result.BaseResult;
 import com.jf.redisstudy.domain.dto.UserDTO;
+import com.jf.redisstudy.domain.enums.RedisStudyCacheKeyEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 类作用描述
@@ -27,10 +26,10 @@ import java.util.stream.Collectors;
 public class StringController {
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private GlobalCacheService globalCacheService;
 
     @Autowired
-    private GlobalCacheService globalCacheService;
+    private ConcurrentProtectedCacheManager concurrentProtectedCacheManager;
 
     /**
      * 插入数据
@@ -51,14 +50,17 @@ public class StringController {
      */
     @GetMapping("/mGet")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f50")
-    public BaseResult mGet() {
+    public BaseResult<List<UserDTO>> mGet() {
 
-        List<String> list = new ArrayList<>();
-        list.add("aaa");
-        list.add("bbb");
-        List<String> list1 = globalCacheService.mGet(list);
-        List<UserDTO> collect = list1.stream().map(s -> JSON.parseObject(s, UserDTO.class)).collect(Collectors.toList());
-        return BaseResult.success(collect);
+        // List<String> list = new ArrayList<>();
+        // list.add("aaa");
+        // list.add("bbb");
+        // List<String> list1 = globalCacheService.mGet(list);
+        // List<UserDTO> userDTOList = list1.stream().map(s -> JSON.parseObject(s, UserDTO.class)).collect(Collectors.toList());
+
+        String cacheKey = CacheKeyGenerator.generateCacheKey(RedisStudyCacheKeyEnum.MIN_PRICE, "111");
+        List<UserDTO> userDTOList = concurrentProtectedCacheManager.get(cacheKey, UserDTO.class, UserDTO::getUserList);
+        return BaseResult.success(userDTOList);
     }
 
     /**

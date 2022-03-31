@@ -9,8 +9,8 @@ import com.jf.common.redis.service.lock.DistributeLockService;
 import com.jf.common.utils.aspect.log.MethodLogger;
 import com.jf.common.utils.meta.enums.GlobalErrorCodeEnum;
 import com.jf.common.utils.result.BaseResult;
-import com.jf.redisstudy.domain.enums.GlobalCacheKeyEnum;
-import com.jf.redisstudy.domain.enums.GlobalLockKeyEnum;
+import com.jf.redisstudy.domain.enums.RedisStudyCacheKeyEnum;
+import com.jf.redisstudy.domain.enums.RedisStudyLockKeyEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +77,7 @@ public class RedisTestController {
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f62")
     public BaseResult<Boolean> testDistributeLockServiceTryLock() {
 
-        String lockKeyName = LockKeyGenerator.generateLockKey(GlobalLockKeyEnum.MIN_PRICE, "111");
+        String lockKeyName = LockKeyGenerator.generateLockKey(RedisStudyLockKeyEnum.MIN_PRICE, "111");
         log.info("lockKeyName = [{}]", lockKeyName);
         boolean flag = distributeLockService.tryLock(lockKeyName);
         log.info("获取锁的结果 = {}", flag);
@@ -102,7 +102,7 @@ public class RedisTestController {
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f67")
     public BaseResult<String> testCache() {
 
-        String cacheKeyName = CacheKeyGenerator.generateCacheKey(GlobalCacheKeyEnum.MIN_PRICE, "222");
+        String cacheKeyName = CacheKeyGenerator.generateCacheKey(RedisStudyCacheKeyEnum.MIN_PRICE, "222");
         log.info("cacheKeyName = [{}]", cacheKeyName);
         String value = globalCacheService.get(cacheKeyName);
         if (StringUtils.isBlank(value)) {

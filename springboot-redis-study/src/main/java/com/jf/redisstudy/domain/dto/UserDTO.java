@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Slf4j
 public class UserDTO implements Serializable {
 
     private static final long serialVersionUID = 4204461422155385093L;
@@ -64,6 +66,7 @@ public class UserDTO implements Serializable {
         userDTOList.add(userDTO1);
         userDTOList.add(userDTO2);
 
+        log.info("getUserList from not from cache");
         return userDTOList;
     }
 

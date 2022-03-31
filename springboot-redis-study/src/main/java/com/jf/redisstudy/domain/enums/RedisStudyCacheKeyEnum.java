@@ -2,12 +2,13 @@ package com.jf.redisstudy.domain.enums;
 
 
 import com.jf.common.redis.generator.CacheKeyType;
+import com.jf.redisstudy.domain.constant.SystemConstant;
 
 /**
  * @author 江峰
  * @create 2021-12-28 22:54:59
  */
-public enum GlobalCacheKeyEnum implements CacheKeyType {
+public enum RedisStudyCacheKeyEnum implements CacheKeyType {
 
     MIN_PRICE(0, "MIN_PRICE", "最小价");
 
@@ -15,7 +16,7 @@ public enum GlobalCacheKeyEnum implements CacheKeyType {
     private String name;
     private String desc;
 
-    GlobalCacheKeyEnum(Integer code, String name, String desc) {
+    RedisStudyCacheKeyEnum(Integer code, String name, String desc) {
         this.code = code;
         this.name = name;
         this.desc = desc;
@@ -23,7 +24,7 @@ public enum GlobalCacheKeyEnum implements CacheKeyType {
 
     @Override
     public String getPrefix() {
-        return "MTC_ORDER";
+        return SystemConstant.SYSTEM_NAME;
     }
 
     @Override

@@ -15,11 +15,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 /**
- * @author cuibo
- * @desc 并发控制抽象类
- * @detail 如果缓存逻辑过期时间尚未过期，则获取缓存中的数据直接返回(缓存数据不存在走并发控制获取)
- * @detail 如果缓存逻辑过期时间已过期，则走并发控制获取
- * @detail 并发控制获取：所有线程尝试请求获取并发锁，未获取到锁的线程按照自旋策略开始自旋等待并尝试从缓存获取数据；获取到锁的线程请求实际服务获取数据，然后写入缓存并更新逻辑过期时间
+ * @author 江峰
+ * 并发控制抽象类
+ * 如果缓存逻辑过期时间尚未过期，则获取缓存中的数据直接返回(缓存数据不存在走并发控制获取)
+ * 如果缓存逻辑过期时间已过期，则走并发控制获取
+ * 并发控制获取：所有线程尝试请求获取并发锁，未获取到锁的线程按照自旋策略开始自旋等待并尝试从缓存获取数据；获取到锁的线程请求实际服务获取数据，然后写入缓存并更新逻辑过期时间
  * @since 2021/12/28
  */
 @Slf4j
@@ -29,12 +29,12 @@ public class ConcurrentProtectedCacheManager {
     /**
      * 缓存数据逻辑过期时间
      */
-    private final int CACHE_LOGICAL_EXPIRE_SECONDS = 5;
+    private final int CACHE_LOGICAL_EXPIRE_SECONDS = 6;
 
     /**
      * 缓存数据物理过期时间
      */
-    private final int CACHE_DATA_KEY_EXPIRE_SECONDS = 30;
+    private final int CACHE_DATA_KEY_EXPIRE_SECONDS = 60;
 
     /**
      * 并发锁锁定过期时间
@@ -84,7 +84,7 @@ public class ConcurrentProtectedCacheManager {
     /**
      * cacheKey 缓存key
      * 缓存数据逻辑过期时间(默认6秒)
-     * 缓存数据物理过期时间(默认30秒)
+     * 缓存数据物理过期时间(默认60秒)
      * 并发锁锁定过期时间(默认60秒)
      * 自旋等待最大次数(默认5次)
      * 自旋等待休眠时间间隔(默认100毫秒+100毫秒以内随机数)
@@ -101,7 +101,6 @@ public class ConcurrentProtectedCacheManager {
         boolean expired = checkExpired(cacheKey);
         if (expired) {
             String concurrentCacheKey = String.format("%s_CONCURRENT_KEY", cacheKey);
-            // String systemCode = concurrentCacheKey + Thread.currentThread().getName() + RandomUtils.nextInt(0, 1000);
             boolean lock = distributeLockService.tryLock(concurrentCacheKey, concurrentCacheKeyExpireSeconds, TimeUnit.SECONDS);
             if (lock) {
                 try {
@@ -139,7 +138,7 @@ public class ConcurrentProtectedCacheManager {
     }
 
     /**
-     * @desc 从缓存获取数据
+     * 从缓存获取数据
      **/
     private Object getFromCache(String cacheKey, Class<?> clazz) {
         String data = globalCacheService.hGet(cacheKey, CacheKeyConstants.CACHE_DATA_FIELD);
@@ -155,7 +154,7 @@ public class ConcurrentProtectedCacheManager {
     }
 
     /**
-     * @desc 获取数据并缓存
+     * 获取数据并缓存
      **/
     private <T> T cacheDataFromSupplier(String cacheKey, int cacheLogicalExpireSeconds, int cacheDataKeyExpireSeconds, Supplier<T> supplier) {
         T t = supplier.get();
@@ -170,7 +169,7 @@ public class ConcurrentProtectedCacheManager {
     }
 
     /**
-     * @desc 组装缓存数据
+     * 组装缓存数据
      **/
     private Map<String, String> getResultMap(int cacheLogicalExpireSeconds, ConcurrentProtectedCacheModel cacheModel) {
         Map<String, String> resultMap = new HashMap<>();
@@ -180,7 +179,7 @@ public class ConcurrentProtectedCacheManager {
     }
 
     /**
-     * @desc 获取缓存对象
+     * 获取缓存对象
      **/
     private <T> ConcurrentProtectedCacheModel getConcurrentProtectedCacheModel(T t) {
         ConcurrentProtectedCacheModel cacheModel = new ConcurrentProtectedCacheModel();
@@ -194,9 +193,7 @@ public class ConcurrentProtectedCacheManager {
     }
 
     /**
-     * @desc 休眠
-     * @author qiaozhi
-     * @since 2022/1/24
+     * 休眠
      **/
     private void sleep(int loopIntervalMilliSeconds) {
         try {
@@ -207,9 +204,7 @@ public class ConcurrentProtectedCacheManager {
     }
 
     /**
-     * @desc 校验数据是否过期
-     * @author qiaozhi
-     * @since 2022/1/24
+     * 校验数据是否过期
      **/
     private boolean checkExpired(String cacheDataKey) {
         String time = globalCacheService.hGet(cacheDataKey, CacheKeyConstants.CACHE_EXPIRE_TIMESTAMP_FIELD);
