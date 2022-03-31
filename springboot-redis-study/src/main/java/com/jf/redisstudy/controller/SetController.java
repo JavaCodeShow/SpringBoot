@@ -1,6 +1,6 @@
 package com.jf.redisstudy.controller;
 
-import com.jf.common.redis.service.cache.GlobalCacheService;
+import com.jf.common.redis.service.cache.GlobalCacheManager;
 import com.jf.common.utils.aspect.log.MethodLogger;
 import com.jf.common.utils.result.BaseResult;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ public class SetController {
     private RedisTemplate redisTemplate;
 
     @Autowired
-    private GlobalCacheService globalCacheService;
+    private GlobalCacheManager globalCacheManager;
 
     /**
      * 往set里面批量插入数据
@@ -46,8 +46,8 @@ public class SetController {
         // Set<String> members = redisTemplate.opsForSet().members(keyName);
         // Set<String> members = redisTemplate.opsForSet().isMember();
 
-        globalCacheService.sAdd(keyName, set.toArray(new String[0]));
-        Set<String> members = globalCacheService.sMembers(keyName);
+        globalCacheManager.sAdd(keyName, set.toArray(new String[0]));
+        Set<String> members = globalCacheManager.sMembers(keyName);
         log.info("members = {}", members);
         return BaseResult.success(members);
     }
@@ -62,7 +62,7 @@ public class SetController {
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f55")
     public BaseResult sIsMember() {
 
-        Boolean flag = globalCacheService.sIsMember("set1", "555");
+        Boolean flag = globalCacheManager.sIsMember("set1", "555");
         log.info("flag = {}", flag);
         return BaseResult.success(flag);
     }

@@ -4,8 +4,8 @@ import com.jf.common.redis.annotation.DistributeLock;
 import com.jf.common.redis.annotation.ReSubmitLock;
 import com.jf.common.redis.generator.CacheKeyGenerator;
 import com.jf.common.redis.generator.LockKeyGenerator;
-import com.jf.common.redis.service.cache.GlobalCacheService;
-import com.jf.common.redis.service.lock.DistributeLockService;
+import com.jf.common.redis.service.cache.GlobalCacheManager;
+import com.jf.common.redis.service.lock.DistributeLockManager;
 import com.jf.common.utils.aspect.log.MethodLogger;
 import com.jf.common.utils.meta.enums.GlobalErrorCodeEnum;
 import com.jf.common.utils.result.BaseResult;
@@ -31,10 +31,10 @@ import java.util.concurrent.TimeUnit;
 public class RedisTestController {
 
     @Autowired
-    private GlobalCacheService globalCacheService;
+    private GlobalCacheManager globalCacheManager;
 
     @Autowired
-    private DistributeLockService distributeLockService;
+    private DistributeLockManager distributeLockManager;
 
     @GetMapping(value = "/redis/testDistributeLock")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f51")
@@ -79,7 +79,7 @@ public class RedisTestController {
 
         String lockKeyName = LockKeyGenerator.generateLockKey(RedisStudyLockKeyEnum.MIN_PRICE, "111");
         log.info("lockKeyName = [{}]", lockKeyName);
-        boolean flag = distributeLockService.tryLock(lockKeyName);
+        boolean flag = distributeLockManager.tryLock(lockKeyName);
         log.info("获取锁的结果 = {}", flag);
         if (!flag) {
             return BaseResult.fail(GlobalErrorCodeEnum.NOT_GET_LOCK);
@@ -87,7 +87,7 @@ public class RedisTestController {
         try {
             System.out.println("开始执行业务逻辑");
         } finally {
-            distributeLockService.unlock(lockKeyName);
+            distributeLockManager.unlock(lockKeyName);
         }
 
         return BaseResult.success(true);
@@ -104,9 +104,9 @@ public class RedisTestController {
 
         String cacheKeyName = CacheKeyGenerator.generateCacheKey(RedisStudyCacheKeyEnum.MIN_PRICE, "222");
         log.info("cacheKeyName = [{}]", cacheKeyName);
-        String value = globalCacheService.get(cacheKeyName);
+        String value = globalCacheManager.get(cacheKeyName);
         if (StringUtils.isBlank(value)) {
-            globalCacheService.set(cacheKeyName, "333");
+            globalCacheManager.set(cacheKeyName, "333");
         }
 
         return BaseResult.success(value);

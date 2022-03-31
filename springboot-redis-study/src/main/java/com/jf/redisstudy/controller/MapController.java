@@ -1,7 +1,7 @@
 package com.jf.redisstudy.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.jf.common.redis.service.cache.GlobalCacheService;
+import com.jf.common.redis.service.cache.GlobalCacheManager;
 import com.jf.common.utils.aspect.log.MethodLogger;
 import com.jf.common.utils.result.BaseResult;
 import com.jf.redisstudy.domain.dto.UserDTO;
@@ -31,7 +31,7 @@ public class MapController {
     private RedisTemplate redisTemplate;
 
     @Autowired
-    private GlobalCacheService globalCacheService;
+    private GlobalCacheManager globalCacheManager;
 
     /**
      * 往map里面批量插入数据
@@ -42,10 +42,9 @@ public class MapController {
         String key = "hash";
         Map<String, String> map = new HashMap<>();
         map.put("f1", JSON.toJSONString(UserDTO.getUserOne()));
-        globalCacheService.hMSet(key, map);
+        globalCacheManager.hMSet(key, map);
         return BaseResult.success();
     }
-
 
     /**
      * 往map里面查询数据
@@ -54,7 +53,7 @@ public class MapController {
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f4e")
     public BaseResult hGet() {
         String key = "hash";
-        String str = globalCacheService.hGet(key, "f1");
+        String str = globalCacheManager.hGet(key, "f1");
         UserDTO userDTO = JSON.parseObject(str, UserDTO.class);
         return BaseResult.success(userDTO);
     }
@@ -68,7 +67,7 @@ public class MapController {
         String key = "hash";
         List<String> stringList = Arrays.asList("f1", "f2");
         // List<String> list = redisTemplate.opsForHash().multiGet(key, stringList);
-        List<String> strings = globalCacheService.hMGet(key, stringList);
+        List<String> strings = globalCacheManager.hMGet(key, stringList);
         List<UserDTO> userDTOList = strings.stream().map(s -> JSON.parseObject(s, UserDTO.class)).collect(Collectors.toList());
         return BaseResult.success(userDTOList);
     }
