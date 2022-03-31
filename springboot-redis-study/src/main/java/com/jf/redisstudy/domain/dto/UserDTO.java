@@ -29,12 +29,22 @@ public class UserDTO implements Serializable {
     private Integer age;
 
 
-    public static UserDTO getOneUser() {
+    public static UserDTO getUserOne() {
 
         UserDTO userDTO = new UserDTO();
         userDTO.setId(3);
         userDTO.setName("张三");
         userDTO.setAge(33);
+
+        return userDTO;
+    }
+
+    public static UserDTO getUserTwo() {
+
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(6);
+        userDTO.setName("赵六");
+        userDTO.setAge(66);
 
         return userDTO;
     }

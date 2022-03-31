@@ -41,7 +41,7 @@ public class MapController {
     public BaseResult hmset() {
         String key = "hash";
         Map<String, String> map = new HashMap<>();
-        map.put("f1", JSON.toJSONString(UserDTO.getOneUser()));
+        map.put("f1", JSON.toJSONString(UserDTO.getUserOne()));
         globalCacheService.hMSet(key, map);
         return BaseResult.success();
     }
