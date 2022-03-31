@@ -3,7 +3,8 @@ package com.jf.redisstudy.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.jf.common.redis.generator.CacheKeyGenerator;
-import com.jf.common.redis.service.cache.GlobalCacheService;
+import com.jf.common.redis.service.cache.ConcurrentProtectedCacheManager;
+import com.jf.common.redis.service.cache.GlobalCacheManager;
 import com.jf.common.utils.aspect.log.MethodLogger;
 import com.jf.common.utils.result.BaseResult;
 import com.jf.redisstudy.domain.dto.UserDTO;
@@ -26,7 +27,7 @@ import java.util.List;
 public class StringController {
 
     @Autowired
-    private GlobalCacheService globalCacheService;
+    private GlobalCacheManager globalCacheManager;
 
     @Autowired
     private ConcurrentProtectedCacheManager concurrentProtectedCacheManager;
@@ -40,8 +41,8 @@ public class StringController {
 
         UserDTO userOne = UserDTO.getUserOne();
         UserDTO userTwo = UserDTO.getUserTwo();
-        globalCacheService.set("aaa", JSON.toJSONString(userOne));
-        globalCacheService.set("bbb", JSON.toJSONString(userTwo));
+        globalCacheManager.set("aaa", JSON.toJSONString(userOne));
+        globalCacheManager.set("bbb", JSON.toJSONString(userTwo));
         return BaseResult.success();
     }
 
@@ -55,7 +56,7 @@ public class StringController {
         // List<String> list = new ArrayList<>();
         // list.add("aaa");
         // list.add("bbb");
-        // List<String> list1 = globalCacheService.mGet(list);
+        // List<String> list1 = globalCacheManager.mGet(list);
         // List<UserDTO> userDTOList = list1.stream().map(s -> JSON.parseObject(s, UserDTO.class)).collect(Collectors.toList());
 
         String cacheKey = CacheKeyGenerator.generateCacheKey(RedisStudyCacheKeyEnum.MIN_PRICE, "111");
@@ -70,7 +71,7 @@ public class StringController {
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f54")
     public BaseResult<UserDTO> get() {
 
-        String aaa = globalCacheService.get("aaa");
+        String aaa = globalCacheManager.get("aaa");
         UserDTO userDTO = JSONObject.parseObject(aaa, UserDTO.class);
         return BaseResult.success(userDTO);
     }
