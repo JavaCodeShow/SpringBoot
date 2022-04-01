@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.jf</groupId>
-    <artifactId>redisstudy</artifactId>
+    <artifactId>springboot-redis-study</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>redisstudy</name>
+    <name>springboot-redis-study</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
