@@ -5,7 +5,6 @@ import com.jf.common.utils.aspect.log.MethodLogger;
 import com.jf.common.utils.result.BaseResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,9 +20,6 @@ import java.util.Set;
 @RestController
 @Slf4j
 public class SetController {
-
-    @Autowired
-    private RedisTemplate redisTemplate;
 
     @Autowired
     private GlobalCacheManager globalCacheManager;
