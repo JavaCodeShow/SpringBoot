@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class OrderController {
 
     @GetMapping("/order/{orderId}")
-    @MethodLogger
+    @MethodLogger(apiId = "62a30deb3785be2a4c58cdea")
     public BaseResult<OrderDTO> getOrderById(@PathVariable Integer orderId) {
 
         OrderDTO orderDTO = new OrderDTO();

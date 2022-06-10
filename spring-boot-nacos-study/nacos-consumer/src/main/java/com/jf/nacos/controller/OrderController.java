@@ -23,7 +23,7 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("/order/{orderId}")
-    @MethodLogger
+    @MethodLogger(apiId = "62a30deb3785be2a4c58cde1")
     public BaseResult<OrderDTO> getOrderById(@PathVariable Integer orderId) {
 
         OrderDTO orderDTO = orderService.getOrderById(orderId);
