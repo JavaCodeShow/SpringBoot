@@ -1,9 +1,7 @@
 package com.jf.redisstudy.controller;
 
-import com.jf.common.redis.service.lock.DistributeLockManager;
 import com.jf.common.utils.aspect.log.MethodLogger;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,9 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 public class HelloController {
-
-    @Autowired
-    private DistributeLockManager distributeLockManager;
 
     @RequestMapping("/")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f52")

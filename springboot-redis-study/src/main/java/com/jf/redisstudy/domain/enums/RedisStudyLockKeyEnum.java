@@ -10,14 +10,12 @@ import com.jf.redisstudy.domain.constant.SystemConstant;
  */
 public enum RedisStudyLockKeyEnum implements DistributeLockType {
 
-    MIN_PRICE(0, "MIN_PRICE", "最小价");
+    MIN_PRICE("MIN_PRICE", "最小价");
 
-    private Integer code;
     private String name;
     private String desc;
 
-    RedisStudyLockKeyEnum(Integer code, String name, String desc) {
-        this.code = code;
+    RedisStudyLockKeyEnum(String name, String desc) {
         this.name = name;
         this.desc = desc;
     }

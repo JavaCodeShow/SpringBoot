@@ -10,14 +10,12 @@ import com.jf.redisstudy.domain.constant.SystemConstant;
  */
 public enum RedisStudyCacheKeyEnum implements CacheKeyType {
 
-    MIN_PRICE(0, "MIN_PRICE", "最小价");
+    MIN_PRICE("MIN_PRICE", "最小价");
 
-    private Integer code;
     private String name;
     private String desc;
 
-    RedisStudyCacheKeyEnum(Integer code, String name, String desc) {
-        this.code = code;
+    RedisStudyCacheKeyEnum(String name, String desc) {
         this.name = name;
         this.desc = desc;
     }

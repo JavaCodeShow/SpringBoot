@@ -38,7 +38,7 @@ public class RedisTestController {
 
     @GetMapping(value = "/redis/testDistributeLock")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f51")
-    @DistributeLock(lockKey = "orderId")
+    @DistributeLock
     public BaseResult testDistributeLock() {
 
         System.out.println("执行相关业务...");
@@ -70,8 +70,6 @@ public class RedisTestController {
 
     /**
      * 测试手动添加分布式锁
-     *
-     * @return
      */
     @GetMapping("/redis/distributeLockService_tryLock")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f62")
@@ -95,8 +93,6 @@ public class RedisTestController {
 
     /**
      * String 类型缓存
-     *
-     * @return
      */
     @GetMapping("/redis/cache")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f67")
