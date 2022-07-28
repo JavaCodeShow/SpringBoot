@@ -20,7 +20,7 @@ public class OnewayProducer {
         producer.start();
         for (int i = 0; i < 1; i++) {
             // 创建消息，并指定Topic，Tag和消息体
-            Message msg = new Message("CSS", "ORDE_CANCEL",
+            Message msg = new Message("CSS", "ORDER_CANCEL",
                     ("Hello RocketMQ " + i)
                             .getBytes(RemotingHelper.DEFAULT_CHARSET));
             // 发送单向消息，没有任何返回结果

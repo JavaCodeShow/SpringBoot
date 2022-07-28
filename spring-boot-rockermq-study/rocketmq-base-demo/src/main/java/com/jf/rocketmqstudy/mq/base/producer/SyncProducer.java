@@ -25,12 +25,12 @@ public class SyncProducer {
         // producer.setSendMessageWithVIPChannel(false);
         for (int i = 0; i < 1; i++) {
             // 创建消息，并指定Topic，Tag和消息体
-            Message msg = new Message("CSS", "ORDE_CANCEL",
+            Message msg = new Message("CSS", "ORDER_CANCEL",
                     ("Hello RocketMQ " + i)
                             .getBytes(RemotingHelper.DEFAULT_CHARSET));
             // 发送消息到一个Broker
             System.out.println(LocalDateTimeUtil.getLocalDateTimeStr());
-
+            msg.setKeys("666");
             SendResult sendResult = producer.send(msg);
             // 通过sendResult返回消息是否成功送达
             System.out.printf("%s%n", sendResult);

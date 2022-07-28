@@ -23,7 +23,7 @@ public class AsyncProducer {
         for (int i = 0; i < 3; i++) {
             final int index = i;
             // 创建消息，并指定Topic，Tag和消息体
-            Message msg = new Message("CSS", "ORDE_CANCEL",
+            Message msg = new Message("CSS", "ORDER_CANCEL",
                     ("Hello RocketMQ " + i)
                             .getBytes(RemotingHelper.DEFAULT_CHARSET));
             // SendCallback接收异步返回结果的回调

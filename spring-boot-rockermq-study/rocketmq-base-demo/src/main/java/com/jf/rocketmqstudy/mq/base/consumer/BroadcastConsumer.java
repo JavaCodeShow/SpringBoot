@@ -25,7 +25,7 @@ public class BroadcastConsumer {
         // 指定Namesrv地址信息.
         consumer.setNamesrvAddr("139.224.103.236:9876");
         // 订阅Topic
-        consumer.subscribe("CSS", "ORDE_CANCEL");
+        consumer.subscribe("CSS", "ORDER_CANCEL");
         // 广播模式消费
         consumer.setMessageModel(MessageModel.BROADCASTING);
         // 注册回调函数，处理消息
