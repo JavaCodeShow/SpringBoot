@@ -66,7 +66,7 @@ public class UserDTO implements Serializable {
         userDTOList.add(userDTO1);
         userDTOList.add(userDTO2);
 
-        log.info("getUserList from not from cache");
+        log.info("getUserList from from db");
         return userDTOList;
     }
 

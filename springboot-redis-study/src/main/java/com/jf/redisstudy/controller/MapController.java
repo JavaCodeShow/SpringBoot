@@ -38,6 +38,7 @@ public class MapController {
         String key = "hash";
         Map<String, String> map = new HashMap<>();
         map.put("f1", JSON.toJSONString(UserDTO.getUserOne()));
+        map.put("f2", JSON.toJSONString(UserDTO.getUserTwo()));
         globalCacheManager.hMSet(key, map);
         return BaseResult.success();
     }
@@ -47,7 +48,7 @@ public class MapController {
      */
     @GetMapping("/hGet")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f4e")
-    public BaseResult hGet() {
+    public BaseResult<UserDTO> hGet() {
         String key = "hash";
         String str = globalCacheManager.hGet(key, "f1");
         UserDTO userDTO = JSON.parseObject(str, UserDTO.class);
@@ -59,10 +60,9 @@ public class MapController {
      */
     @GetMapping("/hMGet")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f64")
-    public BaseResult hMGet() {
+    public BaseResult<List<UserDTO>> hMGet() {
         String key = "hash";
         List<String> stringList = Arrays.asList("f1", "f2");
-        // List<String> list = redisTemplate.opsForHash().multiGet(key, stringList);
         List<String> strings = globalCacheManager.hMGet(key, stringList);
         List<UserDTO> userDTOList = strings.stream().map(s -> JSON.parseObject(s, UserDTO.class)).collect(Collectors.toList());
         return BaseResult.success(userDTOList);

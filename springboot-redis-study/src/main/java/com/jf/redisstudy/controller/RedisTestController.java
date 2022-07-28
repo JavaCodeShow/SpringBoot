@@ -38,7 +38,7 @@ public class RedisTestController {
 
     @GetMapping(value = "/redis/testDistributeLock")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f51")
-    @DistributeLock
+    @DistributeLock(lockKey = "6221f12e0a849a10a89f9f00")
     public BaseResult testDistributeLock() {
 
         System.out.println("执行相关业务...");
