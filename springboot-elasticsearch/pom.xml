@@ -21,6 +21,11 @@
     </properties>
 
     <dependencies>
+        <!-- web模块 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.jf</groupId>
@@ -36,10 +41,11 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- web模块 -->
+        <!-- elasticsearch -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+            <version>2.2.13.RELEASE</version>
         </dependency>
 
     </dependencies>

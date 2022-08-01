@@ -6,5 +6,5 @@ package com.jf.es.domain.constant;
  */
 public class SystemConstant {
 
-    public static final String SYSTEM_NAME = "SPRING_BOOT_REDIS_STUDY";
+    public static final String SYSTEM_NAME = "SPRINGBOOT_ELASTICSEARCH";
 }
