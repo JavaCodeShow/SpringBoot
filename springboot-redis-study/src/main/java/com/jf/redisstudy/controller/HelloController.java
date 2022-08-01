@@ -19,7 +19,7 @@ public class HelloController {
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f52")
     public String hello() {
         log.info("666");
-        return "hello";
+        return "springboot-redis-study";
     }
 
 }
