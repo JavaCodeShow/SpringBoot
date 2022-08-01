@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Slf4j
-public class EsController {
+public class ESIndexController {
 
     //注入 ElasticsearchRestTemplate
     @Autowired
