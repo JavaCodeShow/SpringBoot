@@ -6,7 +6,7 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <springProperty scope="context" name="LOG_FILE_NAME" source="spring.application.name"/>
     <property name="LOG_PATTERN"
-              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%level] [%X{apiId}] [%logger{56} %L] [%X{traceId}]: %msg%n"/>
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%level] [%X{apiId}] [%logger{56} %L] [%X{hostname}] [%X{remoteAddr}] [%X{traceId}]: %msg%n"/>
     <property name="LOG_FILE_PATH" value="/data/logs"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">

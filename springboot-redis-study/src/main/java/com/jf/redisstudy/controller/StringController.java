@@ -3,8 +3,8 @@ package com.jf.redisstudy.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.jf.common.redis.generator.CacheKeyGenerator;
-import com.jf.common.redis.service.cache.ConcurrentProtectedCacheManager;
-import com.jf.common.redis.service.cache.GlobalCacheManager;
+import com.jf.common.redis.manager.cache.ConcurrentProtectedCacheUtils;
+import com.jf.common.redis.manager.cache.GlobalCacheManager;
 import com.jf.common.utils.aspect.log.MethodLogger;
 import com.jf.common.utils.result.BaseResult;
 import com.jf.redisstudy.domain.dto.UserDTO;
@@ -28,9 +28,6 @@ public class StringController {
 
     @Autowired
     private GlobalCacheManager globalCacheManager;
-
-    @Autowired
-    private ConcurrentProtectedCacheManager concurrentProtectedCacheManager;
 
     /**
      * 插入数据
@@ -60,7 +57,7 @@ public class StringController {
         // List<UserDTO> userDTOList = list1.stream().map(s -> JSON.parseObject(s, UserDTO.class)).collect(Collectors.toList());
 
         String cacheKey = CacheKeyGenerator.generateCacheKey(RedisStudyCacheKeyEnum.MIN_PRICE, "111");
-        List<UserDTO> userDTOList = concurrentProtectedCacheManager.get(cacheKey, UserDTO.class, UserDTO::getUserList);
+        List<UserDTO> userDTOList = ConcurrentProtectedCacheUtils.get(cacheKey, UserDTO.class, UserDTO::getUserList);
         return BaseResult.success(userDTOList);
     }
 

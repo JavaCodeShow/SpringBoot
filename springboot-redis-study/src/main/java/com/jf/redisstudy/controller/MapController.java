@@ -1,7 +1,7 @@
 package com.jf.redisstudy.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.jf.common.redis.service.cache.GlobalCacheManager;
+import com.jf.common.redis.manager.cache.GlobalCacheManager;
 import com.jf.common.utils.aspect.log.MethodLogger;
 import com.jf.common.utils.result.BaseResult;
 import com.jf.redisstudy.domain.dto.UserDTO;
