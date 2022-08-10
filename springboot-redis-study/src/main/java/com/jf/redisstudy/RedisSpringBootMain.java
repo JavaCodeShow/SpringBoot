@@ -1,5 +1,7 @@
 package com.jf.redisstudy;
 
+import com.jf.common.utils.utils.PropertyRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -10,8 +12,16 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
  */
 @ServletComponentScan("com.jf")
 @SpringBootApplication
+@Slf4j
 public class RedisSpringBootMain {
     public static void main(String[] args) {
+        try {
+            PropertyRepository.initCenter("spring-redis-study.properties");
+            PropertyRepository.initCenter("global.properties");
+        } catch (Exception e) {
+            log.error("服务启动加载配置文件失败，失败原因：", e);
+            System.exit(0);
+        }
         SpringApplication.run(RedisSpringBootMain.class, args);
     }
 }
