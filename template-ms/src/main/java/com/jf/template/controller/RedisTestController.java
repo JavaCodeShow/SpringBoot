@@ -6,13 +6,10 @@ import com.jf.common.utils.aspect.log.MethodLogger;
 import com.jf.common.utils.result.BaseResult;
 import com.jf.template.domain.dto.OrderDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -26,10 +23,6 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping
 @Slf4j
 public class RedisTestController {
-
-    @Autowired
-    @Qualifier("baseAsyncExecutor")
-    private Executor baseAsyncExecutor;
 
     @GetMapping(value = "/redis/testDistributeLock")
     @MethodLogger(apiId = "6221ec540a849a4ef44d38ff")
