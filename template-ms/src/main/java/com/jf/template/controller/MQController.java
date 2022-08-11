@@ -1,6 +1,6 @@
 package com.jf.template.controller;
 
-import com.jf.common.utils.result.BaseResult;
+import com.jf.common.aspect.result.BaseResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

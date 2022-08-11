@@ -1,6 +1,6 @@
 package com.jf.template.meta.enums;
 
-import com.jf.common.utils.meta.enums.BaseResponseInfoInterface;
+import com.jf.common.aspect.meta.enums.BaseResponseInfoInterface;
 import com.jf.template.meta.constant.CommonConstant;
 import lombok.Getter;
 
@@ -12,11 +12,8 @@ import lombok.Getter;
  */
 @Getter
 public enum ErrorCodeMeta implements BaseResponseInfoInterface {
-    // @formatter:off
 
     COUPON_ERROR(CommonConstant.SYSTEM_CODE + "-" + "10000", "优惠券兑换错误");
-
-    // @formatter:on
 
     private final String code;
 

@@ -1,6 +1,6 @@
 package com.jf.template;
 
-import com.jf.common.utils.utils.PropertyRepository;
+import com.jf.common.utils.PropertyRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

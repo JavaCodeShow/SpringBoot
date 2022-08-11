@@ -1,9 +1,9 @@
 package com.jf.template.controller;
 
+import com.jf.common.aspect.log.MethodLogger;
+import com.jf.common.aspect.result.BaseResult;
 import com.jf.common.redis.annotation.DistributeLock;
 import com.jf.common.redis.annotation.ReSubmitLock;
-import com.jf.common.utils.aspect.log.MethodLogger;
-import com.jf.common.utils.result.BaseResult;
 import com.jf.template.domain.dto.OrderDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

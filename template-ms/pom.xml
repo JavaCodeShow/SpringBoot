@@ -4,17 +4,16 @@
 
     <groupId>com.jf</groupId>
     <artifactId>template-ms</artifactId>
-    <version>1.0</version>
+    <version>1.0.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>com.jf.common</groupId>
+        <groupId>com.jf</groupId>
         <artifactId>jf-common-dependencies</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0.0-SNAPSHOT</version>
     </parent>
-
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -61,17 +60,16 @@
             <version>2.2.9.RELEASE</version>
         </dependency>
 
-
         <dependency>
             <groupId>com.jf</groupId>
-            <artifactId>jf-common-utils-starter</artifactId>
-            <version>1.0</version>
+            <artifactId>jf-common-utils</artifactId>
+            <version>1.0.0.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.jf</groupId>
-            <artifactId>jf-common-redis-starter</artifactId>
-            <version>1.0</version>
+            <artifactId>jf-common-redis</artifactId>
+            <version>1.0.0.0-SNAPSHOT</version>
         </dependency>
 
         <!-- AOP -->

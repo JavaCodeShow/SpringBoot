@@ -1,7 +1,7 @@
 package com.jf.template.controller;
 
-import com.jf.common.utils.aspect.log.MethodLogger;
-import com.jf.common.utils.result.BaseResult;
+import com.jf.common.aspect.log.MethodLogger;
+import com.jf.common.aspect.result.BaseResult;
 import com.jf.distribute.ids.proxy.IdsProxy;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
