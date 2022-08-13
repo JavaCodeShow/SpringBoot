@@ -2,11 +2,11 @@ package com.jf.redisstudy.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.jf.common.aspect.log.MethodLogger;
+import com.jf.common.aspect.result.BaseResult;
 import com.jf.common.redis.generator.CacheKeyGenerator;
 import com.jf.common.redis.manager.cache.ConcurrentProtectedCacheUtils;
 import com.jf.common.redis.manager.cache.GlobalCacheManager;
-import com.jf.common.utils.aspect.log.MethodLogger;
-import com.jf.common.utils.result.BaseResult;
 import com.jf.redisstudy.domain.dto.UserDTO;
 import com.jf.redisstudy.domain.enums.RedisStudyCacheKeyEnum;
 import lombok.extern.slf4j.Slf4j;
