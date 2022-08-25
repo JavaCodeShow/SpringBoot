@@ -1,6 +1,6 @@
 package com.jf.redisstudy.controller;
 
-import com.jf.common.utils.aspect.log.MethodLogger;
+import com.jf.common.aspect.log.MethodLogger;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
