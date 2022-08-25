@@ -1,6 +1,6 @@
 package com.jf.rocketmqstudy.mq.delayed;
 
-import com.jf.common.utils.utils.time.LocalDateTimeUtil;
+import com.jf.common.utils.time.LocalDateTimeUtil;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
