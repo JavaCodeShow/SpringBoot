@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.jf.common</groupId>
+        <groupId>com.jf</groupId>
         <artifactId>jf-common-dependencies</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0.0-SNAPSHOT</version>
     </parent>
 
     <groupId>com.jf.rocketmqstudy</groupId>
     <artifactId>rocketmq-consumer</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0.0-SNAPSHOT</version>
 
     <properties>
         <java.version>1.8</java.version>
@@ -30,8 +30,8 @@
 
         <dependency>
             <groupId>com.jf</groupId>
-            <artifactId>jf-common-utils-starter</artifactId>
-            <version>1.0</version>
+            <artifactId>jf-common-utils</artifactId>
+            <version>1.0.0.0-SNAPSHOT</version>
         </dependency>
 
         <!-- rokcetmq starter  -->
