@@ -1,8 +1,9 @@
 package com.jf.rocketmqstudy.mq.listener.job;
 
+import com.jf.mq.core.annotation.MQMessageListener;
+import com.jf.mq.core.consumer.listenre.AbstractNormalMQListener;
+import com.jf.mq.core.domain.constant.TopicConstant;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
-import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,12 +15,13 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@RocketMQMessageListener(topic = "ticket", selectorExpression = "ORDER_CANCEL", consumerGroup = "rocketmq-consumer")
-public class JobListener implements RocketMQListener<String> {
+@MQMessageListener(topic = TopicConstant.SHOW_TOPIC_NAME, tag = "SHOW_CLOSE", classType = String.class)
+public class JobListener extends AbstractNormalMQListener<String> {
 
     @Override
-    public void onMessage(String message) {
-        log.info("Receive message：" + message);
-        // throw new ServiceException("200", "消息消费失败");
+    public boolean doConsume(String message) {
+        log.info("接受到消息JobListener，message={}", message);
+        return true;
     }
+
 }
