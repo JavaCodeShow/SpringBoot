@@ -56,7 +56,7 @@ public class StringController {
         // List<String> list1 = globalCacheManager.mGet(list);
         // List<UserDTO> userDTOList = list1.stream().map(s -> JSON.parseObject(s, UserDTO.class)).collect(Collectors.toList());
 
-        String cacheKey = CacheKeyGenerator.generateCacheKey(RedisStudyCacheKeyEnum.MIN_PRICE, "111");
+        String cacheKey = CacheKeyGenerator.getObjectCacheKey(RedisStudyCacheKeyEnum.MIN_PRICE, "111");
         List<UserDTO> userDTOList = ConcurrentProtectedCacheUtils.get(cacheKey, UserDTO.class, UserDTO::getUserList);
         return BaseResult.success(userDTOList);
     }

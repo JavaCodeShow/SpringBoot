@@ -98,7 +98,7 @@ public class RedisTestController {
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f67")
     public BaseResult<String> testCache() {
 
-        String cacheKeyName = CacheKeyGenerator.generateCacheKey(RedisStudyCacheKeyEnum.MIN_PRICE, "222");
+        String cacheKeyName = CacheKeyGenerator.getCacheKey(RedisStudyCacheKeyEnum.MIN_PRICE, "222");
         log.info("cacheKeyName = [{}]", cacheKeyName);
         String value = globalCacheManager.get(cacheKeyName);
         if (StringUtils.isBlank(value)) {
