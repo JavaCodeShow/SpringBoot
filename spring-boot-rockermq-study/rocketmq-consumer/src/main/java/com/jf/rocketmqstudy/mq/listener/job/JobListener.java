@@ -1,7 +1,7 @@
 package com.jf.rocketmqstudy.mq.listener.job;
 
 import com.jf.mq.core.annotation.MQMessageListener;
-import com.jf.mq.core.consumer.listenre.AbstractNormalMQListener;
+import com.jf.mq.core.consumer.listener.AbstractNormalMQListener;
 import com.jf.mq.core.domain.constant.TopicConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@MQMessageListener(topic = TopicConstant.SHOW_TOPIC_NAME, tag = "SHOW_CLOSE", classType = String.class)
+@MQMessageListener(topic = TopicConstant.SHOW_TOPIC_NAME, tag = "SHOW_CLOSE")
 public class JobListener extends AbstractNormalMQListener<String> {
 
     @Override
