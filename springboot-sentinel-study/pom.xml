@@ -33,13 +33,6 @@
             <version>2.2.3.RELEASE</version>
         </dependency>
 
-        <!-- Sentinel本地应用接入控制台 -->
-        <dependency>
-            <groupId>com.alibaba.csp</groupId>
-            <artifactId>sentinel-transport-simple-http</artifactId>
-            <version>1.8.0</version>
-        </dependency>
-
         <dependency>
             <groupId>com.jf</groupId>
             <artifactId>jf-common-utils</artifactId>
