@@ -7,7 +7,7 @@ import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
-import com.jf.common.utils.result.BaseResult;
+import com.jf.common.aspect.result.BaseResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,8 +49,8 @@ public class HelloController {
 
     /**
      * 定义限流规则
-     *
-     * @PostConstruct 此注解的含义是：本类构造方法执行结束后执行
+     * <p>
+     * 此注解的含义是：本类构造方法执行结束后执行
      */
     @PostConstruct
     public void init() {
