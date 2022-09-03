@@ -1,7 +1,7 @@
 package com.jf.nacos.controller;
 
-import com.jf.common.utils.aspect.log.MethodLogger;
-import com.jf.common.utils.result.BaseResult;
+import com.jf.common.aspect.log.MethodLogger;
+import com.jf.model.result.BaseResult;
 import com.jf.nacos.domain.dto.OrderDTO;
 import com.jf.nacos.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
