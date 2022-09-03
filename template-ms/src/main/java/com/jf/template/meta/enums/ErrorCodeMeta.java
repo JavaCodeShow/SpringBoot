@@ -1,14 +1,11 @@
 package com.jf.template.meta.enums;
 
-import com.jf.common.aspect.meta.enums.BaseResponseInfoInterface;
+import com.jf.model.enums.BaseResponseInfoInterface;
 import com.jf.template.meta.constant.CommonConstant;
 import lombok.Getter;
 
 /**
  * @author 江峰
- * @email feng.jiang@marketin.cn
- * @create 2021-03-20 22:15:46
- * @since
  */
 @Getter
 public enum ErrorCodeMeta implements BaseResponseInfoInterface {

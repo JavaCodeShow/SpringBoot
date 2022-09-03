@@ -1,8 +1,8 @@
 package com.jf.template.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
-import com.jf.common.aspect.result.BaseResult;
 import com.jf.distribute.ids.proxy.IdsProxy;
+import com.jf.model.result.BaseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +14,6 @@ import java.util.List;
 
 /**
  * @author 江峰
- * @email feng.jiang@marketin.cn
- * @create 2021-03-27 15:03:35
- * @since
  */
 
 @Api(value = "IdsController", tags = {"测试通过nacos获取分布式id"})

@@ -1,9 +1,8 @@
 package com.jf.template.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
-import com.jf.common.aspect.result.BaseResult;
-import com.jf.common.redis.annotation.DistributeLock;
 import com.jf.common.redis.annotation.ReSubmitLock;
+import com.jf.model.result.BaseResult;
 import com.jf.template.domain.dto.OrderDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +14,6 @@ import java.util.concurrent.TimeUnit;
 /**
  * 描述:
  *
- * @author: 江峰
- * @create: 2021-03-23 18:55
- * @since: 2.22.1
  */
 @RestController
 @RequestMapping
@@ -26,7 +22,6 @@ public class RedisTestController {
 
     @GetMapping(value = "/redis/testDistributeLock")
     @MethodLogger(apiId = "6221ec540a849a4ef44d38ff")
-    @DistributeLock(lockKey = "orderId")
     public BaseResult testDistributeLock() {
 
         System.out.println("执行相关业务...");

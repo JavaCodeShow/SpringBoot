@@ -1,10 +1,10 @@
 package com.jf.template.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
-import com.jf.common.aspect.result.BaseResult;
-import com.jf.common.aspect.result.PageQueryRequest;
-import com.jf.common.aspect.result.PageQueryResponse;
 import com.jf.common.redis.annotation.ReSubmitLock;
+import com.jf.model.result.BaseResult;
+import com.jf.model.result.PageQueryRequest;
+import com.jf.model.result.PageQueryResponse;
 import com.jf.template.domain.dto.OrderDTO;
 import com.jf.template.service.OrderService;
 import io.swagger.annotations.Api;
