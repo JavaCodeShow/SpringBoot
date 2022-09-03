@@ -1,3 +1,5 @@
 nacos安装版本：nacos-server-2.0.4.zip
+自己的百度网盘中就有该安装包
+链接：https://pan.baidu.com/s/1DGNzkz5tYB7PFmSMHauIlg?pwd=1234 提取码：1234
 
 Windows下nacos的安装与使用：https://blog.csdn.net/qq_43518425/article/details/124577232
