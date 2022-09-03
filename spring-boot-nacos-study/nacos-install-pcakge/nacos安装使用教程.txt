@@ -1,0 +1,3 @@
+nacos安装版本：nacos-server-2.0.4.zip
+
+Windows下nacos的安装与使用：https://blog.csdn.net/qq_43518425/article/details/124577232
