@@ -1,11 +1,11 @@
 package com.jf.redisstudy.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
-import com.jf.common.aspect.meta.enums.GlobalErrorCodeEnum;
-import com.jf.common.aspect.result.BaseResult;
 import com.jf.common.redis.annotation.ReSubmitLock;
 import com.jf.common.redis.generator.LockKeyGenerator;
 import com.jf.common.redis.manager.lock.DistributeLockManager;
+import com.jf.model.enums.GlobalErrorCodeEnum;
+import com.jf.model.result.BaseResult;
 import com.jf.redisstudy.domain.enums.RedisStudyLockKeyEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package com.jf.redisstudy.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
-import com.jf.common.aspect.result.BaseResult;
 import com.jf.common.redis.manager.cache.GlobalCacheManager;
+import com.jf.model.result.BaseResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
