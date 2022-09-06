@@ -1,6 +1,7 @@
 package com.jf.es.config;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
@@ -9,6 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfiguration;
 
+@EqualsAndHashCode(callSuper = true)
 @ConfigurationProperties(prefix = "elasticsearch")
 @Configuration
 @Data

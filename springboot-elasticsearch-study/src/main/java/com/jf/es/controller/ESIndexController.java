@@ -21,7 +21,6 @@ public class ESIndexController {
     @Autowired
     private ElasticsearchRestTemplate elasticsearchRestTemplate;
 
-
     //创建索引并增加映射配置
     @GetMapping("/createIndex")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f52")
