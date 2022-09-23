@@ -15,7 +15,9 @@ import java.util.List;
 @RestController
 @Slf4j
 public class JetCacheController {
-
+    /**
+     * 单个key
+     */
     @PostMapping("/jetCacheGet")
     @Cached(cacheType = CacheType.LOCAL, expire = 6)
     public BaseResult<List<UserDTO>> jetCacheGet(@RequestBody String bizShowId) {
@@ -24,11 +26,32 @@ public class JetCacheController {
     }
 
     /**
-     * 集合排序
+     * 对象
      */
     @PostMapping("/jetCacheGet2")
+    @Cached(cacheType = CacheType.LOCAL, expire = 6)
+    public BaseResult<List<UserDTO>> jetCacheGet2(@RequestBody UserDTO userDTO) {
+        log.info("从数据库获得数据");
+        return BaseResult.success(UserDTO.getUserList());
+    }
+
+    /**
+     * 集合排序
+     */
+    @PostMapping("/jetCacheGet3")
     @Cached(cacheType = CacheType.LOCAL, key = "T(com.jf.common.utils.jetcache.JetCacheUtils).sorted(#bizShowIdList)", expire = 6)
-    public BaseResult<List<UserDTO>> jetCacheGet2(@RequestBody List<String> bizShowIdList) {
+    public BaseResult<List<UserDTO>> jetCacheGet3(@RequestBody List<String> bizShowIdList) {
+        log.info("从数据库获得数据");
+        return BaseResult.success(UserDTO.getUserList());
+    }
+
+
+    /**
+     * 集合排序
+     */
+    @PostMapping("/jetCacheGet4")
+    @Cached(cacheType = CacheType.LOCAL, key = "T(com.jf.common.utils.jetcache.JetCacheUtils).sorted(#UserDTO)", expire = 6)
+    public BaseResult<List<UserDTO>> jetCacheGet4(@RequestBody List<UserDTO> userDTOList) {
         log.info("从数据库获得数据");
         return BaseResult.success(UserDTO.getUserList());
     }
