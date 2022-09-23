@@ -47,7 +47,7 @@ public class JetCacheController {
 
 
     /**
-     * 集合排序
+     * 集合对象排序
      */
     @PostMapping("/jetCacheGet4")
     @Cached(cacheType = CacheType.LOCAL, key = "T(com.jf.common.utils.jetcache.JetCacheUtils).sorted(#UserDTO)", expire = 6)
