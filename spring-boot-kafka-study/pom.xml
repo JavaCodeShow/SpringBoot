@@ -8,7 +8,7 @@
         <version>1.0.0.0-SNAPSHOT</version>
     </parent>
     <groupId>com.jf</groupId>
-    <artifactId>kafka</artifactId>
+    <artifactId>spring-boot-kafka-study</artifactId>
     <version>1.0.0.0-SNAPSHOT</version>
 
     <properties>
