@@ -12,4 +12,7 @@ public class AccountEntity {
     private Integer id;
     private Integer money;
     private String name;
+
+    private boolean isDeleted;
+
 }

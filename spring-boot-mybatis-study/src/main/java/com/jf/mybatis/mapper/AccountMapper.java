@@ -20,11 +20,13 @@ public interface AccountMapper {
     /**
      * 根据id查询账户
      */
-    AccountEntity getAccountById(Integer id);
+    AccountEntity findById(Integer id);
 
     List<AccountEntity> getAccountByMoneyAndName(AccountEntity accountEntity);
 
     List<AccountEntity> getAccountByMoneys(int[] moneys);
 
     int insert(AccountEntity accountEntity);
+
+    int delete(int id);
 }

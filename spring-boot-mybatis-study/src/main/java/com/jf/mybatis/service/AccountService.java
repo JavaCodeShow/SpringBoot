@@ -44,17 +44,26 @@ public class AccountService {
             @Override
             public void beforeCommit(boolean flag) {
                 AccountEntity accountEntity = new AccountEntity();
+                accountEntity.setId(3);
+                accountEntity.setMoney(10);
+                accountEntity.setName("王五");
+                // 插入cache_key_queue记录
                 accountMapper.insert(accountEntity);
                 System.out.println("事务提交前 " + false);
             }
 
             @Override
             public void afterCommit() {
+                // 同步删除缓存，若删除缓存成功则同步删除cache_key_queue表记录
+                accountMapper.delete(3);
+                AccountEntity accountEntity = accountMapper.findById(3);
                 System.out.println("事务提交后");
             }
 
             @Override
             public void afterCompletion(int status) {
+                // 锁的释放处理
+                AccountEntity accountEntity = accountMapper.findById(3);
                 System.out.println("事务完成(提交或回滚)后处理 " + status);
             }
         });
@@ -69,11 +78,6 @@ public class AccountService {
     }
 
     public AccountEntity getAccountById(Integer id) {
-        AccountEntity accountEntity = new AccountEntity();
-        accountEntity.setId(3);
-        accountEntity.setMoney(10);
-        accountEntity.setName("王五");
-        accountMapper.insert(accountEntity);
-        return accountMapper.getAccountById(id);
+        return accountMapper.findById(id);
     }
 }
