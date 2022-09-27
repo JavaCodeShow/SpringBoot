@@ -11,7 +11,7 @@
     </update>
 
     <!-- 根据id查询账户 -->
-    <select id="getAccountById" parameterType="int" resultType="account">
+    <select id="getAccountById" parameterType="Integer" resultType="account">
         select *
         from account
         where id = #{id}

@@ -14,15 +14,12 @@ public interface AccountMapper {
 
     /**
      * 给id这个人加钱
-     *
-     * @param account
      */
     Integer updateAccountById(Account account);
 
     /**
      * 根据id查询账户
      *
-     * @param id
      */
     Account getAccountById(Integer id);
 
