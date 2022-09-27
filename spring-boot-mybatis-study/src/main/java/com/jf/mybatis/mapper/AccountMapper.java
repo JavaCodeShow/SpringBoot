@@ -25,4 +25,6 @@ public interface AccountMapper {
     List<AccountEntity> getAccountByMoneyAndName(AccountEntity accountEntity);
 
     List<AccountEntity> getAccountByMoneys(int[] moneys);
+
+    int insert(AccountEntity accountEntity);
 }

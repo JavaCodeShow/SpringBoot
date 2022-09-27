@@ -3,6 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jf.mybatis.mapper.AccountMapper">
+
+    <insert id="insert" parameterType="com.jf.mybatis.domain.entity.AccountEntity">
+        insert into account (id, money, name)
+        values (id, money, name)
+    </insert>
     <!-- 根据id修改账户 -->
     <update id="updateAccountById" parameterType="com.jf.mybatis.domain.entity.AccountEntity">
         update account
