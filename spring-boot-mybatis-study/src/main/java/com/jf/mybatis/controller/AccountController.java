@@ -3,6 +3,7 @@ package com.jf.mybatis.controller;
 import com.jf.common.aspect.log.MethodLogger;
 import com.jf.model.result.BaseResult;
 import com.jf.mybatis.domain.entity.AccountEntity;
+import com.jf.mybatis.domain.param.AccountCreateParam;
 import com.jf.mybatis.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,9 +81,9 @@ public class AccountController {
 
     @PostMapping("/account/create")
     @MethodLogger(apiId = "61dbe11b343ac83c788ff2e3")
-    public BaseResult<AccountEntity> createAccount(@RequestBody AccountEntity accountEntity) {
-
-        return BaseResult.success(accountEntity);
+    public BaseResult<AccountEntity> createAccount(@RequestBody AccountCreateParam param) {
+        System.out.println(param);
+        return BaseResult.success(new AccountEntity());
     }
 
 }
