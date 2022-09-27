@@ -1,4 +1,4 @@
-package com.jf.mybatis.pojo;
+package com.jf.mybatis.domain.entity;
 
 import lombok.Data;
 
@@ -8,7 +8,7 @@ import lombok.Data;
  */
 
 @Data
-public class Account {
+public class AccountEntity {
     private Integer id;
     private Integer money;
     private String name;

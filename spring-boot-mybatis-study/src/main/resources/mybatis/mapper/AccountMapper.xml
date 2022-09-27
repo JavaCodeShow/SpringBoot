@@ -4,22 +4,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jf.mybatis.mapper.AccountMapper">
     <!-- 根据id修改账户 -->
-    <update id="updateAccountById" parameterType="com.jf.mybatis.pojo.Account">
+    <update id="updateAccountById" parameterType="com.jf.mybatis.domain.entity.AccountEntity">
         update account
         set money = #{money}
         where id = #{id}
     </update>
 
     <!-- 根据id查询账户 -->
-    <select id="getAccountById" parameterType="Integer" resultType="com.jf.mybatis.pojo.Account">
+    <select id="getAccountById" parameterType="Integer" resultType="com.jf.mybatis.domain.entity.AccountEntity">
         select *
         from account
         where id = #{id}
     </select>
 
     <!-- 根据id查询账户 -->
-    <select id="getAccountByMoneyAndName" parameterType="com.jf.mybatis.pojo.Account"
-            resultType="com.jf.mybatis.pojo.Account">
+    <select id="getAccountByMoneyAndName" parameterType="com.jf.mybatis.domain.entity.AccountEntity"
+            resultType="com.jf.mybatis.domain.entity.AccountEntity">
         select * from account
         <where>
             <if test="name != null and name != '' ">
@@ -32,7 +32,7 @@
     </select>
 
     <!-- 根据moneys查询账户 -->
-    <select id="getAccountByMoneys" parameterType="int" resultType="com.jf.mybatis.pojo.Account">
+    <select id="getAccountByMoneys" parameterType="int" resultType="com.jf.mybatis.domain.entity.AccountEntity">
         select * from account
         <where>
             <foreach collection="array" item="money" open="money in (" close=")" separator=",">

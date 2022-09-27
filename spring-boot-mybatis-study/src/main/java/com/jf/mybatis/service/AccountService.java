@@ -1,7 +1,7 @@
 package com.jf.mybatis.service;
 
+import com.jf.mybatis.domain.entity.AccountEntity;
 import com.jf.mybatis.mapper.AccountMapper;
-import com.jf.mybatis.pojo.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -35,16 +35,16 @@ public class AccountService {
     /**
      * 账户一向账户二转money。
      *
-     * @param account1
-     * @param account2
+     * @param accountEntity1
+     * @param accountEntity2
      * @param money
      */
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
-    public void transAccount(Account account1, Account account2,
+    public void transAccount(AccountEntity accountEntity1, AccountEntity accountEntity2,
                              Integer money) {
-        account1.setMoney(account1.getMoney() - money);
-        account2.setMoney(account2.getMoney() + money);
-        Integer i1 = accountMapper.updateAccountById(account1);
+        accountEntity1.setMoney(accountEntity1.getMoney() - money);
+        accountEntity2.setMoney(accountEntity2.getMoney() + money);
+        Integer i1 = accountMapper.updateAccountById(accountEntity1);
 
         // 手动异常
         // int num = 0;
@@ -53,10 +53,10 @@ public class AccountService {
         // "出异常了，数据将回滚" + accountMapper.getAccountById(1));
         // }
 
-        Integer i2 = accountMapper.updateAccountById(account2);
+        Integer i2 = accountMapper.updateAccountById(accountEntity2);
     }
 
-    public Account getAccountById(Integer id) {
+    public AccountEntity getAccountById(Integer id) {
         return accountMapper.getAccountById(id);
     }
 }
