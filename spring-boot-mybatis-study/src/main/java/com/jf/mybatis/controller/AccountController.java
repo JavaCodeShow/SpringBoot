@@ -6,9 +6,7 @@ import com.jf.mybatis.domain.entity.AccountEntity;
 import com.jf.mybatis.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,8 +74,15 @@ public class AccountController {
     @RequestMapping("/account/{id}")
     @MethodLogger(apiId = "61dbe11b343ac83c788ff2e3")
     public BaseResult<AccountEntity> getAccountById(@PathVariable Integer id) {
-        AccountEntity accountEntityById = accountService.getAccountById(id);
-        return BaseResult.success(accountEntityById);
+        AccountEntity accountEntity = accountService.getAccountById(id);
+        return BaseResult.success(accountEntity);
+    }
+
+    @PostMapping("/account/create")
+    @MethodLogger(apiId = "61dbe11b343ac83c788ff2e3")
+    public BaseResult<AccountEntity> createAccount(@RequestBody AccountEntity accountEntity) {
+
+        return BaseResult.success(accountEntity);
     }
 
 }

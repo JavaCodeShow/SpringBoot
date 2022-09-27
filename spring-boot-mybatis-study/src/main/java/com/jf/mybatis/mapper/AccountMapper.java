@@ -12,21 +12,16 @@ import java.util.List;
 @Mapper
 public interface AccountMapper {
 
-    /**
-     * 给id这个人加钱
-     */
-    Integer updateAccountById(AccountEntity accountEntity);
-
-    /**
-     * 根据id查询账户
-     */
     AccountEntity findById(Integer id);
+
+    int insert(AccountEntity accountEntity);
+
+    int delete(int id);
+
+    Integer updateMoneyById(AccountEntity accountEntity);
 
     List<AccountEntity> getAccountByMoneyAndName(AccountEntity accountEntity);
 
     List<AccountEntity> getAccountByMoneys(int[] moneys);
 
-    int insert(AccountEntity accountEntity);
-
-    int delete(int id);
 }

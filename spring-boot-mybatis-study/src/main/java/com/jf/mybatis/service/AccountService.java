@@ -69,8 +69,8 @@ public class AccountService {
         });
         accountEntity1.setMoney(accountEntity1.getMoney() - money);
         accountEntity2.setMoney(accountEntity2.getMoney() + money);
-        accountMapper.updateAccountById(accountEntity1);
-        accountMapper.updateAccountById(accountEntity2);
+        accountMapper.updateMoneyById(accountEntity1);
+        accountMapper.updateMoneyById(accountEntity2);
 
         // 手动异常
         // throw new IllegalArgumentException("出异常了，数据将回滚" + accountMapper.getAccountById(1));

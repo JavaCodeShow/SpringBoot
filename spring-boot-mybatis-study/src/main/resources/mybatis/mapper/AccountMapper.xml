@@ -35,8 +35,7 @@
         where id = #{id}
     </update>
 
-    <!-- 根据id修改账户 -->
-    <update id="updateAccountById" parameterType="com.jf.mybatis.domain.entity.AccountEntity">
+    <update id="updateMoneyById" parameterType="com.jf.mybatis.domain.entity.AccountEntity">
         update account
         set money = #{money}
         where id = #{id}
