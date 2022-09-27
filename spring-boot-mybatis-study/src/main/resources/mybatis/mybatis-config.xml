@@ -8,9 +8,4 @@
            &lt;!&ndash; <setting name="logImpl" value="STDOUT_LOGGING"/> &ndash;&gt;
        </settings>-->
 
-    <plugins>
-        <plugin interceptor="com.jf.mybatis.interceptor.TestInterceptor">
-            <property name="name" value="bob"/>
-        </plugin>
-    </plugins>
 </configuration>

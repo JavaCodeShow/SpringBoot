@@ -19,8 +19,8 @@ public interface AccountMapper {
 
     /**
      * 根据id查询账户
-     *
      */
+    // @Select("select * from account where id = #{id}")
     Account getAccountById(Integer id);
 
     List<Account> getAccountByMoneyAndName(Account account);
