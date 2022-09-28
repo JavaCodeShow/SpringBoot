@@ -1,6 +1,8 @@
 package com.jf.mybatis.service;
 
+import com.jf.common.utils.time.LocalDateTimeUtil;
 import com.jf.mybatis.domain.entity.AccountEntity;
+import com.jf.mybatis.domain.param.AccountCreateParam;
 import com.jf.mybatis.mapper.AccountMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -79,5 +81,15 @@ public class AccountService {
 
     public AccountEntity getAccountById(Integer id) {
         return accountMapper.findById(id);
+    }
+
+    public Integer createAccount(AccountCreateParam param) {
+        System.out.println("创建时间： " + LocalDateTimeUtil.formatLocalDateTime(param.getCreate_time()));
+        AccountEntity accountEntity = new AccountEntity();
+        accountEntity.setId(param.getId());
+        accountEntity.setMoney(param.getMoney());
+        accountEntity.setName(param.getName());
+        accountMapper.insert(accountEntity);
+        return accountEntity.getId();
     }
 }

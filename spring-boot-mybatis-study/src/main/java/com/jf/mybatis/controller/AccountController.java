@@ -26,14 +26,18 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @RequestMapping("/hello")
-    @MethodLogger(apiId = "61dbe11b343ac83c788ff211")
-    public String hello() {
-        log.info("info 日志");
-        log.debug("debug日志");
-        log.error("debug日志");
-        log.trace("trace日志");
-        return "hello";
+    @RequestMapping("/account/{id}")
+    @MethodLogger(apiId = "61dbe11b343ac83c788ff2e3")
+    public BaseResult<AccountEntity> getAccountById(@PathVariable Integer id) {
+        AccountEntity accountEntity = accountService.getAccountById(id);
+        return BaseResult.success(accountEntity);
+    }
+
+    @PostMapping("/account/create")
+    @MethodLogger(apiId = "61dbe11b343ac83c788ff2e3")
+    public BaseResult<Integer> createAccount(@RequestBody AccountCreateParam param) {
+        Integer id = accountService.createAccount(param);
+        return BaseResult.success(id);
     }
 
     @RequestMapping("/changeI")
@@ -72,18 +76,5 @@ public class AccountController {
         return accountEntityList;
     }
 
-    @RequestMapping("/account/{id}")
-    @MethodLogger(apiId = "61dbe11b343ac83c788ff2e3")
-    public BaseResult<AccountEntity> getAccountById(@PathVariable Integer id) {
-        AccountEntity accountEntity = accountService.getAccountById(id);
-        return BaseResult.success(accountEntity);
-    }
-
-    @PostMapping("/account/create")
-    @MethodLogger(apiId = "61dbe11b343ac83c788ff2e3")
-    public BaseResult<AccountEntity> createAccount(@RequestBody AccountCreateParam param) {
-        System.out.println(param);
-        return BaseResult.success(new AccountEntity());
-    }
 
 }
