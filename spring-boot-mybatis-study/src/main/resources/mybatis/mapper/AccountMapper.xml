@@ -9,7 +9,7 @@
     </sql>
 
     <!-- 根据id查询账户 -->
-    <select id="findById" parameterType="Integer" resultType="com.jf.mybatis.domain.entity.AccountEntity">
+    <select id="findById" parameterType="String" resultType="com.jf.mybatis.domain.entity.AccountEntity">
         select
         <include refid="Base_Column_List"/>
         from account
@@ -35,12 +35,18 @@
         where id = #{id}
     </update>
 
-    <update id="updateMoneyById" parameterType="com.jf.mybatis.domain.entity.AccountEntity">
+    <update id="updateMoneyById">
         update account
         set money = #{money}
         where id = #{id}
     </update>
 
+    <update id="update">
+        update account
+        set money = #{money},
+            name  = #{name}
+        where id = #{id}
+    </update>
 
     <!-- 根据id查询账户 -->
     <select id="getAccountByMoneyAndName" parameterType="com.jf.mybatis.domain.entity.AccountEntity"

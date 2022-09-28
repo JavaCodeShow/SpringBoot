@@ -3,7 +3,8 @@ package com.jf.mybatis.controller;
 import com.jf.common.aspect.log.MethodLogger;
 import com.jf.model.result.BaseResult;
 import com.jf.mybatis.domain.entity.AccountEntity;
-import com.jf.mybatis.domain.param.AccountCreateParam;
+import com.jf.mybatis.domain.param.account.AccountCreateParam;
+import com.jf.mybatis.domain.param.account.AccountUpdateParam;
 import com.jf.mybatis.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * @author 江峰
@@ -28,7 +26,7 @@ public class AccountController {
 
     @RequestMapping("/account/{id}")
     @MethodLogger(apiId = "61dbe11b343ac83c788ff2e3")
-    public BaseResult<AccountEntity> getAccountById(@PathVariable Integer id) {
+    public BaseResult<AccountEntity> getAccountById(@PathVariable String id) {
         AccountEntity accountEntity = accountService.getAccountById(id);
         return BaseResult.success(accountEntity);
     }
@@ -40,37 +38,22 @@ public class AccountController {
         return BaseResult.success(id);
     }
 
-    @RequestMapping("/changeI")
+    @PutMapping("/account/update")
     @MethodLogger(apiId = "61dbe11b343ac83c788ff222")
-    public String changeI() throws InterruptedException {
-        ExecutorService es = Executors.newCachedThreadPool();
-        int count = 100;
-        CountDownLatch countDownLatch = new CountDownLatch(count);
-        for (int i = 0; i < count; i++) {
-            es.execute(new Runnable() {
-                @Override
-                public void run() {
-                    accountService.changeI();
-                    countDownLatch.countDown();
-                }
-            });
-        }
-        es.shutdown();
-        System.out.println("success");
-        countDownLatch.await();
-        System.out.println("end");
-        return accountService.getI() + "";
+    public BaseResult<Boolean> updateAccount(@RequestBody AccountUpdateParam param) {
+        accountService.updateAccount(param);
+        return BaseResult.success(Boolean.TRUE);
     }
 
     @RequestMapping("/account/transAccount")
     @MethodLogger(apiId = "61dbe11b343ac83c788ff233")
     public List<AccountEntity> transAccount() {
-        AccountEntity a1 = accountService.getAccountById(1);
-        AccountEntity a2 = accountService.getAccountById(2);
+        AccountEntity a1 = accountService.getAccountById("1");
+        AccountEntity a2 = accountService.getAccountById("2");
         accountService.transAccount(a1, a2, 1);
         ArrayList<AccountEntity> accountEntityList = new ArrayList<>();
-        a1 = accountService.getAccountById(1);
-        a2 = accountService.getAccountById(2);
+        a1 = accountService.getAccountById("1");
+        a2 = accountService.getAccountById("2");
         accountEntityList.add(a1);
         accountEntityList.add(a2);
         return accountEntityList;

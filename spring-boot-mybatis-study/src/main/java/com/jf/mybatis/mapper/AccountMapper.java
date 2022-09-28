@@ -12,11 +12,11 @@ import java.util.List;
 @Mapper
 public interface AccountMapper {
 
-    AccountEntity findById(Integer id);
+    AccountEntity findById(String id);
 
     int insert(AccountEntity accountEntity);
 
-    int delete(int id);
+    int delete(String id);
 
     Integer updateMoneyById(AccountEntity accountEntity);
 
@@ -24,4 +24,5 @@ public interface AccountMapper {
 
     List<AccountEntity> getAccountByMoneys(int[] moneys);
 
+    int update(AccountEntity accountEntity);
 }
