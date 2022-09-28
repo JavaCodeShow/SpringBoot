@@ -2,6 +2,7 @@ package com.jf.mybatis.domain.entity;
 
 import com.jf.model.BaseEntity;
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * @author 江峰
@@ -9,6 +10,7 @@ import lombok.Data;
  */
 
 @Data
+@ToString(callSuper = true)
 public class AccountEntity extends BaseEntity {
     private Integer id;
     private Integer money;
