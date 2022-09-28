@@ -2,50 +2,42 @@ package com.jf.redisstudy.cache;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class LRUCache extends LinkedHashMap {
+/**
+ * LRU（Least recently used，最近最少使用）
+ * 算法根据数据的历史访问记录来进行淘汰数据，
+ * 其核心思想是“如果数据最近被访问过，那么将来被访问的几率也更高, 如果数据最近没有被访问过，那么以后也可能不会访问”,
+ */
+public class LRUCache {
 
-    /**
-     * 可重入读写锁，保证并发读写安全性
-     */
-    private ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-    private Lock readLock = readWriteLock.readLock();
-    private Lock writeLock = readWriteLock.writeLock();
+    int capacity;
+    Map<Integer, Integer> map;
 
-    /**
-     * 缓存大小限制
-     */
-    private int maxSize;
-
-    public LRUCache(int maxSize) {
-        super(maxSize + 1, 1.0f, true);
-        this.maxSize = maxSize;
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+        map = new LinkedHashMap<>();
     }
 
-    @Override
-    public Object get(Object key) {
-        readLock.lock();
-        try {
-            return super.get(key);
-        } finally {
-            readLock.unlock();
+    public int get(int key) {
+        if (!map.containsKey(key)) {
+            return -1;
         }
+        // 先删除旧的位置，再放入新位置
+        Integer value = map.remove(key);
+        map.put(key, value);
+        return value;
     }
 
-    @Override
-    public Object put(Object key, Object value) {
-        writeLock.lock();
-        try {
-            return super.put(key, value);
-        } finally {
-            writeLock.unlock();
+    public void put(int key, int value) {
+        if (map.containsKey(key)) {
+            map.remove(key);
+            map.put(key, value);
+            return;
         }
-    }
-
-    @Override
-    protected boolean removeEldestEntry(Map.Entry eldest) {
-        return this.size() > maxSize;
+        map.put(key, value);
+        // 超出capacity，删除最久没用的,利用迭代器删除第一个
+        if (map.size() > capacity) {
+            map.remove(map.entrySet().iterator().next().getKey());
+        }
     }
 }
