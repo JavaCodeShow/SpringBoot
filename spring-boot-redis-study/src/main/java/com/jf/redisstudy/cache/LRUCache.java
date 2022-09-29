@@ -7,6 +7,7 @@ import java.util.Map;
  * LRU（Least recently used，最近最少使用）
  * 算法根据数据的历史访问记录来进行淘汰数据，
  * 其核心思想是“如果数据最近被访问过，那么将来被访问的几率也更高, 如果数据最近没有被访问过，那么以后也可能不会访问”,
+ * 可以使用google的ConcurrentLinkedHashMap，并发维度支持LRU。
  */
 public class LRUCache {
 
