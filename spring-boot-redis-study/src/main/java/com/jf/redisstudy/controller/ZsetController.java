@@ -1,7 +1,7 @@
 package com.jf.redisstudy.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.DefaultTypedTuple;
@@ -34,7 +34,7 @@ public class ZsetController {
      */
     @GetMapping("/batchZset")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f56")
-    public BaseResult batchZset() {
+    public CommonResult batchZset() {
 
         String keyName = "zset1";
         for (int i = 0; i < 100; i++) {
@@ -57,7 +57,7 @@ public class ZsetController {
 
         }
 
-        return BaseResult.success();
+        return CommonResult.success(Boolean.TRUE);
     }
 
     /**
@@ -67,7 +67,7 @@ public class ZsetController {
      */
     @GetMapping("/sinterstore")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f58")
-    public BaseResult<Set> sinterstore() {
+    public CommonResult<Set> sinterstore() {
 
         // Long size = redisTemplate.opsForZSet().intersectAndStore("zset1",
         // Collections.singleton("zset2"), "zset3",
@@ -81,7 +81,7 @@ public class ZsetController {
         log.info("size = [{}]", size);
         // Set zset3 = redisTemplate.opsForZSet().range("zset5", 0, -1);
         // System.out.println(zset3);
-        return BaseResult.success(null);
+        return CommonResult.success(null);
     }
 
     /**
@@ -91,11 +91,11 @@ public class ZsetController {
      */
     @GetMapping("/range")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f5e")
-    public BaseResult<Set> range() {
+    public CommonResult<Set> range() {
 
         Set zset3 = redisTemplate.opsForZSet().range("zset3", 0, -1);
 
-        return BaseResult.success(zset3);
+        return CommonResult.success(zset3);
     }
 
     /**
@@ -105,11 +105,11 @@ public class ZsetController {
      */
     @GetMapping("/rangeWithScores")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f60")
-    public BaseResult<Set> rangeWithScores() {
+    public CommonResult<Set> rangeWithScores() {
 
         Set zset3 = redisTemplate.opsForZSet().rangeWithScores("zset3", 0, 10);
 
-        return BaseResult.success(zset3);
+        return CommonResult.success(zset3);
     }
 
 

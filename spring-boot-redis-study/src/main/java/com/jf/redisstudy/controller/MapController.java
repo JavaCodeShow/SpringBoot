@@ -3,7 +3,7 @@ package com.jf.redisstudy.controller;
 import com.alibaba.fastjson.JSON;
 import com.jf.common.aspect.log.MethodLogger;
 import com.jf.common.redis.manager.cache.GlobalCacheManager;
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import com.jf.redisstudy.domain.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +34,13 @@ public class MapController {
      */
     @GetMapping("/hmset")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f4b")
-    public BaseResult hmset() {
+    public CommonResult hmset() {
         String key = "hash";
         Map<String, String> map = new HashMap<>();
         map.put("f1", JSON.toJSONString(UserDTO.getUserOne()));
         map.put("f2", JSON.toJSONString(UserDTO.getUserTwo()));
         globalCacheManager.hMSet(key, map);
-        return BaseResult.success();
+        return CommonResult.success(Boolean.TRUE);
     }
 
     /**
@@ -48,11 +48,11 @@ public class MapController {
      */
     @GetMapping("/hGet")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f4e")
-    public BaseResult<UserDTO> hGet() {
+    public CommonResult<UserDTO> hGet() {
         String key = "hash";
         String str = globalCacheManager.hGet(key, "f1");
         UserDTO userDTO = JSON.parseObject(str, UserDTO.class);
-        return BaseResult.success(userDTO);
+        return CommonResult.success(userDTO);
     }
 
     /**
@@ -60,11 +60,11 @@ public class MapController {
      */
     @GetMapping("/hMGet")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f64")
-    public BaseResult<List<UserDTO>> hMGet() {
+    public CommonResult<List<UserDTO>> hMGet() {
         String key = "hash";
         List<String> stringList = Arrays.asList("f1", "f2");
         List<String> strings = globalCacheManager.hMGet(key, stringList);
         List<UserDTO> userDTOList = strings.stream().map(s -> JSON.parseObject(s, UserDTO.class)).collect(Collectors.toList());
-        return BaseResult.success(userDTOList);
+        return CommonResult.success(userDTOList);
     }
 }

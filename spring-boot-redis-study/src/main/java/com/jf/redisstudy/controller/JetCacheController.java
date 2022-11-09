@@ -2,7 +2,7 @@ package com.jf.redisstudy.controller;
 
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.Cached;
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import com.jf.redisstudy.domain.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,9 +20,9 @@ public class JetCacheController {
      */
     @PostMapping("/jetCacheGet")
     @Cached(cacheType = CacheType.LOCAL, expire = 6)
-    public BaseResult<List<UserDTO>> jetCacheGet(@RequestBody String bizShowId) {
+    public CommonResult<List<UserDTO>> jetCacheGet(@RequestBody String bizShowId) {
         log.info("从数据库获得数据");
-        return BaseResult.success(UserDTO.getUserList());
+        return CommonResult.success(UserDTO.getUserList());
     }
 
     /**
@@ -30,9 +30,9 @@ public class JetCacheController {
      */
     @PostMapping("/jetCacheGet2")
     @Cached(cacheType = CacheType.LOCAL, expire = 6)
-    public BaseResult<List<UserDTO>> jetCacheGet2(@RequestBody UserDTO userDTO) {
+    public CommonResult<List<UserDTO>> jetCacheGet2(@RequestBody UserDTO userDTO) {
         log.info("从数据库获得数据");
-        return BaseResult.success(UserDTO.getUserList());
+        return CommonResult.success(UserDTO.getUserList());
     }
 
     /**
@@ -40,9 +40,9 @@ public class JetCacheController {
      */
     @PostMapping("/jetCacheGet3")
     @Cached(cacheType = CacheType.LOCAL, key = "T(com.jf.common.utils.jetcache.JetCacheUtils).sorted(#bizShowIdList)", expire = 6)
-    public BaseResult<List<UserDTO>> jetCacheGet3(@RequestBody List<String> bizShowIdList) {
+    public CommonResult<List<UserDTO>> jetCacheGet3(@RequestBody List<String> bizShowIdList) {
         log.info("从数据库获得数据");
-        return BaseResult.success(UserDTO.getUserList());
+        return CommonResult.success(UserDTO.getUserList());
     }
 
 
@@ -51,8 +51,8 @@ public class JetCacheController {
      */
     @PostMapping("/jetCacheGet4")
     @Cached(cacheType = CacheType.LOCAL, key = "T(com.jf.common.utils.jetcache.JetCacheUtils).sorted(#UserDTO)", expire = 6)
-    public BaseResult<List<UserDTO>> jetCacheGet4(@RequestBody List<UserDTO> userDTOList) {
+    public CommonResult<List<UserDTO>> jetCacheGet4(@RequestBody List<UserDTO> userDTOList) {
         log.info("从数据库获得数据");
-        return BaseResult.success(UserDTO.getUserList());
+        return CommonResult.success(UserDTO.getUserList());
     }
 }

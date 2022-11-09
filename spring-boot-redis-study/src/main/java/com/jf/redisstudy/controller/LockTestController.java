@@ -5,7 +5,7 @@ import com.jf.common.redis.annotation.ReSubmitLock;
 import com.jf.common.redis.generator.LockKeyGenerator;
 import com.jf.common.redis.manager.lock.DistributeLockManager;
 import com.jf.model.enums.GlobalErrorCodeEnum;
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import com.jf.redisstudy.domain.enums.RedisStudyLockKeyEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +25,8 @@ public class LockTestController {
     @GetMapping("/redis/testReSubmitLock")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f5a")
     @ReSubmitLock
-    public BaseResult testReSubmitLock() {
-        return BaseResult.success();
+    public CommonResult testReSubmitLock() {
+        return CommonResult.success(Boolean.TRUE);
     }
 
     /**
@@ -36,14 +36,14 @@ public class LockTestController {
      */
     @GetMapping("/redis/distributeLockService_tryLock")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f62")
-    public BaseResult testDistributeLockServiceTryLock() {
+    public CommonResult testDistributeLockServiceTryLock() {
 
         String lockKeyName = LockKeyGenerator.generateLockKey(RedisStudyLockKeyEnum.MIN_PRICE, "111");
         log.info("lockKeyName = [{}]", lockKeyName);
         boolean flag = distributeLockManager.tryLock(lockKeyName);
         log.info("获取锁的结果 = {}", flag);
         if (!flag) {
-            return BaseResult.fail(GlobalErrorCodeEnum.NOT_GET_LOCK);
+            return CommonResult.fail(GlobalErrorCodeEnum.NOT_GET_LOCK);
         }
         try {
             System.out.println("开始执行业务逻辑");
@@ -51,7 +51,7 @@ public class LockTestController {
             distributeLockManager.unlock(lockKeyName);
         }
 
-        return BaseResult.success(true);
+        return CommonResult.success(true);
     }
 
 
