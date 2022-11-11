@@ -18,8 +18,15 @@ public class HelloController {
 
     @RequestMapping("/")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f52")
-    public CommonResult<String> hello() {
+    public CommonResult<String> index() {
         log.info("666");
         return CommonResult.success("springboot-redis");
+    }
+
+    @RequestMapping("/hello")
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f52")
+    public CommonResult<String> hello() {
+        log.info("666");
+        return CommonResult.success("hello springboot-redis");
     }
 }
