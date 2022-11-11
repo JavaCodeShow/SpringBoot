@@ -4,8 +4,8 @@ import com.alicp.jetcache.Cache;
 import com.alicp.jetcache.anno.CachePenetrationProtect;
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.Cached;
-import com.jf.model.result.CommonResult;
 import com.alicp.jetcache.anno.CreateCache;
+import com.jf.model.result.CommonResult;
 import com.jf.redisstudy.domain.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,14 +25,14 @@ public class JetCacheController {
     private Cache<String, String> userCache;
 
     @GetMapping("/cacheTest")
-    public BaseResult<List<UserDTO>> cacheTest() {
+    public CommonResult<List<UserDTO>> cacheTest() {
         String str = userCache.computeIfAbsent("111", s -> "333");
         log.info("从缓存中获取结果：{}", str);
         userCache.put("111", "222");
         str = userCache.get("111");
         log.info("从缓存中获取结果：{}", str);
         userCache.remove("111");
-        return BaseResult.success(UserDTO.getUserList());
+        return CommonResult.success(UserDTO.getUserList());
     }
 
     /**
