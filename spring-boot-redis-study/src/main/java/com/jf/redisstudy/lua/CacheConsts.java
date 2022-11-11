@@ -1,8 +1,5 @@
 package com.jf.redisstudy.lua;
 
-/**
- * created by whroid
- **/
 public class CacheConsts {
 
     /**

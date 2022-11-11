@@ -14,9 +14,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * created by whroid
- **/
 @Component
 @Configuration
 @Slf4j

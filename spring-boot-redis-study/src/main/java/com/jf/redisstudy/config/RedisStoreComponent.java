@@ -12,9 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * created by whroid
- **/
 @Component
 @Slf4j
 public class RedisStoreComponent {

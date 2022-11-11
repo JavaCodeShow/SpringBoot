@@ -2,9 +2,6 @@ package com.jf.redisstudy.ka;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
-/**
- * created by whroid
- **/
 public class DefaultHashKa implements RedisKeyArgv {
 
     private String key;
