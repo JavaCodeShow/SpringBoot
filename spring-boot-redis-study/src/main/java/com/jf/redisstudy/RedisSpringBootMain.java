@@ -1,5 +1,6 @@
 package com.jf.redisstudy;
 
+import com.alicp.jetcache.anno.config.EnableCreateCacheAnnotation;
 import com.alicp.jetcache.anno.config.EnableMethodCache;
 import com.jf.common.utils.PropertyRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 @SpringBootApplication
 @Slf4j
 @EnableMethodCache(basePackages = "com.jf")
+@EnableCreateCacheAnnotation
 public class RedisSpringBootMain {
     public static void main(String[] args) {
         try {
