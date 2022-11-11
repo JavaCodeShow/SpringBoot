@@ -1,6 +1,6 @@
 package com.jf.redisstudy.config;
 
-import com.jf.redisstudy.ka.RedisKeyArgv;
+import com.jf.redisstudy.lua.ka.RedisKeyArgv;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.springframework.beans.factory.annotation.Autowired;

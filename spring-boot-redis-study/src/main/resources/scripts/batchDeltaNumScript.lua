@@ -1,11 +1,7 @@
--- KEYS说明
--- ticketID对应的key
--- ARGV说明
--- 对应删除的仓ID
--- 删除的预留仓库存要回归到共享仓
+--对一批key同时做delta值计算
+-- KEYS说明：key的名称
+-- ARGV说明：delta值
 for i,k in ipairs(KEYS) do
     local v = ARGV[i]
-    local q = tonumber(redis.call('get',k))
     redis.call('INCRBY',k,v)
 end
-return 0

@@ -1,4 +1,4 @@
-package com.jf.redisstudy.ka;
+package com.jf.redisstudy.lua.ka;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
