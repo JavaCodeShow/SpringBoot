@@ -1,6 +1,6 @@
 package com.jf.mybatis.mapper;
 
-import com.jf.mybatis.pojo.Account;
+import com.jf.mybatis.domain.entity.AccountEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -12,21 +12,17 @@ import java.util.List;
 @Mapper
 public interface AccountMapper {
 
-    /**
-     * 给id这个人加钱
-     *
-     * @param account
-     */
-    Integer updateAccountById(Account account);
+    AccountEntity findById(String id);
 
-    /**
-     * 根据id查询账户
-     *
-     * @param id
-     */
-    Account getAccountById(Integer id);
+    int insert(AccountEntity accountEntity);
 
-    List<Account> getAccountByMoneyAndName(Account account);
+    int delete(String id);
 
-    List<Account> getAccountByMoneys(int[] moneys);
+    Integer updateMoneyById(AccountEntity accountEntity);
+
+    List<AccountEntity> getAccountByMoneyAndName(AccountEntity accountEntity);
+
+    List<AccountEntity> getAccountByMoneys(int[] moneys);
+
+    int update(AccountEntity accountEntity);
 }

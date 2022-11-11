@@ -1,11 +1,10 @@
 package com.jf.redisstudy.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
+import com.jf.model.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * redis
@@ -19,19 +18,15 @@ public class HelloController {
 
     @RequestMapping("/")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f52")
-    public String hello() {
+    public CommonResult<String> index() {
         log.info("666");
-        String name = getName("zhangsan");
-        System.out.println(name);
-        return "springboot-redis";
+        return CommonResult.success("springboot-redis");
     }
 
-    public String getName(String name) {
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return name + "李四";
+    @RequestMapping("/hello")
+    @MethodLogger(apiId = "6221f12e0a849a10a89f9f52")
+    public CommonResult<String> hello() {
+        log.info("666");
+        return CommonResult.success("hello springboot-redis");
     }
 }

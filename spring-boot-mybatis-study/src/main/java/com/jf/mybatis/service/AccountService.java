@@ -1,61 +1,80 @@
 package com.jf.mybatis.service;
 
+import com.alibaba.fastjson.JSONObject;
+import com.jf.common.redis.manager.cache.GlobalCacheManager;
+import com.jf.common.utils.ParamChecker;
+import com.jf.mybatis.domain.entity.AccountEntity;
+import com.jf.mybatis.domain.param.account.AccountCreateParam;
+import com.jf.mybatis.domain.param.account.AccountUpdateParam;
 import com.jf.mybatis.mapper.AccountMapper;
-import com.jf.mybatis.pojo.Account;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author 江峰
- * @create 2020-03-22 11:40
  */
 @Service
+@Slf4j
 public class AccountService {
-    private int i = 0;
+
     @Autowired
     private AccountMapper accountMapper;
+    @Autowired
+    private CacheKeyQueueService cacheKeyQueueService;
 
-    public int getI() {
-        return this.i;
-    }
+    @Autowired
+    private GlobalCacheManager globalCacheManager;
 
-    public void changeI() {
-        System.out.println(Thread.currentThread().getName() + " i = " + getI());
-        Thread.yield();
-        Thread.yield();
-        System.out.println(Thread.currentThread().getName() + ": " + ++i);
-        Thread.yield();
-        Thread.yield();
-        System.out.println(Thread.currentThread().getName() + " i = " + getI());
+    public AccountEntity getAccountById(String id) {
+        String value = globalCacheManager.get(id);
+        if (StringUtils.isNotBlank(value)) {
+            return JSONObject.parseObject(value, AccountEntity.class);
+        }
+        AccountEntity accountEntity = accountMapper.findById(id);
+        globalCacheManager.set(id, JSONObject.toJSONString(accountEntity));
+        return accountEntity;
     }
 
     /**
      * 账户一向账户二转money。
-     *
-     * @param account1
-     * @param account2
-     * @param money
      */
-    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
-    public void transAccount(Account account1, Account account2,
+    @Transactional(rollbackFor = Exception.class)
+    public void transAccount(AccountEntity accountEntity1,
+                             AccountEntity accountEntity2,
                              Integer money) {
-        account1.setMoney(account1.getMoney() - money);
-        account2.setMoney(account2.getMoney() + money);
-        Integer i1 = accountMapper.updateAccountById(account1);
+        accountEntity1.setMoney(accountEntity1.getMoney() - money);
+        accountEntity2.setMoney(accountEntity2.getMoney() + money);
+        accountMapper.updateMoneyById(accountEntity1);
+        accountMapper.updateMoneyById(accountEntity2);
 
         // 手动异常
-        // int num = 0;
-        // if (num == 0) {
-        // throw new IllegalArgumentException(
-        // "出异常了，数据将回滚" + accountMapper.getAccountById(1));
-        // }
+        // throw new IllegalArgumentException("出异常了，数据将回滚" + accountMapper.getAccountById(1));
 
-        Integer i2 = accountMapper.updateAccountById(account2);
     }
 
-    public Account getAccountById(Integer id) {
-        return accountMapper.getAccountById(id);
+    public Integer createAccount(AccountCreateParam param) {
+        AccountEntity accountEntity = new AccountEntity();
+        accountEntity.setId(param.getId());
+        accountEntity.setMoney(param.getMoney());
+        accountEntity.setName(param.getName());
+        accountMapper.insert(accountEntity);
+        return accountEntity.getId();
     }
+
+    public void updateAccount(AccountUpdateParam param) {
+
+        AccountEntity accountEntity = accountMapper.findById(param.getId());
+        ParamChecker.notNull(accountEntity, "账户不能为空");
+        accountEntity.setName(param.getName());
+        accountEntity.setMoney(param.getMoney());
+        accountMapper.update(accountEntity);
+
+        cacheKeyQueueService.syncDeleteCache(param.getId());
+
+    }
+
+
 }

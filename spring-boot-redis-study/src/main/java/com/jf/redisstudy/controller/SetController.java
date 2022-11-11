@@ -2,7 +2,7 @@ package com.jf.redisstudy.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
 import com.jf.common.redis.manager.cache.GlobalCacheManager;
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +31,7 @@ public class SetController {
      */
     @GetMapping("/sadd")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f4d")
-    public BaseResult sadd() {
+    public CommonResult sadd() {
 
         Set<String> set = new HashSet<>();
         set.add("aaa");
@@ -45,7 +45,7 @@ public class SetController {
         globalCacheManager.sAdd(keyName, set.toArray(new String[0]));
         Set<String> members = globalCacheManager.sMembers(keyName);
         log.info("members = {}", members);
-        return BaseResult.success(members);
+        return CommonResult.success(members);
     }
 
 
@@ -56,10 +56,10 @@ public class SetController {
      */
     @GetMapping("/sIsMember")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f55")
-    public BaseResult sIsMember() {
+    public CommonResult sIsMember() {
 
         Boolean flag = globalCacheManager.sIsMember("set1", "555");
         log.info("flag = {}", flag);
-        return BaseResult.success(flag);
+        return CommonResult.success(flag);
     }
 }

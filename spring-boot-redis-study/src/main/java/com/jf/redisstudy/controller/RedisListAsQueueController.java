@@ -1,7 +1,7 @@
 package com.jf.redisstudy.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -26,9 +26,9 @@ public class RedisListAsQueueController {
 
     @RequestMapping("/redis_queue_push")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f53")
-    public BaseResult redisQueuePush() {
+    public CommonResult redisQueuePush() {
         redisTemplate.opsForList().leftPush("list", "hello" + count);
-        return BaseResult.success();
+        return CommonResult.success(Boolean.TRUE);
     }
 
 }
