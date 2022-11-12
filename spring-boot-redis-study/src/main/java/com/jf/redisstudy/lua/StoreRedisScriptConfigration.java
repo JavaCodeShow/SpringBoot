@@ -23,19 +23,24 @@ public class StoreRedisScriptConfigration {
     private StringRedisTemplate redisTemplate;
 
     @Bean(CacheConsts.LUA_BATCH_DELTA_NUM)
-    public DefaultRedisScript<String> initBatchDeltaNumScriptScript() {
+    public DefaultRedisScript<Object> initBatchDeltaNumScriptScript() {
         return initScript("/scripts/batchDeltaNumScript.lua");
     }
 
-    private DefaultRedisScript<String> initScript(String scriptPath) {
-        DefaultRedisScript<String> redisScript = new DefaultRedisScript<>();
+    @Bean(CacheConsts.LUA_LIMIT)
+    public DefaultRedisScript<Object> initLimitScript() {
+        return initScript("/scripts/limitScript.lua");
+    }
+
+    private DefaultRedisScript<Object> initScript(String scriptPath) {
+        DefaultRedisScript<Object> redisScript = new DefaultRedisScript<>();
         redisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource(scriptPath)));
-        redisScript.setResultType(String.class);
+        redisScript.setResultType(Object.class);
         loadRedisScriptToServer(redisScript, scriptPath);
         return redisScript;
     }
 
-    private void loadRedisScriptToServer(DefaultRedisScript<String> redisScript, String luaName) {
+    private void loadRedisScriptToServer(DefaultRedisScript<Object> redisScript, String luaName) {
         try {
             List<Boolean> results = Objects.requireNonNull(redisTemplate.getConnectionFactory()).getConnection().scriptExists(redisScript.getSha1());
             assert results != null;

@@ -7,4 +7,6 @@ public class CacheConsts {
      */
     public final static String LUA_BATCH_DELTA_NUM = "batchDeltaNumScript";
 
+    public final static String LUA_LIMIT = "limitScript";
+
 }

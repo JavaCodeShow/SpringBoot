@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 @Slf4j
 public class RedisStoreComponent {
 
-
     @Autowired
     private StringRedisTemplate redisTemplate;
 
