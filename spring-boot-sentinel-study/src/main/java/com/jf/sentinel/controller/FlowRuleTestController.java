@@ -6,8 +6,8 @@ import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
-import com.jf.common.aspect.result.BaseResult;
 import com.jf.common.utils.time.LocalDateTimeUtil;
+import com.jf.model.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +21,7 @@ import java.util.List;
 public class FlowRuleTestController {
 
     @GetMapping("/create_order")
-    public BaseResult hello() {
+    public CommonResult hello() {
         Entry entry = null;
         // 务必保证finally会被执行
         try {
@@ -29,12 +29,12 @@ public class FlowRuleTestController {
             entry = SphU.entry("create_order");
             // 被保护的业务逻辑
             System.out.println("create order success  + " + LocalDateTimeUtil.getLocalDateTimeStr());
-            return BaseResult.success("create order success");
+            return CommonResult.success("create order success");
         } catch (BlockException e1) {
             // 资源访问阻止，被限流或被降级
             // 进行相应的处理操作
             System.out.println("创建订单限流了");
-            return BaseResult.fail("创建订单限流了");
+            return CommonResult.fail("创建订单限流了");
         } finally {
             if (entry != null) {
                 entry.exit();

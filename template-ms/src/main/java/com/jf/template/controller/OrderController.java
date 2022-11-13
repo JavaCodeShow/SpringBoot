@@ -2,7 +2,7 @@ package com.jf.template.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
 import com.jf.common.redis.annotation.ReSubmitLock;
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import com.jf.model.result.PageQueryRequest;
 import com.jf.model.result.PageQueryResponse;
 import com.jf.template.domain.dto.OrderDTO;
@@ -30,7 +30,7 @@ public class OrderController {
     @GetMapping("/{id}")
     @MethodLogger(apiId = "6221ec540a849a4ef44d38fc")
     @ReSubmitLock
-    public BaseResult<OrderDTO> getOrderById(@PathVariable Integer id) {
+    public CommonResult<OrderDTO> getOrderById(@PathVariable Integer id) {
 
         OrderDTO order = new OrderDTO();
         if (id == 1) {
@@ -38,7 +38,7 @@ public class OrderController {
                     .build();
         }
 
-        return BaseResult.success(order);
+        return CommonResult.success(order);
     }
 
     @ApiOperation(value = "分页查询订单")
@@ -58,9 +58,9 @@ public class OrderController {
     }
 
     @GetMapping("/event")
-    public BaseResult orderEvent() {
+    public CommonResult orderEvent() {
         orderService.order();
-        return BaseResult.success();
+        return CommonResult.success();
     }
 
 }

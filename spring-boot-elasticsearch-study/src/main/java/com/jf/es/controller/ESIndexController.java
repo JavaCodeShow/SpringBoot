@@ -2,7 +2,7 @@ package com.jf.es.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
 import com.jf.es.domain.Product;
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
@@ -31,9 +31,9 @@ public class ESIndexController {
 
     @GetMapping("/deleteIndex")
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f00")
-    public BaseResult deleteIndex() {
+    public CommonResult deleteIndex() {
         boolean flg = elasticsearchRestTemplate.deleteIndex(Product.class);
         System.out.println("删除索引 = " + flg);
-        return BaseResult.success();
+        return CommonResult.success();
     }
 }

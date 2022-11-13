@@ -1,7 +1,7 @@
 package com.jf.nacos.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import com.jf.nacos.domain.dto.OrderDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +19,7 @@ public class OrderController {
 
     @GetMapping("/order/{orderId}")
     @MethodLogger(apiId = "62a30deb3785be2a4c58cdea")
-    public BaseResult<OrderDTO> getOrderById(@PathVariable Integer orderId) {
+    public CommonResult<OrderDTO> getOrderById(@PathVariable Integer orderId) {
 
         OrderDTO orderDTO = new OrderDTO();
         if (orderId == 1) {
@@ -36,7 +36,7 @@ public class OrderController {
                 e.printStackTrace();
             }
         }
-        return BaseResult.success(orderDTO);
+        return CommonResult.success(orderDTO);
     }
 
 }

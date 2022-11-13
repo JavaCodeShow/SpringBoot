@@ -1,7 +1,7 @@
 package com.jf.template.controller.excel;
 
 import com.alibaba.excel.EasyExcel;
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import com.jf.template.domain.dto.UploadStaffTagExcelVo;
 import com.jf.template.domain.dto.UploadStaffTagExcelVoListener;
 import com.jf.template.domain.request.UploadFileRequest;
@@ -27,7 +27,7 @@ public class ExcelImportController {
 
     @ApiOperation("API - 导入excel给员工打标签")
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public BaseResult upload(@Validated UploadFileRequest request) {
+    public CommonResult upload(@Validated UploadFileRequest request) {
 
         List<UploadStaffTagExcelVo> uploadStaffTagExcelVoList = new ArrayList<>();
 
@@ -48,10 +48,10 @@ public class ExcelImportController {
                     .sheet().headRowNumber(2).doRead();
             uploadStaffTagExcelVoList = uploadStaffTagExcelVoListener.getList();
         } catch (Exception e) {
-            return BaseResult.fail("格式不对");
+            return CommonResult.fail("格式不对");
         }
         System.out.println(uploadStaffTagExcelVoList);
 
-        return BaseResult.success(uploadStaffTagExcelVoList);
+        return CommonResult.success(uploadStaffTagExcelVoList);
     }
 }

@@ -2,7 +2,7 @@ package com.jf.es.controller;
 
 import com.jf.es.dao.ProductDao;
 import com.jf.es.domain.Product;
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,7 +29,7 @@ public class ProductController {
      * 新增文档
      */
     @GetMapping("/save")
-    public BaseResult save() {
+    public CommonResult save() {
         //POSTMAN, GET http://localhost:9200/product/_doc/2
         Product product = new Product();
         product.setId(2L);
@@ -38,14 +38,14 @@ public class ProductController {
         product.setPrice(2999.0);
         product.setImages("http://www.atguigu/hw.jpg");
         productDao.save(product);
-        return BaseResult.success();
+        return CommonResult.success();
     }
 
     /**
      * 修改文档
      */
     @GetMapping("/update")
-    public BaseResult update() {
+    public CommonResult update() {
         //POSTMAN, GET http://localhost:9200/product/_doc/2
         Product product = new Product();
         product.setId(2L);
@@ -54,7 +54,7 @@ public class ProductController {
         product.setPrice(9999.0);
         product.setImages("http://www.atguigu/xm.jpg");
         productDao.save(product);
-        return BaseResult.success();
+        return CommonResult.success();
     }
 
 
@@ -62,17 +62,17 @@ public class ProductController {
      * 根据id查询文档
      */
     @GetMapping("/findById")
-    public BaseResult<Product> findById() {
+    public CommonResult<Product> findById() {
         Product product = productDao.findById(2L).get();
         System.out.println(product);
-        return BaseResult.success(product);
+        return CommonResult.success(product);
     }
 
     /**
      * 查询所有文档
      */
     @GetMapping("/findAll")
-    public BaseResult<List<Product>> findAll() {
+    public CommonResult<List<Product>> findAll() {
         Iterable<Product> products = productDao.findAll();
         List<Product> productList = new ArrayList<>();
         for (Product product : products) {
@@ -80,26 +80,26 @@ public class ProductController {
             System.out.println(product);
         }
 
-        return BaseResult.success(productList);
+        return CommonResult.success(productList);
     }
 
     /**
      * 删除文档
      */
     @GetMapping("/delete")
-    public BaseResult delete() {
+    public CommonResult delete() {
         //POSTMAN, GET http://localhost:9200/product/_doc/2
         Product product = new Product();
         product.setId(2L);
         productDao.delete(product);
-        return BaseResult.success();
+        return CommonResult.success();
     }
 
     /**
      * 批量新增文档
      */
     @GetMapping("/saveAll")
-    public BaseResult saveAll() {
+    public CommonResult saveAll() {
         List<Product> productList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             Product product = new Product();
@@ -111,14 +111,14 @@ public class ProductController {
             productList.add(product);
         }
         productDao.saveAll(productList);
-        return BaseResult.success();
+        return CommonResult.success();
     }
 
     /**
      * 分页查询
      */
     @GetMapping("/findByPageable")
-    public BaseResult<Page<Product>> findByPageable() {
+    public CommonResult<Page<Product>> findByPageable() {
         //设置排序(排序方式，正序还是倒序，排序的 id)
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
         int currentPage = 0;//当前页，第一页从 0 开始， 1 表示第二页
@@ -130,6 +130,6 @@ public class ProductController {
         for (Product Product : productPage.getContent()) {
             System.out.println(Product);
         }
-        return BaseResult.success(productPage);
+        return CommonResult.success(productPage);
     }
 }

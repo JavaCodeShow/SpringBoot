@@ -2,7 +2,7 @@ package com.jf.template.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
 import com.jf.distribute.ids.proxy.IdsProxy;
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +26,17 @@ public class IdsController {
     @ApiOperation("获取一个id")
     @GetMapping("/id")
     @MethodLogger(apiId = "6221ec540a849a4ef44d38fb")
-    public BaseResult<Long> getId() {
+    public CommonResult<Long> getId() {
         Long id = idsProxy.getId();
-        return BaseResult.success(id);
+        return CommonResult.success(id);
     }
 
     @ApiOperation("获取count个id")
     @GetMapping("/id/{count}")
     @MethodLogger(apiId = "6221ec540a849a4ef44d38fe")
-    public BaseResult<List<Long>> batchGetId(@PathVariable Integer count) {
+    public CommonResult<List<Long>> batchGetId(@PathVariable Integer count) {
         List<Long> ids = idsProxy.batchGetId(count);
-        return BaseResult.success(ids);
+        return CommonResult.success(ids);
     }
 
 }

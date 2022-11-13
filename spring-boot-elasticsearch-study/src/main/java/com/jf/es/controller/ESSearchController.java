@@ -2,7 +2,7 @@ package com.jf.es.controller;
 
 import com.jf.es.dao.ProductDao;
 import com.jf.es.domain.Product;
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.TermQueryBuilder;
@@ -31,7 +31,7 @@ public class ESSearchController {
      * search(termQueryBuilder) 调用搜索方法，参数查询构建器对象
      */
     @GetMapping("/termQuery")
-    public BaseResult<List<Product>> termQuery() {
+    public CommonResult<List<Product>> termQuery() {
         TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery("title", "小米");
         Iterable<Product> products = productDao.search(termQueryBuilder);
         List<Product> productList = new ArrayList<>();
@@ -39,14 +39,14 @@ public class ESSearchController {
             productList.add(product);
             System.out.println(product);
         }
-        return BaseResult.success(productList);
+        return CommonResult.success(productList);
     }
 
     /**
      * term 查询加分页
      */
     @GetMapping("/termQueryByPage")
-    public BaseResult<List<Product>> termQueryByPage() {
+    public CommonResult<List<Product>> termQueryByPage() {
         int currentPage = 0;
         int pageSize = 2;
         //设置查询分页
@@ -59,6 +59,6 @@ public class ESSearchController {
             productList.add(product);
             System.out.println(product);
         }
-        return BaseResult.success(productList);
+        return CommonResult.success(productList);
     }
 }
