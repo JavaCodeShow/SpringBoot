@@ -1,7 +1,7 @@
 package com.jf.mybatis.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import com.jf.mybatis.domain.entity.AccountEntity;
 import com.jf.mybatis.domain.param.account.AccountCreateParam;
 import com.jf.mybatis.domain.param.account.AccountUpdateParam;
@@ -26,23 +26,23 @@ public class AccountController {
 
     @RequestMapping("/account/{id}")
     @MethodLogger(apiId = "61dbe11b343ac83c788ff2e3")
-    public BaseResult<AccountEntity> getAccountById(@PathVariable String id) {
+    public CommonResult<AccountEntity> getAccountById(@PathVariable String id) {
         AccountEntity accountEntity = accountService.getAccountById(id);
-        return BaseResult.success(accountEntity);
+        return CommonResult.success(accountEntity);
     }
 
     @PostMapping("/account/create")
     @MethodLogger(apiId = "61dbe11b343ac83c788ff2e3")
-    public BaseResult<Integer> createAccount(@RequestBody AccountCreateParam param) {
+    public CommonResult<Integer> createAccount(@RequestBody AccountCreateParam param) {
         Integer id = accountService.createAccount(param);
-        return BaseResult.success(id);
+        return CommonResult.success(id);
     }
 
     @PutMapping("/account/update")
     @MethodLogger(apiId = "61dbe11b343ac83c788ff222")
-    public BaseResult<Boolean> updateAccount(@RequestBody AccountUpdateParam param) {
+    public CommonResult<Boolean> updateAccount(@RequestBody AccountUpdateParam param) {
         accountService.updateAccount(param);
-        return BaseResult.success(Boolean.TRUE);
+        return CommonResult.success(Boolean.TRUE);
     }
 
     @RequestMapping("/account/transAccount")

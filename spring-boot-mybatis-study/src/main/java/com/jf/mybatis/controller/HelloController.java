@@ -1,6 +1,6 @@
 package com.jf.mybatis.controller;
 
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @GetMapping("/")
-    public BaseResult index() {
-        return BaseResult.success("spring-boot-mybatis-study");
+    public CommonResult index() {
+        return CommonResult.success("spring-boot-mybatis-study");
     }
 
     @GetMapping("/hello")
-    public BaseResult hello() {
-        return BaseResult.success("hello");
+    public CommonResult hello() {
+        return CommonResult.success("hello");
     }
 }
