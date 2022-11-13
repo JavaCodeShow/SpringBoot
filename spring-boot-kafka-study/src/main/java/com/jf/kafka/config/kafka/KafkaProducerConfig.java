@@ -41,7 +41,7 @@ public class KafkaProducerConfig {
         Map<String, Object> props = new HashMap<String, Object>();
         // 指定多个kafka集群多个地址
         // props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094");
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "139.224.103.236:9092");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "1.15.226.249:9092");
         // 重试次数，0为不启用重试机制
         props.put(ProducerConfig.RETRIES_CONFIG, 0);
         // acks=0 把消息发送到kafka就认为发送成功

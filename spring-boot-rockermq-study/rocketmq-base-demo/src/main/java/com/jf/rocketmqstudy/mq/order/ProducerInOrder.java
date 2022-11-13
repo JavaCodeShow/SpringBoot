@@ -23,7 +23,7 @@ public class ProducerInOrder {
     public static void main(String[] args) throws Exception {
 
         DefaultMQProducer producer = new DefaultMQProducer("group1");
-        producer.setNamesrvAddr("139.224.103.236:9876");
+        producer.setNamesrvAddr("1.15.226.249:9876");
         producer.start();
 
         // 订单列表
