@@ -18,8 +18,6 @@ public interface FcsClient {
 
     /**
      * 根据订单id查询订单
-     *
-     * @return
      */
     @GetMapping(value = "/order/{orderId}")
     CommonResult<OrderDTO> getOrderById(@PathVariable Integer orderId);
