@@ -12,7 +12,6 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
  * @author 江峰
  * @create 2020-03-21   10:56
  */
-@ServletComponentScan("com.jf")
 @SpringBootApplication
 @Slf4j
 @EnableMethodCache(basePackages = "com.jf")

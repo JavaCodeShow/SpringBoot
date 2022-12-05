@@ -14,7 +14,6 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableFeignClients(basePackages = "com.jf")
 @EnableHystrix
 @ComponentScan(basePackages = "com.jf")
-@ServletComponentScan("com.jf")
 @Slf4j
 public class TemplateMsApplication {
 
