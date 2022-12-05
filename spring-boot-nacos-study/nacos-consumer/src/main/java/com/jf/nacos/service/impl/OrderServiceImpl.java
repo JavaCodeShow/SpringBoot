@@ -1,6 +1,6 @@
 package com.jf.nacos.service.impl;
 
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import com.jf.nacos.client.FcsClient;
 import com.jf.nacos.domain.dto.OrderDTO;
 import com.jf.nacos.service.OrderService;
@@ -26,7 +26,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDTO getOrderById(Integer orderId) {
 
-        BaseResult<OrderDTO> result = fcsClient.getOrderById(orderId);
+        CommonResult<OrderDTO> result = fcsClient.getOrderById(orderId);
 
         if (!result.getSuccess()) {
             log.error(result.getMsg() + " orderId = [{}]", orderId);

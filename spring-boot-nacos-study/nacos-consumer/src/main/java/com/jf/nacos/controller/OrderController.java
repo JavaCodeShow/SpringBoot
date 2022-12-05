@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Objects;
-
 /**
  * @author 潇潇暮雨
  * @create 2018-09-29 22:12
@@ -25,11 +23,7 @@ public class OrderController {
     @GetMapping("/order/{orderId}")
     @MethodLogger(apiId = "62a30deb3785be2a4c58cde1")
     public CommonResult<OrderDTO> getOrderById(@PathVariable Integer orderId) {
-
         OrderDTO orderDTO = orderService.getOrderById(orderId);
-        if (Objects.isNull(orderDTO)) {
-            return CommonResult.fail();
-        }
         return CommonResult.success(orderDTO);
     }
 }

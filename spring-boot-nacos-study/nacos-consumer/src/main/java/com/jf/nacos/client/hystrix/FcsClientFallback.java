@@ -1,7 +1,7 @@
 package com.jf.nacos.client.hystrix;
 
 import com.jf.model.enums.GlobalErrorCodeEnum;
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import com.jf.nacos.client.FcsClient;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -22,9 +22,9 @@ public class FcsClientFallback implements FallbackFactory<FcsClient> {
         log.error("调用FCS失败：", throwable);
         return new FcsClient() {
             @Override
-            public BaseResult getOrderById(Integer orderId) {
+            public CommonResult getOrderById(Integer orderId) {
 
-                return BaseResult.fail(GlobalErrorCodeEnum.SERVER_ERROR.getCode(),
+                return CommonResult.fail(GlobalErrorCodeEnum.SERVER_ERROR.getCode(),
                         "根据订单id查询订单失败");
             }
 

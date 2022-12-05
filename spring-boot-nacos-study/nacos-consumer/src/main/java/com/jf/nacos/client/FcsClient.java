@@ -1,6 +1,6 @@
 package com.jf.nacos.client;
 
-import com.jf.model.result.BaseResult;
+import com.jf.model.result.CommonResult;
 import com.jf.nacos.client.hystrix.FcsClientFallback;
 import com.jf.nacos.domain.dto.OrderDTO;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -22,6 +22,6 @@ public interface FcsClient {
      * @return
      */
     @GetMapping(value = "/order/{orderId}")
-    BaseResult<OrderDTO> getOrderById(@PathVariable Integer orderId);
+    CommonResult<OrderDTO> getOrderById(@PathVariable Integer orderId);
 
 }
