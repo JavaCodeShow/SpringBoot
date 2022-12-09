@@ -21,7 +21,7 @@ public enum RedisStudyCacheKeyEnum implements CacheKeyType {
     }
 
     @Override
-    public String getPrefix() {
+    public String getServiceName() {
         return SystemConstant.SYSTEM_NAME;
     }
 

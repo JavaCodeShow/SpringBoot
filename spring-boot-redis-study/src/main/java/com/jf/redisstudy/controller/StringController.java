@@ -40,6 +40,10 @@ public class StringController {
         UserDTO userTwo = UserDTO.getUserTwo();
         globalCacheManager.set("aaa", JSON.toJSONString(userOne));
         globalCacheManager.set("bbb", JSON.toJSONString(userTwo));
+        for (int i = 0; i < 100; i++) {
+            String cacheKey = CacheKeyGenerator.getCacheKey(RedisStudyCacheKeyEnum.MIN_PRICE, String.valueOf(i));
+            globalCacheManager.set(cacheKey, String.valueOf(i));
+        }
         return CommonResult.success(Boolean.TRUE);
     }
 
