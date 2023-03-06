@@ -1,23 +1,4 @@
-/*
-Navicat MySQL Data Transfer
 
-Source Server         : jfTencentServer
-Source Server Version : 80028
-Source Host           : 1.15.226.249:3306
-Source Database       : jfTest
-
-Target Server Type    : MYSQL
-Target Server Version : 80028
-File Encoding         : 65001
-
-Date: 2022-11-13 19:42:33
-*/
-
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for account
--- ----------------------------
 DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account`
 (
@@ -28,9 +9,7 @@ CREATE TABLE `account`
     `create_time` timestamp      NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time` timestamp      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
     PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB;
 
 -- ----------------------------
 -- Records of account
