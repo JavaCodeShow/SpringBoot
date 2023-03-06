@@ -1,7 +1,7 @@
 package com.jf.redisstudy.controller.lua;
 
 import com.jf.common.aspect.log.MethodLogger;
-import com.jf.model.result.CommonResult;
+import com.jf.model.response.CommonResult;
 import com.jf.redisstudy.lua.CacheConsts;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.jf.mybatis.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
-import com.jf.model.result.CommonResult;
+import com.jf.model.response.CommonResult;
 import com.jf.mybatis.domain.entity.AccountEntity;
 import com.jf.mybatis.domain.param.account.AccountCreateParam;
 import com.jf.mybatis.domain.param.account.AccountUpdateParam;

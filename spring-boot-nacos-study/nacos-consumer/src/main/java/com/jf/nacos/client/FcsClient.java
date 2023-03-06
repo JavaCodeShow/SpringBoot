@@ -1,6 +1,6 @@
 package com.jf.nacos.client;
 
-import com.jf.model.result.CommonResult;
+import com.jf.model.response.CommonResult;
 import com.jf.nacos.client.hystrix.FcsClientFallback;
 import com.jf.nacos.domain.dto.OrderDTO;
 import org.springframework.cloud.openfeign.FeignClient;

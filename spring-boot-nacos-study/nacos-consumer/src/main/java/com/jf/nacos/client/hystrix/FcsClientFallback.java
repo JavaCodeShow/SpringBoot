@@ -1,7 +1,7 @@
 package com.jf.nacos.client.hystrix;
 
 import com.jf.model.enums.GlobalErrorCodeEnum;
-import com.jf.model.result.CommonResult;
+import com.jf.model.response.CommonResult;
 import com.jf.nacos.client.FcsClient;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;

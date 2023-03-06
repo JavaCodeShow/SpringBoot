@@ -2,7 +2,7 @@ package com.jf.template.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
 import com.jf.distribute.ids.proxy.IdsProxy;
-import com.jf.model.result.CommonResult;
+import com.jf.model.response.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -6,7 +6,7 @@ import com.jf.common.aspect.log.MethodLogger;
 import com.jf.common.redis.generator.CacheKeyGenerator;
 import com.jf.common.redis.manager.cache.CacheConcurrentProtectedUtils;
 import com.jf.common.redis.manager.cache.GlobalCacheManager;
-import com.jf.model.result.CommonResult;
+import com.jf.model.response.CommonResult;
 import com.jf.redisstudy.domain.dto.UserDTO;
 import com.jf.redisstudy.domain.enums.RedisStudyCacheKeyEnum;
 import lombok.extern.slf4j.Slf4j;

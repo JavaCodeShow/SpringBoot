@@ -5,7 +5,7 @@ import com.alicp.jetcache.anno.CachePenetrationProtect;
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.Cached;
 import com.alicp.jetcache.anno.CreateCache;
-import com.jf.model.result.CommonResult;
+import com.jf.model.response.CommonResult;
 import com.jf.redisstudy.domain.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

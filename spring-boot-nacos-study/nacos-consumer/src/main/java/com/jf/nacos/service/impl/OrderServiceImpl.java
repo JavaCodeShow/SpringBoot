@@ -1,6 +1,6 @@
 package com.jf.nacos.service.impl;
 
-import com.jf.model.result.CommonResult;
+import com.jf.model.response.CommonResult;
 import com.jf.nacos.client.FcsClient;
 import com.jf.nacos.domain.dto.OrderDTO;
 import com.jf.nacos.service.OrderService;

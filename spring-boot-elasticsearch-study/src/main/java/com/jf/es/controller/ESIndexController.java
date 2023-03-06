@@ -2,7 +2,7 @@ package com.jf.es.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
 import com.jf.es.domain.Product;
-import com.jf.model.result.CommonResult;
+import com.jf.model.response.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;

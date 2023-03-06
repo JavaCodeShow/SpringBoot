@@ -1,7 +1,7 @@
 package com.jf.template.controller.excel;
 
 import com.alibaba.excel.EasyExcel;
-import com.jf.model.result.CommonResult;
+import com.jf.model.response.CommonResult;
 import com.jf.template.domain.dto.UploadStaffTagExcelVo;
 import com.jf.template.domain.dto.UploadStaffTagExcelVoListener;
 import com.jf.template.domain.request.UploadFileRequest;

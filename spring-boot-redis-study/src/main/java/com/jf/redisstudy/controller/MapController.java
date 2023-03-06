@@ -3,7 +3,7 @@ package com.jf.redisstudy.controller;
 import com.alibaba.fastjson.JSON;
 import com.jf.common.aspect.log.MethodLogger;
 import com.jf.common.redis.manager.cache.GlobalCacheManager;
-import com.jf.model.result.CommonResult;
+import com.jf.model.response.CommonResult;
 import com.jf.redisstudy.domain.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
