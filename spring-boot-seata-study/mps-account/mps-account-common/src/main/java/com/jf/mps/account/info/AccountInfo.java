@@ -9,9 +9,8 @@ import lombok.EqualsAndHashCode;
  * @create 2020-03-22 11:46
  */
 
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class AccountInfo extends BaseInfo {
+public class AccountInfo {
     private Integer id;
     private Integer money;
     private String name;
