@@ -2,9 +2,9 @@ package com.jf.template.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
 import com.jf.common.redis.annotation.ReSubmitLock;
+import com.jf.model.page.PageQueryRequest;
+import com.jf.model.page.PageQueryResponse;
 import com.jf.model.response.CommonResult;
-import com.jf.model.result.PageQueryRequest;
-import com.jf.model.result.PageQueryResponse;
 import com.jf.template.domain.dto.OrderDTO;
 import com.jf.template.service.OrderService;
 import io.swagger.annotations.Api;
@@ -60,7 +60,7 @@ public class OrderController {
     @GetMapping("/event")
     public CommonResult orderEvent() {
         orderService.order();
-        return CommonResult.success();
+        return CommonResult.success("");
     }
 
 }
