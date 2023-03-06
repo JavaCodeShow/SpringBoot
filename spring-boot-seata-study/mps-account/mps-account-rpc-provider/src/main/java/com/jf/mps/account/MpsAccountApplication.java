@@ -6,16 +6,18 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.jf")
 @EnableHystrix
 @ServletComponentScan("com.jf")
-public class DistributeIdApplication {
+@ComponentScan(basePackages = "com.jf")
+public class MpsAccountApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DistributeIdApplication.class, args);
+        SpringApplication.run(MpsAccountApplication.class, args);
 
     }
 }

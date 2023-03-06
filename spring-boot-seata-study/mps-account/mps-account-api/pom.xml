@@ -26,7 +26,6 @@
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>com.jf</groupId>
             <artifactId>mps-account-common</artifactId>

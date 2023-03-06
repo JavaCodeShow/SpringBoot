@@ -6,12 +6,14 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.jf")
 @EnableHystrix
-@ServletComponentScan("com.jf")
+@ServletComponentScan(basePackages = "com.jf")
+@ComponentScan(basePackages = "com.jf")
 public class MpsUserApplication {
 
     public static void main(String[] args) {

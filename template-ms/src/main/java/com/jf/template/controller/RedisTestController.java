@@ -34,7 +34,7 @@ public class RedisTestController {
             e.printStackTrace();
         }
 
-        return CommonResult.success();
+        return CommonResult.success("");
     }
 
     /**

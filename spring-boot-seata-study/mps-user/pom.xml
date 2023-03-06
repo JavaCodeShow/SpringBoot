@@ -26,6 +26,8 @@
         <jf-common-utils.version>1.0.0.0-SNAPSHOT</jf-common-utils.version>
         <jf-common-aspect.version>1.0.0.0-SNAPSHOT</jf-common-aspect.version>
         <jf-common-model.version>1.0.0.0-SNAPSHOT</jf-common-model.version>
+        <jf-common-model.version>1.0.0.0-SNAPSHOT</jf-common-model.version>
+        <mps-account.version>1.0.0.0-SNAPSHOT</mps-account.version>
 
     </properties>
 
@@ -54,18 +56,16 @@
                 <version>${jf-common-aspect.version}</version>
             </dependency>
 
-            <!-- distribute-ms-version -->
-            <dependency>
-                <groupId>com.jf</groupId>
-                <artifactId>mps-user-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <!-- distribute-ms-version -->
             <dependency>
                 <groupId>com.jf</groupId>
                 <artifactId>jf-common-model</artifactId>
                 <version>${jf-common-model.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.jf</groupId>
+                <artifactId>mps-user-common</artifactId>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
@@ -78,6 +78,12 @@
                 <groupId>com.jf</groupId>
                 <artifactId>mps-user-api</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.jf</groupId>
+                <artifactId>mps-account-api</artifactId>
+                <version>${mps-account.version}</version>
             </dependency>
 
         </dependencies>

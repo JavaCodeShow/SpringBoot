@@ -25,6 +25,6 @@ public class MQController {
         // destination formats: `topicName:tags
         rocketMQTemplate.syncSend("template-ms:ORDER_CANCEL", "orderId-111");
 
-        return CommonResult.success();
+        return CommonResult.success("");
     }
 }
