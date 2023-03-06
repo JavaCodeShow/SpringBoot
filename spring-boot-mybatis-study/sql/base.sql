@@ -4,7 +4,7 @@ Navicat MySQL Data Transfer
 Source Server         : jfTencentServer
 Source Server Version : 80028
 Source Host           : 1.15.226.249:3306
-Source Database       : jftest
+Source Database       : jfTest
 
 Target Server Type    : MYSQL
 Target Server Version : 80028

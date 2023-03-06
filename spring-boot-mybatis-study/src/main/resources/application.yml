@@ -3,14 +3,15 @@ spring:
   # 数据库配置
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://1.15.226.249:3306/jftest?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true&useSSL=false&tinyInt1isBit=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://1.15.226.249:3306/jfTest?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true&useSSL=false&tinyInt1isBit=false&serverTimezone=GMT%2B8
     driverClassName: com.mysql.cj.jdbc.Driver
     username: root
-    password: 123456
+    password: Qq112211
 
   redis:
     database: 0
     host: 1.15.226.249
+    password: mimazhaowoyao
     lettuce:
       pool:
         max-active: 8
