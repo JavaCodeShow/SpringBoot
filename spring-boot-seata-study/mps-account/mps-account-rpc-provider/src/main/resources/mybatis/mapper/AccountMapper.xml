@@ -5,8 +5,7 @@
 <mapper namespace="com.jf.mps.account.mapper.AccountMapper">
 
     <sql id="Base_Column_List">
-        id
-        ,money,name,is_deleted,create_time,update_time
+        id,money,name,is_deleted,create_time,update_time
     </sql>
 
     <!-- 根据id查询账户 -->

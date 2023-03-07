@@ -1,5 +1,6 @@
 package com.jf.mps.user.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jf.mps.account.info.AccountInfo;
 import com.jf.mps.account.proxy.AccountProxy;
 import com.jf.mps.user.domain.entity.UserEntity;
@@ -25,7 +26,8 @@ public class UserServiceImpl implements UserService {
     public UserEntity findById(String id) {
         UserEntity userEntity = userMapper.findById(id);
         AccountInfo accountInfo = accountProxy.findById(id);
-        System.out.println(userEntity);
+        log.info("userEntity={}", JSONObject.toJSONString(userEntity));
+        log.info("accountInfo={}", JSONObject.toJSONString(accountInfo));
         System.out.println(accountInfo);
         return userEntity;
     }
