@@ -17,5 +17,10 @@
             <groupId>com.jf</groupId>
             <artifactId>jf-common-model</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.jf</groupId>
+            <artifactId>jf-common-utils</artifactId>
+        </dependency>
     </dependencies>
 </project>

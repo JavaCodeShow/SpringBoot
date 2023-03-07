@@ -1,6 +1,7 @@
 package com.jf.mps.account.mapper;
 
 import com.jf.mps.account.domain.entity.AccountEntity;
+import com.jf.mps.account.param.AccountCreateOrUpdateParam;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -12,5 +13,5 @@ public interface AccountMapper {
 
     AccountEntity findById(String id);
 
-
+    void insert(AccountCreateOrUpdateParam param);
 }

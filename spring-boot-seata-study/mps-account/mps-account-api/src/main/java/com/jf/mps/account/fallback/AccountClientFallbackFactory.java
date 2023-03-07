@@ -1,10 +1,12 @@
 package com.jf.mps.account.fallback;
 
 import com.jf.model.enums.GlobalErrorCodeEnum;
+import com.jf.model.request.GenericRequest;
 import com.jf.model.request.IdRequest;
 import com.jf.model.response.CommonResult;
 import com.jf.mps.account.api.AccountApi;
 import com.jf.mps.account.client.AccountClient;
+import com.jf.mps.account.param.AccountCreateOrUpdateParam;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -24,6 +26,11 @@ public class AccountClientFallbackFactory implements FallbackFactory<AccountApi>
         return new AccountClient() {
             @Override
             public CommonResult findById(IdRequest request) {
+                return CommonResult.fail(GlobalErrorCodeEnum.RPC_TIME_OUT.getCode(), GlobalErrorCodeEnum.RPC_TIME_OUT.getMessage());
+            }
+
+            @Override
+            public CommonResult createOrUpdate(GenericRequest<AccountCreateOrUpdateParam> request) {
                 return CommonResult.fail(GlobalErrorCodeEnum.RPC_TIME_OUT.getCode(), GlobalErrorCodeEnum.RPC_TIME_OUT.getMessage());
             }
         };

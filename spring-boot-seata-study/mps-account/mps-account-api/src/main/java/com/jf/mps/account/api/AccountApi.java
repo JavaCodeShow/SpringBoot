@@ -1,8 +1,10 @@
 package com.jf.mps.account.api;
 
+import com.jf.model.request.GenericRequest;
 import com.jf.model.request.IdRequest;
 import com.jf.model.response.CommonResult;
 import com.jf.mps.account.info.AccountInfo;
+import com.jf.mps.account.param.AccountCreateOrUpdateParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -17,6 +19,6 @@ public interface AccountApi {
     @PostMapping(value = "/endpoint/v1/account/find_by_id", consumes = APPLICATION_JSON_VALUE)
     CommonResult<AccountInfo> findById(@RequestBody IdRequest request);
 
-    @PostMapping(value = "/endpoint/v1/account/find_by_id", consumes = APPLICATION_JSON_VALUE)
-    CommonResult<AccountInfo> createOrUpdate(@RequestBody IdRequest request);
+    @PostMapping(value = "/endpoint/v1/account/create_or_update", consumes = APPLICATION_JSON_VALUE)
+    CommonResult<String> createOrUpdate(@RequestBody GenericRequest<AccountCreateOrUpdateParam> request);
 }

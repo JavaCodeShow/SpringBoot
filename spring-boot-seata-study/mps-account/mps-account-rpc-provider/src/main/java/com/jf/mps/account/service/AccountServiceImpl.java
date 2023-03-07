@@ -3,6 +3,7 @@ package com.jf.mps.account.service;
 import com.jf.mps.account.domain.entity.AccountEntity;
 import com.jf.mps.account.info.AccountInfo;
 import com.jf.mps.account.mapper.AccountMapper;
+import com.jf.mps.account.param.AccountCreateOrUpdateParam;
 import com.jf.mps.account.service.impl.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -24,6 +25,12 @@ public class AccountServiceImpl implements AccountService {
         AccountInfo info = new AccountInfo();
         BeanUtils.copyProperties(entity, info);
         return info;
+    }
+
+    @Override
+    public String createOrUpdate(AccountCreateOrUpdateParam param) {
+        accountMapper.insert(param);
+        return param.getId();
     }
 
 
