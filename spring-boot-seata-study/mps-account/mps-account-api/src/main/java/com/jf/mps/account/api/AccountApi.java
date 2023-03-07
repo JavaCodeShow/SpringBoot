@@ -17,4 +17,6 @@ public interface AccountApi {
     @PostMapping(value = "/endpoint/v1/account/find_by_id", consumes = APPLICATION_JSON_VALUE)
     CommonResult<AccountInfo> findById(@RequestBody IdRequest request);
 
+    @PostMapping(value = "/endpoint/v1/account/find_by_id", consumes = APPLICATION_JSON_VALUE)
+    CommonResult<AccountInfo> createOrUpdate(@RequestBody IdRequest request);
 }
