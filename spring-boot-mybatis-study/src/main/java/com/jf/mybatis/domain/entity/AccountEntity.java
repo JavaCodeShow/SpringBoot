@@ -1,6 +1,6 @@
 package com.jf.mybatis.domain.entity;
 
-import com.jf.model.BaseEntity;
+import com.jf.model.entity.BaseEntity;
 import lombok.Data;
 import lombok.ToString;
 

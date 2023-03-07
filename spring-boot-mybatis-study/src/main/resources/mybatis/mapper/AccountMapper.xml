@@ -18,14 +18,12 @@
 
     <insert id="insert" parameterType="com.jf.mybatis.domain.entity.AccountEntity">
         insert into account
-            (id, money, name)
-        values (#{id}, #{money}, #{name})
+            (id, money, name,is_deleted,create_time,update_time)
+        values (#{id}, #{money}, #{name},#{isDeleted},#{createTime},#{updateTime})
     </insert>
 
     <update id="delete">
-        update account
-        set is_deleted = 1
-        where id = #{id}
+        update account set is_deleted = 1 where id = #{id}
     </update>
 
     <update id="updateByPrimaryKey" parameterType="com.jf.mybatis.domain.entity.AccountEntity">

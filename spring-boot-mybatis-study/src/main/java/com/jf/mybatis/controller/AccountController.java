@@ -26,8 +26,8 @@ public class AccountController {
 
     @RequestMapping("/account/{id}")
     @MethodLogger(apiId = "61dbe11b343ac83c788ff2e3")
-    public CommonResult<AccountEntity> getAccountById(@PathVariable String id) {
-        AccountEntity accountEntity = accountService.getAccountById(id);
+    public CommonResult<AccountEntity> findById(@PathVariable String id) {
+        AccountEntity accountEntity = accountService.findById(id);
         return CommonResult.success(accountEntity);
     }
 
@@ -48,12 +48,12 @@ public class AccountController {
     @RequestMapping("/account/transAccount")
     @MethodLogger(apiId = "61dbe11b343ac83c788ff233")
     public List<AccountEntity> transAccount() {
-        AccountEntity a1 = accountService.getAccountById("1");
-        AccountEntity a2 = accountService.getAccountById("2");
+        AccountEntity a1 = accountService.findById("1");
+        AccountEntity a2 = accountService.findById("2");
         accountService.transAccount(a1, a2, 1);
         ArrayList<AccountEntity> accountEntityList = new ArrayList<>();
-        a1 = accountService.getAccountById("1");
-        a2 = accountService.getAccountById("2");
+        a1 = accountService.findById("1");
+        a2 = accountService.findById("2");
         accountEntityList.add(a1);
         accountEntityList.add(a2);
         return accountEntityList;

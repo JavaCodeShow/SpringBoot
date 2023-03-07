@@ -28,7 +28,7 @@ public class AccountService {
     @Autowired
     private GlobalCacheManager globalCacheManager;
 
-    public AccountEntity getAccountById(String id) {
+    public AccountEntity findById(String id) {
         String value = globalCacheManager.get(id);
         if (StringUtils.isNotBlank(value)) {
             return JSONObject.parseObject(value, AccountEntity.class);
@@ -60,6 +60,9 @@ public class AccountService {
         accountEntity.setId(param.getId());
         accountEntity.setMoney(param.getMoney());
         accountEntity.setName(param.getName());
+        accountEntity.setIsDeleted(param.getIsDeleted());
+        accountEntity.setCreateTime(param.getCreateTime());
+        accountEntity.setUpdateTime(param.getUpdateTime());
         accountMapper.insert(accountEntity);
         return accountEntity.getId();
     }
