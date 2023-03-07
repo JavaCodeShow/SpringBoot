@@ -5,8 +5,7 @@
 <mapper namespace="com.jf.mps.user.mapper.UserMapper">
 
     <sql id="Base_Column_List">
-        id
-        ,name,phone,money,password,is_deleted,create_time,update_time
+        id,name,phone,email,is_deleted,create_time,update_time
     </sql>
 
     <!-- 根据id查询账户 -->
@@ -16,5 +15,11 @@
         from user
         where id = #{id}
     </select>
+
+    <update id="updateNameById">
+        update user
+        set name = #{name}
+        where id = #{id}
+    </update>
 
 </mapper>

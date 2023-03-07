@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.math.BigDecimal;
-
 /**
  * @author 江峰
  * @create 2020-03-22 11:46
@@ -19,7 +17,6 @@ public class UserEntity extends BaseEntity {
     private String id;
     private String name;
     private String phone;
-    private BigDecimal money;
-    private String password;
+    private String email;
 
 }

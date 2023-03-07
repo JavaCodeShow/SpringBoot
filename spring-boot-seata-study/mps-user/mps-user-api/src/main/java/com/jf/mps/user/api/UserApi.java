@@ -1,8 +1,10 @@
 package com.jf.mps.user.api;
 
+import com.jf.model.request.GenericRequest;
 import com.jf.model.request.IdRequest;
 import com.jf.model.response.CommonResult;
 import com.jf.mps.user.info.UserInfo;
+import com.jf.mps.user.param.UpdateNameParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -16,5 +18,9 @@ public interface UserApi {
 
     @PostMapping(value = "/endpoint/v1/user/find_by_id", consumes = APPLICATION_JSON_VALUE)
     CommonResult<UserInfo> findById(@RequestBody IdRequest request);
+
+
+    @PostMapping(value = "/endpoint/v1/user/update_name_by_id", consumes = APPLICATION_JSON_VALUE)
+    CommonResult<Boolean> updateNameById(@RequestBody GenericRequest<UpdateNameParam> request);
 
 }

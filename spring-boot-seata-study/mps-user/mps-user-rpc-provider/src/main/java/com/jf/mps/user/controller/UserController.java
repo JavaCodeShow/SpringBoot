@@ -1,11 +1,13 @@
 package com.jf.mps.user.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
+import com.jf.model.request.GenericRequest;
 import com.jf.model.request.IdRequest;
 import com.jf.model.response.CommonResult;
 import com.jf.mps.user.api.UserApi;
 import com.jf.mps.user.domain.entity.UserEntity;
 import com.jf.mps.user.info.UserInfo;
+import com.jf.mps.user.param.UpdateNameParam;
 import com.jf.mps.user.service.impl.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -29,5 +31,11 @@ public class UserController implements UserApi {
         return CommonResult.success(info);
     }
 
+    @MethodLogger(apiId = "6221deeb0a849a5acc9c2222")
+    @Override
+    public CommonResult<Boolean> updateNameById(GenericRequest<UpdateNameParam> request) {
+        userService.updateNameById(request.getParam());
+        return CommonResult.success(Boolean.TRUE);
+    }
 
 }

@@ -5,6 +5,7 @@ import com.jf.mps.account.info.AccountInfo;
 import com.jf.mps.account.proxy.AccountProxy;
 import com.jf.mps.user.domain.entity.UserEntity;
 import com.jf.mps.user.mapper.UserMapper;
+import com.jf.mps.user.param.UpdateNameParam;
 import com.jf.mps.user.service.impl.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,11 @@ public class UserServiceImpl implements UserService {
         log.info("accountInfo={}", JSONObject.toJSONString(accountInfo));
         System.out.println(accountInfo);
         return userEntity;
+    }
+
+    @Override
+    public void updateNameById(UpdateNameParam param) {
+        userMapper.updateNameById(param.getId(), param.getName());
     }
 
 }

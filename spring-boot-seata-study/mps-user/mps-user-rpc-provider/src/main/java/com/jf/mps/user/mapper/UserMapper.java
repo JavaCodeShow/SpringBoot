@@ -12,5 +12,5 @@ public interface UserMapper {
 
     UserEntity findById(String id);
 
-
+    int updateNameById(String id, String name);
 }
