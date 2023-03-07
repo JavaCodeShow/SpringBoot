@@ -55,3 +55,7 @@ build/
 
 # --- JRebel
 /**/rebel.xml
+
+# --- maven
+/**/.flattened-pom.xml
+
