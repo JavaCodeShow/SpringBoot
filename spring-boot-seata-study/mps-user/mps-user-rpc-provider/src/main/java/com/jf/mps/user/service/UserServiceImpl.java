@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import java.math.BigDecimal;
 
@@ -39,7 +41,6 @@ public class UserServiceImpl implements UserService {
         return userEntity;
     }
 
-
     @Override
     @Transactional
     @GlobalTransactional
@@ -50,6 +51,22 @@ public class UserServiceImpl implements UserService {
         createOrUpdateParam.setUserId(IdGenerator.getId());
         createOrUpdateParam.setMoney(new BigDecimal(111));
         accountProxy.createOrUpdate(createOrUpdateParam);
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+            @Override
+            public void afterCommit() {
+                // 事务提交后需要执行的业务逻辑: 发消息, 日志...
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+            }
+        });
         int i = 1 / 0;
     }
 

@@ -10,6 +10,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import java.util.Objects;
 
@@ -36,6 +38,24 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public String createOrUpdate(AccountCreateOrUpdateParam param) {
         accountMapper.insert(param);
+        // TransactionSynchronizationAdapter是TransactionSynchronization的默认实现
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+            @Override
+            public void afterCommit() {
+                // 事务提交后需要执行的业务逻辑: 发消息, 日志...
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+                System.out.println("事务提交了");
+            }
+        });
+
         return param.getId();
     }
 

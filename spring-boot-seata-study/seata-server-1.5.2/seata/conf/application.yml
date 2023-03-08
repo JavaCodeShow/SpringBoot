@@ -28,7 +28,7 @@ seata:
       group: SEATA_GROUP
       username: nacos
       password: nacos
-      data-id: seataNew
+      data-id: seataServer.properties
   registry:
     type: nacos
     nacos:
