@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 /**
  * @author 江峰
  */
@@ -24,7 +26,9 @@ public class AccountServiceImpl implements AccountService {
     public AccountInfo findById(String id) {
         AccountEntity entity = accountMapper.findById(id);
         AccountInfo info = new AccountInfo();
-        BeanUtils.copyProperties(entity, info);
+        if (Objects.nonNull(entity)) {
+            BeanUtils.copyProperties(entity, info);
+        }
         return info;
     }
 

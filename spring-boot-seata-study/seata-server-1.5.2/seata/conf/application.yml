@@ -1,38 +1,48 @@
 server:
   port: 7091
-
 spring:
   application:
-    name: seata-server
-
+    name: seata-new-uat
 logging:
   config: classpath:logback-spring.xml
   file:
     path: ${user.home}/logs/seata
-  extend:
-    logstash-appender:
-      destination: 127.0.0.1:4560
-    kafka-appender:
-      bootstrap-servers: 127.0.0.1:9092
-      topic: logback_to_logstash
-
+  # 注释掉下面扩展
+#  extend:
+#    logstash-appender:
+#      destination: 127.0.0.1:4560
+#    kafka-appender:
+#      bootstrap-servers: 127.0.0.1:9092
+#      topic: logback_to_logstash
+# 控制台用户名密码
 console:
   user:
     username: seata
     password: seata
-
 seata:
   config:
-    # support: nacos, consul, apollo, zk, etcd3
-    type: file
+    type: nacos
+    nacos:
+      server-addr: 1.15.226.249:8848
+      namespace: seata
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+      data-id: seataNew
   registry:
-    # support: nacos, eureka, redis, zk, consul, etcd3, sofa
-    type: file
+    type: nacos
+    nacos:
+      server-addr: 1.15.226.249:8848
+      namespace: seata
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+      application: seata-new-uat
+      cluster: default
   store:
     # support: file 、 db 、 redis
-    mode: file
-#  server:
-#    service-port: 8091 #If not configured, the default is '${server.port} + 1000'
+    mode: db
+  # 后面server或者client配置都不用配，因为配置了nacos作为配置中心。security得配，不配报错
   security:
     secretKey: SeataSecretKey0c382ef121d778043159209298fd40bf3850a017
     tokenValidityInMilliseconds: 1800000

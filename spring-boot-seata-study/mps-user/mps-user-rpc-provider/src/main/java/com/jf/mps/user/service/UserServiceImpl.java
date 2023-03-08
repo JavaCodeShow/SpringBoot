@@ -1,6 +1,7 @@
 package com.jf.mps.user.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.jf.common.utils.id.IdGenerator;
 import com.jf.mps.account.info.AccountInfo;
 import com.jf.mps.account.param.AccountCreateOrUpdateParam;
 import com.jf.mps.account.proxy.AccountProxy;
@@ -8,6 +9,7 @@ import com.jf.mps.user.domain.entity.UserEntity;
 import com.jf.mps.user.mapper.UserMapper;
 import com.jf.mps.user.param.UpdateNameParam;
 import com.jf.mps.user.service.impl.UserService;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,13 +39,15 @@ public class UserServiceImpl implements UserService {
         return userEntity;
     }
 
-    @Transactional
+
     @Override
+    @Transactional
+    @GlobalTransactional
     public void updateNameById(UpdateNameParam param) {
         userMapper.updateNameById(param.getId(), param.getName());
         AccountCreateOrUpdateParam createOrUpdateParam = new AccountCreateOrUpdateParam();
-        createOrUpdateParam.setId(param.getName());
-        createOrUpdateParam.setUserId("111");
+        createOrUpdateParam.setId(IdGenerator.getId());
+        createOrUpdateParam.setUserId(IdGenerator.getId());
         createOrUpdateParam.setMoney(new BigDecimal(111));
         accountProxy.createOrUpdate(createOrUpdateParam);
         int i = 1 / 0;
