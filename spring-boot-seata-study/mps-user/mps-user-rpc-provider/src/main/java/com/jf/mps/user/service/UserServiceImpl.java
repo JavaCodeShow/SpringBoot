@@ -9,6 +9,7 @@ import com.jf.mps.user.domain.entity.UserEntity;
 import com.jf.mps.user.mapper.UserMapper;
 import com.jf.mps.user.param.UpdateNameParam;
 import com.jf.mps.user.service.impl.UserService;
+import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,19 +51,14 @@ public class UserServiceImpl implements UserService {
         createOrUpdateParam.setId(IdGenerator.getId());
         createOrUpdateParam.setUserId(IdGenerator.getId());
         createOrUpdateParam.setMoney(new BigDecimal(111));
+        String xid = RootContext.getXID();
+        System.out.println(xid);
+        System.out.println(xid);
         accountProxy.createOrUpdate(createOrUpdateParam);
         TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
             @Override
             public void afterCommit() {
                 // 事务提交后需要执行的业务逻辑: 发消息, 日志...
-                System.out.println("事务提交了");
-                System.out.println("事务提交了");
-                System.out.println("事务提交了");
-                System.out.println("事务提交了");
-                System.out.println("事务提交了");
-                System.out.println("事务提交了");
-                System.out.println("事务提交了");
-                System.out.println("事务提交了");
                 System.out.println("事务提交了");
                 System.out.println("事务提交了");
             }
