@@ -12,12 +12,16 @@ import com.jf.mps.user.service.impl.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
 @Slf4j
 public class UserController implements UserApi {
+
+    @Value("${seata.enable-auto-data-source-proxy}")
+    private String name;
 
     @Autowired
     private UserService userService;

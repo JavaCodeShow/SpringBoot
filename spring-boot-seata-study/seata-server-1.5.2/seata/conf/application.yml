@@ -2,7 +2,7 @@ server:
   port: 7091
 spring:
   application:
-    name: seata-new-uat
+    name: seata-server
 logging:
   config: classpath:logback-spring.xml
   file:
@@ -37,7 +37,7 @@ seata:
       group: SEATA_GROUP
       username: nacos
       password: nacos
-      application: seata-new-uat
+      application: seata-server
       cluster: default
   store:
     # support: file 、 db 、 redis

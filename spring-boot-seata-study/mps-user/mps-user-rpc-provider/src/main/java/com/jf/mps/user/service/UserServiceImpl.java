@@ -46,20 +46,17 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @GlobalTransactional
     public void updateNameById(UpdateNameParam param) {
+        log.info("Seata全局事务id=================>{}", RootContext.getXID());
         userMapper.updateNameById(param.getId(), param.getName());
         AccountCreateOrUpdateParam createOrUpdateParam = new AccountCreateOrUpdateParam();
         createOrUpdateParam.setId(IdGenerator.getId());
         createOrUpdateParam.setUserId(IdGenerator.getId());
         createOrUpdateParam.setMoney(new BigDecimal(111));
-        String xid = RootContext.getXID();
-        System.out.println(xid);
-        System.out.println(xid);
         accountProxy.createOrUpdate(createOrUpdateParam);
         TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
             @Override
             public void afterCommit() {
                 // 事务提交后需要执行的业务逻辑: 发消息, 日志...
-                System.out.println("事务提交了");
                 System.out.println("事务提交了");
             }
         });

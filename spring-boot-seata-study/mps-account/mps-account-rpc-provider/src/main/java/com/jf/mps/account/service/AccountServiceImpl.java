@@ -38,9 +38,7 @@ public class AccountServiceImpl implements AccountService {
     @Transactional
     @Override
     public String createOrUpdate(AccountCreateOrUpdateParam param) {
-        String xid = RootContext.getXID();
-        System.out.println(xid);
-        System.out.println(xid);
+        log.info("Seata全局事务id=================>{}", RootContext.getXID());
         accountMapper.insert(param);
         // TransactionSynchronizationAdapter是TransactionSynchronization的默认实现
         TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
@@ -48,10 +46,8 @@ public class AccountServiceImpl implements AccountService {
             public void afterCommit() {
                 // 事务提交后需要执行的业务逻辑: 发消息, 日志...
                 System.out.println("事务提交了");
-                System.out.println("事务提交了");
             }
         });
-
         return param.getId();
     }
 
