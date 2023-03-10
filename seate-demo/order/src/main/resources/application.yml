@@ -1,0 +1,44 @@
+server:
+  port: 5001
+spring:
+  application:
+    name: seata-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 1.15.226.249:8848
+        username: nacos
+        password: nacos
+        namespace: seata
+        group: SEATA_GROUP
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://1.15.226.249:3306/order?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true&useSSL=false&tinyInt1isBit=false&serverTimezone=GMT%2B8
+    username: root
+    password: Qq112211
+
+seata:
+  application-id: ${spring.application.name}
+  # 这里的配置对应 seataServer.properties 中的 service.vgroupMapping.storage-service-group=default
+  enable-auto-data-source-proxy: true
+  config:
+    type: nacos
+    nacos:
+      server-addr: 1.15.226.249:8848
+      username: nacos
+      password: nacos
+      namespace: seata
+      # 微服务必须在一个组，否则服务发现不了，但Seata-server 可以在不同的组中
+      group: SEATA_GROUP
+      dataId: "seataServer.properties"
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 1.15.226.249:8848
+      group: SEATA_GROUP
+      namespace: seata
+      username: nacos
+      password: nacos
+      # 微服务必须在一个组，否则服务发现不了，但Seata-server 可以在不同的组中
