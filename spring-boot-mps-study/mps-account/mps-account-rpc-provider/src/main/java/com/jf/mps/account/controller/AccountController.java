@@ -1,0 +1,40 @@
+package com.jf.mps.account.controller;
+
+import com.jf.model.request.GenericRequest;
+import com.jf.model.request.IdRequest;
+import com.jf.model.response.CommonResult;
+import com.jf.mps.account.api.AccountApi;
+import com.jf.mps.account.info.AccountInfo;
+import com.jf.mps.account.param.AccountCreateOrUpdateParam;
+import com.jf.mps.account.service.impl.AccountService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * 描述:
+ *
+ * @author: 江峰
+ * @create: 2021-03-25 4:17
+ * @since: 2.22.1
+ */
+@RestController
+@Slf4j
+public class AccountController implements AccountApi {
+
+    @Autowired
+    private AccountService accountService;
+
+    public CommonResult<AccountInfo> findById(IdRequest request) {
+        log.info("还不错啊");
+        AccountInfo info = accountService.findById(request.getId());
+        return CommonResult.success(info);
+    }
+
+    @Override
+    public CommonResult<String> createOrUpdate(GenericRequest<AccountCreateOrUpdateParam> request) {
+        String id = accountService.createOrUpdate(request.getParam());
+        return CommonResult.success(id);
+    }
+
+}
