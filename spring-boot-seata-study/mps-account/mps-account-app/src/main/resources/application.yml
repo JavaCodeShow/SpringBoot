@@ -1,3 +1,62 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: mps-account
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        namespace: dev
+        server-addr: 1.15.226.249:8848
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://1.15.226.249:3306/jfTest2?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true&useSSL=false&tinyInt1isBit=false&serverTimezone=GMT%2B8
+    username: root
+    password: Qq112211
+
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 10000
+  threadpool:
+    default:
+      allowMaximumSizeToDivergeFromCoreSize: true
+      coreSize: 16
+      maxQueueSize: 128
+      maximumSize: 48
+      queueSizeRejectionThreshold: 128
+
+ribbon:
+  ConnectTimeout: 3000
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+  ReadTimeout: 3000
+  ServerListRefreshInterval: 2000
+
+
+logging:
+  config: classpath:logback-spring.xml
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/**/*Mapper.xml
+
 # Seata配置
 seata:
   application-id: ${spring.application.name}
