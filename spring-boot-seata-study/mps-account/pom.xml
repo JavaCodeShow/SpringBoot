@@ -54,18 +54,16 @@
                 <version>${jf-common-aspect.version}</version>
             </dependency>
 
-            <!-- distribute-ms-version -->
-            <dependency>
-                <groupId>com.jf</groupId>
-                <artifactId>mps-account-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <!-- distribute-ms-version -->
             <dependency>
                 <groupId>com.jf</groupId>
                 <artifactId>jf-common-model</artifactId>
                 <version>${jf-common-model.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.jf</groupId>
+                <artifactId>mps-account-common</artifactId>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>

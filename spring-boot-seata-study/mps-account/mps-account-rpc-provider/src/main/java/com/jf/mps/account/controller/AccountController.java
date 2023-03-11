@@ -30,7 +30,6 @@ public class AccountController implements AccountApi {
 
     @MethodLogger(apiId = "6221deeb0a849a5acc9cb183")
     public CommonResult<AccountInfo> findById(IdRequest request) {
-        log.info("还不错啊");
         AccountInfo info = accountService.findById(request.getId());
         return CommonResult.success(info);
     }
