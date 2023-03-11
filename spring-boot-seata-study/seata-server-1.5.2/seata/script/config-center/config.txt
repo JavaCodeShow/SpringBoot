@@ -66,7 +66,7 @@ tcc.fence.cleanPeriod=1h
 log.exceptionRate=100
 
 #Transaction storage configuration, only for the server. The file, DB, and redis configuration values are optional.
-store.mode=db
+store.mode=file
 store.lock.mode=file
 store.session.mode=file
 #Used for password encryption
