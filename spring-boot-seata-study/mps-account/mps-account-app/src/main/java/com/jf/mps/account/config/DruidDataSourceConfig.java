@@ -30,13 +30,5 @@ public class DruidDataSourceConfig {
         return factoryBean.getObject();
     }
 
-    // @Bean
-    // public SqlSessionFactory sqlSessionFactoryBean(DataSourceProxy dataSourceProxy) throws Exception {
-    //     MybatisSqlSessionFactoryBean sqlSessionFactoryBean = new MybatisSqlSessionFactoryBean();
-    //     sqlSessionFactoryBean.setDataSource(dataSourceProxy);
-    //     sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:/mapper/*Mapper.xml"));
-    //     sqlSessionFactoryBean.setDataSource(dataSourceProxy);
-    //     return sqlSessionFactoryBean.getObject();
-    // }
 
 }
