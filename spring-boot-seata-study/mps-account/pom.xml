@@ -15,6 +15,7 @@
     </parent>
 
     <modules>
+        <module>mps-account-app</module>
         <module>mps-account-common</module>
         <module>mps-account-rpc-provider</module>
         <module>mps-account-api</module>

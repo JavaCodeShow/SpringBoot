@@ -15,6 +15,7 @@
     </parent>
 
     <modules>
+        <module>mps-user-app</module>
         <module>mps-user-common</module>
         <module>mps-user-rpc-provider</module>
         <module>mps-user-api</module>
