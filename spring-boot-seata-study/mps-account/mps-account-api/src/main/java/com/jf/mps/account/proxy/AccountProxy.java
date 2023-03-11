@@ -1,7 +1,7 @@
 package com.jf.mps.account.proxy;
 
 import com.alibaba.fastjson.JSON;
-import com.jf.common.aspect.exception.BizException;
+import com.jf.model.exception.BizException;
 import com.jf.model.request.GenericRequest;
 import com.jf.model.request.IdRequest;
 import com.jf.model.response.CommonResult;
