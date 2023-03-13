@@ -5,7 +5,7 @@
 <mapper namespace="com.jf.mybatis.mapper.AccountMapper">
 
     <sql id="Base_Column_List">
-        id,money,name,is_deleted,create_time,update_time
+        id,money,user_id,is_deleted,create_time,update_time
     </sql>
 
     <!-- 根据id查询账户 -->
@@ -17,19 +17,20 @@
     </select>
 
     <insert id="insert" parameterType="com.jf.mybatis.domain.entity.AccountEntity">
-        insert into account
-            (id, money, name,is_deleted,create_time,update_time)
-        values (#{id}, #{money}, #{name},#{isDeleted},#{createTime},#{updateTime})
+        insert into account (id, money, user_id)
+        values (#{id}, #{money}, #{userId})
     </insert>
 
     <update id="delete">
-        update account set is_deleted = 1 where id = #{id}
+        update account
+        set is_deleted = 1
+        where id = #{id}
     </update>
 
     <update id="updateByPrimaryKey" parameterType="com.jf.mybatis.domain.entity.AccountEntity">
         update account
         set money = #{money},
-            name  = #{name}
+            user_id  = #{userId}
         where id = #{id}
     </update>
 
@@ -39,34 +40,5 @@
         where id = #{id}
     </update>
 
-    <update id="update">
-        update account
-        set money = #{money},
-            name  = #{name}
-        where id = #{id}
-    </update>
 
-    <!-- 根据id查询账户 -->
-    <select id="getAccountByMoneyAndName" parameterType="com.jf.mybatis.domain.entity.AccountEntity"
-            resultType="com.jf.mybatis.domain.entity.AccountEntity">
-        select * from account
-        <where>
-            <if test="name != null and name != '' ">
-                and name = #{name}
-            </if>
-            <if test="money != null and money !='' ">
-                and money = #{money}
-            </if>
-        </where>
-    </select>
-
-    <!-- 根据moneys查询账户 -->
-    <select id="getAccountByMoneys" parameterType="int" resultType="com.jf.mybatis.domain.entity.AccountEntity">
-        select * from account
-        <where>
-            <foreach collection="array" item="money" open="money in (" close=")" separator=",">
-                #{money}
-            </foreach>
-        </where>
-    </select>
 </mapper>

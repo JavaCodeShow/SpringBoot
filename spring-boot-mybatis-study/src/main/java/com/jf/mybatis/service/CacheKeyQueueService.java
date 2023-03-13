@@ -41,31 +41,24 @@ public class CacheKeyQueueService {
      */
     public void syncDeleteCache(String cacheKeyId) {
         String cacheKeyQueueId = IdGenerator.getId();
-        boolean synchronizationActive = TransactionSynchronizationManager.isSynchronizationActive();
-        if (synchronizationActive) {
-            TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
 
-                @Override
-                public void beforeCommit(boolean flag) {
-                    insertCacheKeyQueue(cacheKeyQueueId, cacheKeyId);
-                }
+            @Override
+            public void beforeCommit(boolean flag) {
+                insertCacheKeyQueue(cacheKeyQueueId, cacheKeyId);
+            }
 
-                @Override
-                public void afterCommit() {
-                    delCacheAndDeleteCacheKeyQueue(cacheKeyId, cacheKeyQueueId);
-                }
+            @Override
+            public void afterCommit() {
+                delCacheAndDeleteCacheKeyQueue(cacheKeyId, cacheKeyQueueId);
+            }
 
-                @Override
-                public void afterCompletion(int status) {
-                    // 锁的释放处理
-                    System.out.println("事务完成(提交或回滚)后处理 " + status);
-                }
-            });
-        } else {
-            insertCacheKeyQueue(cacheKeyQueueId, cacheKeyId);
-            globalCacheManager.del(cacheKeyId);
-            delCacheAndDeleteCacheKeyQueue(cacheKeyId, cacheKeyQueueId);
-        }
+            @Override
+            public void afterCompletion(int status) {
+                // 锁的释放处理
+                log.info("事务完成(提交或回滚)后处理,status={}", status);
+            }
+        });
     }
 
     /**

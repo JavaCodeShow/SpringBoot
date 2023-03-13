@@ -20,9 +20,5 @@ public interface AccountMapper {
 
     Integer updateMoneyById(AccountEntity accountEntity);
 
-    List<AccountEntity> getAccountByMoneyAndName(AccountEntity accountEntity);
-
-    List<AccountEntity> getAccountByMoneys(int[] moneys);
-
-    int update(AccountEntity accountEntity);
+    int updateByPrimaryKey(AccountEntity accountEntity);
 }

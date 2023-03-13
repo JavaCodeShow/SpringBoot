@@ -1,6 +1,7 @@
 package com.jf.mybatis.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
+import com.jf.model.request.GenericRequest;
 import com.jf.model.response.CommonResult;
 import com.jf.mybatis.domain.entity.AccountEntity;
 import com.jf.mybatis.domain.param.account.AccountCreateParam;
@@ -33,15 +34,15 @@ public class AccountController {
 
     @PostMapping("/account/create")
     @MethodLogger(apiId = "61dbe11b343ac83c788ff2e3")
-    public CommonResult<Integer> createAccount(@RequestBody AccountCreateParam param) {
-        Integer id = accountService.createAccount(param);
+    public CommonResult<Integer> createAccount(@RequestBody GenericRequest<AccountCreateParam> request) {
+        Integer id = accountService.createAccount(request.getParam());
         return CommonResult.success(id);
     }
 
     @PutMapping("/account/update")
     @MethodLogger(apiId = "61dbe11b343ac83c788ff222")
-    public CommonResult<Boolean> updateAccount(@RequestBody AccountUpdateParam param) {
-        accountService.updateAccount(param);
+    public CommonResult<Boolean> updateAccount(@RequestBody GenericRequest<AccountUpdateParam> request) {
+        accountService.updateAccount(request.getParam());
         return CommonResult.success(Boolean.TRUE);
     }
 
