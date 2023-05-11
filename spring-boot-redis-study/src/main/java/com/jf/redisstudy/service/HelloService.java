@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -15,21 +16,33 @@ public class HelloService {
     List<UserDTO> list = new ArrayList<>();
 
     public void hello() {
+        String name = getRandomName("张三");
+        fun1();
+    }
 
-        log.info("开始创建对象了。" + Thread.currentThread().getName());
-        for (int i = 0; i < 10000000; i++) {
-            list.add(UserDTO.getUserOne());
-        }
-        System.out.println(list.size());
-        System.out.println(list.get(0));
-        log.info("开始睡觉了。" + Thread.currentThread().getName());
-
+    private String getRandomName(String name) {
         try {
-            TimeUnit.MINUTES.sleep(10);
+            TimeUnit.MILLISECONDS.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        log.info("睡觉结束了");
+        return name + new Random().nextInt(10);
     }
 
+    private void fun1() {
+        try {
+            TimeUnit.MILLISECONDS.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        fun11();
+    }
+
+    private void fun11() {
+        try {
+            TimeUnit.MILLISECONDS.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

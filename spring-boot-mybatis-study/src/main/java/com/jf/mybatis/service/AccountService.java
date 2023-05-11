@@ -29,12 +29,12 @@ public class AccountService {
     private GlobalCacheManager globalCacheManager;
 
     public AccountEntity findById(String id) {
-        String value = globalCacheManager.get(id);
-        if (StringUtils.isNotBlank(value)) {
-            return JSONObject.parseObject(value, AccountEntity.class);
-        }
+        // String value = globalCacheManager.get(id);
+        // if (StringUtils.isNotBlank(value)) {
+        //     return JSONObject.parseObject(value, AccountEntity.class);
+        // }
         AccountEntity accountEntity = accountMapper.findById(id);
-        globalCacheManager.set(id, JSONObject.toJSONString(accountEntity));
+        // globalCacheManager.set(id, JSONObject.toJSONString(accountEntity));
         return accountEntity;
     }
 

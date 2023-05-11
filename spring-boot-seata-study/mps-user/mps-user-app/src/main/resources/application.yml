@@ -17,32 +17,43 @@ spring:
     username: root
     password: mimazhaowoyao
 
+# hystrix
+hystrix:
+  threadpool:
+    default:
+      coreSize: 16  # 默认使用CPU核数*2
+      maximumSize: 48
+      allowMaximumSizeToDivergeFromCoreSize: true # 允许动态扩展线程池中核心线程数到最大线程数，Greenwich下才生效
+      maxQueueSize: 128  # 使用LinkedBlockingQueue，默认队列长度
+      queueSizeRejectionThreshold: 128 # 拒绝阈值设置成跟队列长度一致
+  command:
+    default: # 通用的隔离策略配置
+      execution:
+        isolation:
+          strategy: SEMAPHORE #选择 semaphore 配置
+          semaphore:
+            maxConcurrentRequests: 1000 #最大并发请求信号量，预留冗余
+          thread:
+            timeoutInMilliseconds: 10000 #线程池隔离模式下该参数无用处
+      fallback:
+        isolation:
+          semaphore:
+            maxConcurrentRequests: 1000 #最大并发fallback 消耗量， 预留冗余
+
+# feign
 feign:
   hystrix:
     enabled: true
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          strategy: THREAD
-          thread:
-            timeoutInMilliseconds: 10000
-  threadpool:
-    default:
-      allowMaximumSizeToDivergeFromCoreSize: true
-      coreSize: 16
-      maxQueueSize: 128
-      maximumSize: 48
-      queueSizeRejectionThreshold: 128
-
+  okhttp:
+    enabled: true
+# ribbon
 ribbon:
-  ConnectTimeout: 3000
-  MaxAutoRetries: 1
-  MaxAutoRetriesNextServer: 1
-  OkToRetryOnAllOperations: false
-  ReadTimeout: 3000
-  ServerListRefreshInterval: 2000
+  MaxAutoRetries: 0 # Max number of retries on the same server (excluding the first try)
+  MaxAutoRetriesNextServer: 1 # Max number of next servers to retry (excluding the first server)
+  OkToRetryOnAllOperations: false  # Whether all operations can be retried for this client
+  ServerListRefreshInterval: 2000  # Interval to refresh the server list from the source
+  ConnectTimeout: 1000  # Connect timeout used by Apache HttpClient
+  ReadTimeout: 3000  # Read timeout used by Apache HttpClient
 
 
 logging:

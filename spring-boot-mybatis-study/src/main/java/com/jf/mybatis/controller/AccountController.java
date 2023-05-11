@@ -29,6 +29,10 @@ public class AccountController {
     @MethodLogger(apiId = "61dbe11b343ac83c788ff2e3")
     public CommonResult<AccountEntity> findById(@PathVariable String id) {
         AccountEntity accountEntity = accountService.findById(id);
+        log.debug("hello");
+        log.info("hello");
+        log.warn("hello");
+        log.error("hello");
         return CommonResult.success(accountEntity);
     }
 

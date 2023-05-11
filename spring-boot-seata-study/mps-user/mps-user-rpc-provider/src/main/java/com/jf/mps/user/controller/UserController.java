@@ -26,7 +26,7 @@ public class UserController implements UserApi {
     @Autowired
     private UserService userService;
 
-    @MethodLogger(apiId = "6221deeb0a849a5acc9cb183")
+    @MethodLogger(apiId = "6221deeb0a849a5acc9cb100")
     public CommonResult<UserInfo> findById(IdRequest request) {
         log.info("还不错啊");
         UserEntity userEntity = userService.findById(request.getId());
