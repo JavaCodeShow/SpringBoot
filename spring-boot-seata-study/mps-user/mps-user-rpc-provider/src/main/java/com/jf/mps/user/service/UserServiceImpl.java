@@ -15,6 +15,8 @@ import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronizationAdapter;
@@ -35,11 +37,20 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private AccountProxy accountProxy;
 
+    @Autowired
+    @Qualifier("commonTaskExecutor")
+    public TaskExecutor commonTaskExecutor;
+
+
     public UserEntity findById(String id) {
         UserEntity userEntity = userMapper.findById(id);
-        AccountInfo accountInfo = accountProxy.findById(id);
+        commonTaskExecutor.execute(() -> {
+            AccountInfo accountInfo = accountProxy.findById(id);
+            log.info(MdcTraceIdUtils.getOrGenTraceId());
+            log.info("accountInfo={}", JSONObject.toJSONString(accountInfo));
+        });
+
         log.info("userEntity={}", JSONObject.toJSONString(userEntity));
-        log.info("accountInfo={}", JSONObject.toJSONString(accountInfo));
         log.info(MdcTraceIdUtils.getOrGenTraceId());
         log.info(MfLocaleHelper.getLang());
         // System.out.println(accountInfo);
