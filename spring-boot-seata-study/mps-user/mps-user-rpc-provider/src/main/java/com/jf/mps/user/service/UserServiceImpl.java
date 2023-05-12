@@ -1,8 +1,8 @@
 package com.jf.mps.user.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.jf.common.trace.core.MfLocaleHelper;
-import com.jf.common.trace.utils.MdcTraceIdUtils;
+import com.jf.common.trace.core.LangHelper;
+import com.jf.common.trace.utils.MdcUtils;
 import com.jf.common.utils.id.IdGenerator;
 import com.jf.mps.account.info.AccountInfo;
 import com.jf.mps.account.param.AccountCreateOrUpdateParam;
@@ -46,13 +46,13 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = userMapper.findById(id);
         commonTaskExecutor.execute(() -> {
             AccountInfo accountInfo = accountProxy.findById(id);
-            log.info(MdcTraceIdUtils.getOrGenTraceId());
+            log.info(MdcUtils.getOrGenTraceId());
             log.info("accountInfo={}", JSONObject.toJSONString(accountInfo));
         });
 
         log.info("userEntity={}", JSONObject.toJSONString(userEntity));
-        log.info(MdcTraceIdUtils.getOrGenTraceId());
-        log.info(MfLocaleHelper.getLang());
+        log.info(MdcUtils.getOrGenTraceId());
+        log.info(LangHelper.getLang());
         // System.out.println(accountInfo);
         return userEntity;
     }

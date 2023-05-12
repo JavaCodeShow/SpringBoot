@@ -1,7 +1,7 @@
 package com.jf.mps.account.service;
 
-import com.jf.common.trace.core.MfLocaleHelper;
-import com.jf.common.trace.utils.MdcTraceIdUtils;
+import com.jf.common.trace.core.LangHelper;
+import com.jf.common.trace.utils.MdcUtils;
 import com.jf.mps.account.domain.entity.AccountEntity;
 import com.jf.mps.account.info.AccountInfo;
 import com.jf.mps.account.mapper.AccountMapper;
@@ -34,8 +34,8 @@ public class AccountServiceImpl implements AccountService {
         if (Objects.nonNull(entity)) {
             BeanUtils.copyProperties(entity, info);
         }
-        log.info(MdcTraceIdUtils.getOrGenTraceId());
-        log.info(MfLocaleHelper.getLang());
+        log.info(MdcUtils.getOrGenTraceId());
+        log.info(LangHelper.getLang());
         return info;
     }
 

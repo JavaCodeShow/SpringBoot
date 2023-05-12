@@ -1,5 +1,8 @@
 package com.jf.mps.user;
 
+import com.jf.common.utils.PropertyRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -16,8 +19,16 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = "com.jf")
 public class MpsUserApplication {
 
+    private static Logger logger = LoggerFactory.getLogger(MpsUserApplication.class);
+
     public static void main(String[] args) {
-        SpringApplication.run(MpsUserApplication.class, args);
+        try {
+            PropertyRepository.initCenter("global.properties");
+            SpringApplication.run(MpsUserApplication.class, args);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            System.exit(0);
+        }
 
     }
 }
