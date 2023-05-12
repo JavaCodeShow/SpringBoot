@@ -25,13 +25,13 @@ public class ExecutorConfig {
         MyThreadPoolTaskExecutor executor = new MyThreadPoolTaskExecutor();
 
         // 配置核心线程数
-        executor.setCorePoolSize(16);
+        executor.setCorePoolSize(32);
 
         // 配置最大线程数
-        executor.setMaxPoolSize(20);
+        executor.setMaxPoolSize(64);
 
         // 配置队列大小
-        executor.setQueueCapacity(20);
+        executor.setQueueCapacity(128);
 
         // 配置存活时间
         executor.setKeepAliveSeconds(60);
