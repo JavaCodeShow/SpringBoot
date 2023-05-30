@@ -30,7 +30,7 @@ public class AccountProxy {
         request.setId(id);
         CommonResult<AccountInfo> result = accountClient.findById(request);
         if (!result.getSuccess()) {
-            log.error("调用account服务失败,AccountProxy.findById, result = [{}]", JSON.toJSONString(result));
+            log.warn("调用account服务失败,AccountProxy.findById, result = [{}]", JSON.toJSONString(result));
             throw new BizException(result.getCode(), result.getMessage());
         }
         return result.getData();
@@ -40,7 +40,7 @@ public class AccountProxy {
         GenericRequest<AccountCreateOrUpdateParam> request = new GenericRequest<>(param);
         CommonResult<String> result = accountClient.createOrUpdate(request);
         if (!result.getSuccess()) {
-            log.error("调用account服务失败,AccountProxy.createOrUpdate, result = [{}]", JSON.toJSONString(result));
+            log.warn("调用account服务失败,AccountProxy.createOrUpdate, result = [{}]", JSON.toJSONString(result));
             throw new BizException(result.getCode(), result.getMessage());
         }
         return result.getData();

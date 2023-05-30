@@ -30,6 +30,9 @@ public class AccountServiceImpl implements AccountService {
 
     public AccountInfo findById(String id) {
         AccountEntity entity = accountMapper.findById(id);
+        // if (StringUtils.equals(id, "111")) {
+        //     throw new NullPointerException();
+        // }
         AccountInfo info = new AccountInfo();
         if (Objects.nonNull(entity)) {
             BeanUtils.copyProperties(entity, info);

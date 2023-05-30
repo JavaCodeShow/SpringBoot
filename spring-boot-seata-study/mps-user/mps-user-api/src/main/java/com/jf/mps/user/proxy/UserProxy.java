@@ -28,7 +28,7 @@ public class UserProxy {
         request.setId(id);
         CommonResult<UserInfo> result = userClient.findById(request);
         if (!result.getSuccess()) {
-            log.error("调用ids服务获取一个id失败, result = [{}]", JSON.toJSONString(result));
+            log.warn("调用ids服务获取一个id失败, result = [{}]", JSON.toJSONString(result));
             throw new BizException(result.getCode(), result.getMessage());
         }
         return result.getData();

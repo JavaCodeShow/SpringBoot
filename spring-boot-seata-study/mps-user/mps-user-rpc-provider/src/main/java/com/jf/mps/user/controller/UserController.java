@@ -30,6 +30,7 @@ public class UserController implements UserApi {
     public CommonResult<UserInfo> findById(IdRequest request) {
         log.info("还不错啊");
         UserEntity userEntity = userService.findById(request.getId());
+        // Assert.notNull(null,"不能为空");
         UserInfo info = new UserInfo();
         BeanUtils.copyProperties(userEntity, info);
         return CommonResult.success(info);

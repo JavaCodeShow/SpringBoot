@@ -44,11 +44,11 @@ public class UserServiceImpl implements UserService {
 
     public UserEntity findById(String id) {
         UserEntity userEntity = userMapper.findById(id);
-        commonTaskExecutor.execute(() -> {
+        // commonTaskExecutor.execute(() -> {
             AccountInfo accountInfo = accountProxy.findById(id);
             log.info(MdcUtils.getOrGenTraceId());
             log.info("accountInfo={}", JSONObject.toJSONString(accountInfo));
-        });
+        // });
 
         log.info("userEntity={}", JSONObject.toJSONString(userEntity));
         log.info(MdcUtils.getOrGenTraceId());

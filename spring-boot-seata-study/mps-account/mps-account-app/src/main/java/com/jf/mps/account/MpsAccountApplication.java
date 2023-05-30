@@ -19,7 +19,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = "com.jf")
 public class MpsAccountApplication {
 
-    private static Logger logger = LoggerFactory.getLogger(MpsAccountApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(MpsAccountApplication.class);
 
     public static void main(String[] args) {
         try {
