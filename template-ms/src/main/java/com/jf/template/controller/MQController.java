@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 描述: test producer send message
- *
  */
 @RestController
 @Slf4j

@@ -1,6 +1,5 @@
 package com.jf.mybatis.service;
 
-import com.alibaba.fastjson.JSONObject;
 import com.jf.common.redis.manager.cache.GlobalCacheManager;
 import com.jf.model.request.ParamChecker;
 import com.jf.mybatis.domain.entity.AccountEntity;
@@ -8,7 +7,6 @@ import com.jf.mybatis.domain.param.account.AccountCreateParam;
 import com.jf.mybatis.domain.param.account.AccountUpdateParam;
 import com.jf.mybatis.mapper.AccountMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
