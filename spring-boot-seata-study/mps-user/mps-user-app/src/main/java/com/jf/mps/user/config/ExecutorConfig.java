@@ -1,11 +1,12 @@
 package com.jf.mps.user.config;
 
-import com.jf.common.trace.executor.MyThreadPoolTaskExecutor;
+import com.alibaba.ttl.threadpool.TtlExecutors;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
@@ -19,19 +20,19 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class ExecutorConfig {
 
     @Bean("commonTaskExecutor")
-    public TaskExecutor commonTaskExecutor() {
+    public Executor commonTaskExecutor() {
 
         // 使用自定义的线程池，实现父子线程传递
-        MyThreadPoolTaskExecutor executor = new MyThreadPoolTaskExecutor();
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
 
         // 配置核心线程数
-        executor.setCorePoolSize(32);
+        executor.setCorePoolSize(Runtime.getRuntime().availableProcessors() * 2 + 1);
 
         // 配置最大线程数
-        executor.setMaxPoolSize(64);
+        executor.setMaxPoolSize(Runtime.getRuntime().availableProcessors() * 5);
 
         // 配置队列大小
-        executor.setQueueCapacity(128);
+        executor.setQueueCapacity(20);
 
         // 配置存活时间
         executor.setKeepAliveSeconds(60);
@@ -48,7 +49,7 @@ public class ExecutorConfig {
         // 初始化线程池
         executor.initialize();
 
-        return executor;
+        return TtlExecutors.getTtlExecutor(executor);
     }
 
 }
