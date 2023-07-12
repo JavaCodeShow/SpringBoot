@@ -2,12 +2,11 @@ server:
   port: 8100
 spring:
   application:
-    name: springboot-redis-study
+    name: spring-boot-apollo-study
 
 #Apollo 配置
 app:
-  id: SampleApp                            #应用ID
-env: DEV
+  id: MTC                            #应用ID
 apollo:
   cluster: default                           #指定使用哪个集群的配置
   meta: http://localhost:8080            #DEV环境配置中心地址
@@ -16,4 +15,4 @@ apollo:
     enabled: true                            #是否开启 Apollo
     eagerLoad:
       enabled: true                         #将 Apollo 加载提到初始化日志系统之前
-    namespaces: jf-common-test,application                  #设置 Namespace
+    namespaces: spring-boot-apollo-study,application                  #设置 Namespace

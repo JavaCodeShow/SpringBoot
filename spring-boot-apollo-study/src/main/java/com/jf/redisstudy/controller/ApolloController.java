@@ -10,17 +10,21 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class ApolloController {
 
-    @Value("${test:默认值}")
-    private String test;
+    @Value("${age:默认值}")
+    private String age;
 
-    @Value("${timeout:默认值}")
-    private String timeout;
+    @Value("${name:默认值}")
+    private String name;
 
     @RequestMapping("/apollo_test")
     public CommonResult<String> apolloTest() {
-        System.out.println("test:" + test);
-        System.out.println("timeout:" + timeout);
-        return CommonResult.success("test:" + test);
+        log.debug("debug");
+        log.info("info");
+        log.warn("warn");
+        log.error("error");
+        System.out.println("age:" + age);
+        System.out.println("name:" + name);
+        return CommonResult.success("apollo测试");
     }
 
 
