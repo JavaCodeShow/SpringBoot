@@ -1,6 +1,6 @@
 package com.jf.mybatis.service;
 
-import com.jf.common.redis.manager.cache.GlobalCacheManager;
+import com.jf.common.redis.manager.cache.DistributedCacheManager;
 import com.jf.model.request.ParamChecker;
 import com.jf.mybatis.domain.entity.AccountEntity;
 import com.jf.mybatis.domain.param.account.AccountCreateParam;
@@ -24,15 +24,15 @@ public class AccountService {
     private CacheKeyQueueService cacheKeyQueueService;
 
     @Autowired
-    private GlobalCacheManager globalCacheManager;
+    private DistributedCacheManager distributedCacheManager;
 
     public AccountEntity findById(String id) {
-        // String value = globalCacheManager.get(id);
+        // String value = distributedCacheManager.get(id);
         // if (StringUtils.isNotBlank(value)) {
         //     return JSONObject.parseObject(value, AccountEntity.class);
         // }
         AccountEntity accountEntity = accountMapper.findById(id);
-        // globalCacheManager.set(id, JSONObject.toJSONString(accountEntity));
+        // distributedCacheManager.set(id, JSONObject.toJSONString(accountEntity));
         return accountEntity;
     }
 

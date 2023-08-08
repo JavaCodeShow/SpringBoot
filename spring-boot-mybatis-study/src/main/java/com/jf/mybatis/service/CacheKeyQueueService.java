@@ -1,6 +1,6 @@
 package com.jf.mybatis.service;
 
-import com.jf.common.redis.manager.cache.GlobalCacheManager;
+import com.jf.common.redis.manager.cache.DistributedCacheManager;
 import com.jf.common.utils.id.IdGenerator;
 import com.jf.mybatis.domain.entity.CacheKeyQueueEntity;
 import com.jf.mybatis.mapper.CacheKeyQueueMapper;
@@ -20,7 +20,7 @@ public class CacheKeyQueueService {
     private CacheKeyQueueMapper cacheKeyQueueMapper;
 
     @Autowired
-    private GlobalCacheManager globalCacheManager;
+    private DistributedCacheManager distributedCacheManager;
 
     public int insert(CacheKeyQueueEntity entity) {
         return cacheKeyQueueMapper.insert(entity);
@@ -77,7 +77,7 @@ public class CacheKeyQueueService {
      * 同步删除缓存，若删除缓存成功则同步删除cache_key_queue表记录
      */
     private void delCacheAndDeleteCacheKeyQueue(String cacheKeyId, String cacheKeyQueueId) {
-        globalCacheManager.del(cacheKeyId);
+        distributedCacheManager.del(cacheKeyId);
         cacheKeyQueueMapper.logicDeleteById(cacheKeyQueueId);
         log.info("事务提交后,删除缓存成功");
         log.info("事务提交后,删除cache_key_queue记录成功，cacheKeyQueueId={}", cacheKeyQueueId);
