@@ -15,12 +15,12 @@
     <dependencies>
         <dependency>
             <groupId>com.jf</groupId>
-            <artifactId>jf-common-model</artifactId>
+            <artifactId>common-model</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.jf</groupId>
-            <artifactId>jf-common-utils</artifactId>
+            <artifactId>common-utils</artifactId>
         </dependency>
     </dependencies>
 </project>

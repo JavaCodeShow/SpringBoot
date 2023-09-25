@@ -59,7 +59,7 @@
 
         <dependency>
             <groupId>com.jf</groupId>
-            <artifactId>jf-common-utils</artifactId>
+            <artifactId>common-utils</artifactId>
         </dependency>
         <dependency>
             <groupId>com.jf</groupId>

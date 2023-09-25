@@ -29,7 +29,7 @@ public class ProductController {
      * 新增文档
      */
     @GetMapping("/save")
-    public CommonResult save() {
+    public CommonResult<Boolean> save() {
         //POSTMAN, GET http://localhost:9200/product/_doc/2
         Product product = new Product();
         product.setId(2L);
@@ -38,14 +38,14 @@ public class ProductController {
         product.setPrice(2999.0);
         product.setImages("http://www.atguigu/hw.jpg");
         productDao.save(product);
-        return CommonResult.success();
+        return CommonResult.success(Boolean.TRUE);
     }
 
     /**
      * 修改文档
      */
     @GetMapping("/update")
-    public CommonResult update() {
+    public CommonResult<Boolean> update() {
         //POSTMAN, GET http://localhost:9200/product/_doc/2
         Product product = new Product();
         product.setId(2L);
@@ -54,7 +54,8 @@ public class ProductController {
         product.setPrice(9999.0);
         product.setImages("http://www.atguigu/xm.jpg");
         productDao.save(product);
-        return CommonResult.success();
+        return CommonResult.success(Boolean.TRUE);
+
     }
 
 
@@ -92,7 +93,8 @@ public class ProductController {
         Product product = new Product();
         product.setId(2L);
         productDao.delete(product);
-        return CommonResult.success();
+        return CommonResult.success(Boolean.TRUE);
+
     }
 
     /**
@@ -111,7 +113,8 @@ public class ProductController {
             productList.add(product);
         }
         productDao.saveAll(productList);
-        return CommonResult.success();
+        return CommonResult.success(Boolean.TRUE);
+
     }
 
     /**

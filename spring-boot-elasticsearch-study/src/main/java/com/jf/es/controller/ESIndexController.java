@@ -34,6 +34,7 @@ public class ESIndexController {
     public CommonResult deleteIndex() {
         boolean flg = elasticsearchRestTemplate.deleteIndex(Product.class);
         System.out.println("删除索引 = " + flg);
-        return CommonResult.success();
+        return CommonResult.success(Boolean.TRUE);
+
     }
 }
