@@ -2,7 +2,7 @@ package com.jf.redisstudy.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.jf.common.aspect.log.MethodLogger;
-import com.jf.common.redis.manager.cache.GlobalCacheManager;
+import com.jf.common.redis.manager.cache.DistributedCacheManager;
 import com.jf.model.response.CommonResult;
 import com.jf.redisstudy.domain.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class MapController {
 
     @Autowired
-    private GlobalCacheManager globalCacheManager;
+    private DistributedCacheManager distributedCacheManager;
 
     /**
      * 往map里面批量插入数据
@@ -39,7 +39,7 @@ public class MapController {
         Map<String, String> map = new HashMap<>();
         map.put("f1", JSON.toJSONString(UserDTO.getUserOne()));
         map.put("f2", JSON.toJSONString(UserDTO.getUserTwo()));
-        globalCacheManager.hMSet(key, map);
+        distributedCacheManager.hMSet(key, map);
         return CommonResult.success(Boolean.TRUE);
     }
 
@@ -50,7 +50,7 @@ public class MapController {
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f4e")
     public CommonResult<UserDTO> hGet() {
         String key = "hash";
-        String str = globalCacheManager.hGet(key, "f1");
+        String str = distributedCacheManager.hGet(key, "f1");
         UserDTO userDTO = JSON.parseObject(str, UserDTO.class);
         return CommonResult.success(userDTO);
     }
@@ -63,7 +63,7 @@ public class MapController {
     public CommonResult<List<UserDTO>> hMGet() {
         String key = "hash";
         List<String> stringList = Arrays.asList("f1", "f2");
-        List<String> strings = globalCacheManager.hMGet(key, stringList);
+        List<String> strings = distributedCacheManager.hMGet(key, stringList);
         List<UserDTO> userDTOList = strings.stream().map(s -> JSON.parseObject(s, UserDTO.class)).collect(Collectors.toList());
         return CommonResult.success(userDTOList);
     }

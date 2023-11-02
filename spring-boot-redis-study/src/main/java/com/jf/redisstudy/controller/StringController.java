@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.jf.common.aspect.log.MethodLogger;
 import com.jf.common.redis.generator.CacheKeyGenerator;
 import com.jf.common.redis.manager.cache.ConcurrentProtectedCacheUtils;
-import com.jf.common.redis.manager.cache.GlobalCacheManager;
+import com.jf.common.redis.manager.cache.DistributedCacheManager;
 import com.jf.model.response.CommonResult;
 import com.jf.redisstudy.domain.dto.UserDTO;
 import com.jf.redisstudy.domain.enums.RedisStudyCacheKeyEnum;
@@ -27,7 +27,7 @@ import java.util.List;
 public class StringController {
 
     @Autowired
-    private GlobalCacheManager globalCacheManager;
+    private DistributedCacheManager distributedCacheManager;
 
     /**
      * 插入数据
@@ -38,11 +38,11 @@ public class StringController {
 
         UserDTO userOne = UserDTO.getUserOne();
         UserDTO userTwo = UserDTO.getUserTwo();
-        globalCacheManager.set("aaa", JSON.toJSONString(userOne));
-        globalCacheManager.set("bbb", JSON.toJSONString(userTwo));
+        distributedCacheManager.set("aaa", JSON.toJSONString(userOne));
+        distributedCacheManager.set("bbb", JSON.toJSONString(userTwo));
         for (int i = 0; i < 100; i++) {
             String cacheKey = CacheKeyGenerator.getCacheKey(RedisStudyCacheKeyEnum.MIN_PRICE, String.valueOf(i));
-            globalCacheManager.set(cacheKey, String.valueOf(i));
+            distributedCacheManager.set(cacheKey, String.valueOf(i));
         }
         return CommonResult.success(Boolean.TRUE);
     }
@@ -72,7 +72,7 @@ public class StringController {
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f54")
     public CommonResult<UserDTO> get() {
 
-        String aaa = globalCacheManager.get("aaa");
+        String aaa = distributedCacheManager.get("aaa");
         UserDTO userDTO = JSONObject.parseObject(aaa, UserDTO.class);
         return CommonResult.success(userDTO);
     }

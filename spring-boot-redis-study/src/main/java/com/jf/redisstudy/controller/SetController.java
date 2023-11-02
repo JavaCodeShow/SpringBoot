@@ -1,7 +1,7 @@
 package com.jf.redisstudy.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
-import com.jf.common.redis.manager.cache.GlobalCacheManager;
+import com.jf.common.redis.manager.cache.DistributedCacheManager;
 import com.jf.model.response.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import java.util.Set;
 public class SetController {
 
     @Autowired
-    private GlobalCacheManager globalCacheManager;
+    private DistributedCacheManager distributedCacheManager;
 
     /**
      * 往set里面批量插入数据
@@ -42,8 +42,8 @@ public class SetController {
         // Set<String> members = redisTemplate.opsForSet().members(keyName);
         // Set<String> members = redisTemplate.opsForSet().isMember();
 
-        globalCacheManager.sAdd(keyName, set.toArray(new String[0]));
-        Set<String> members = globalCacheManager.sMembers(keyName);
+        distributedCacheManager.sAdd(keyName, set.toArray(new String[0]));
+        Set<String> members = distributedCacheManager.sMembers(keyName);
         log.info("members = {}", members);
         return CommonResult.success(members);
     }
@@ -58,7 +58,7 @@ public class SetController {
     @MethodLogger(apiId = "6221f12e0a849a10a89f9f55")
     public CommonResult sIsMember() {
 
-        Boolean flag = globalCacheManager.sIsMember("set1", "555");
+        Boolean flag = distributedCacheManager.sIsMember("set1", "555");
         log.info("flag = {}", flag);
         return CommonResult.success(flag);
     }

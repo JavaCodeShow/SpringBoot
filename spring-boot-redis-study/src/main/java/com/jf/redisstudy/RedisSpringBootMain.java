@@ -18,7 +18,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class RedisSpringBootMain {
     public static void main(String[] args) {
         try {
-            PropertyRepository.initCenter("spring-redis-study.properties");
             PropertyRepository.initCenter("global.properties");
         } catch (Exception e) {
             log.error("服务启动加载配置文件失败，失败原因：", e);

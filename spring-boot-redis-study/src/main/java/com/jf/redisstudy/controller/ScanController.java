@@ -1,7 +1,7 @@
 package com.jf.redisstudy.controller;
 
 import com.jf.common.aspect.log.MethodLogger;
-import com.jf.common.redis.manager.cache.GlobalCacheManager;
+import com.jf.common.redis.manager.cache.DistributedCacheManager;
 import com.jf.model.response.CommonResult;
 import com.jf.redisstudy.domain.enums.RedisStudyCacheKeyEnum;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ import java.util.List;
 public class ScanController {
 
     @Autowired
-    private GlobalCacheManager globalCacheManager;
+    private DistributedCacheManager distributedCacheManager;
 
     /**
      * 查询所有的都是这个前缀开头的key
@@ -32,7 +32,7 @@ public class ScanController {
     public CommonResult scanAllByKeyPrefix() {
         //需要匹配的key
         String patternKey = RedisStudyCacheKeyEnum.MIN_PRICE.getServiceName() + ":" + RedisStudyCacheKeyEnum.MIN_PRICE;
-        List<String> cacheKeyList = globalCacheManager.scanAllByPattenKey(patternKey);
+        List<String> cacheKeyList = distributedCacheManager.scanAllByPattenKey(patternKey);
         return CommonResult.success(cacheKeyList);
     }
 
