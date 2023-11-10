@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
         CommonResult<OrderDTO> result = fcsClient.getOrderById(orderId);
 
         if (!result.getSuccess()) {
-            log.error(result.getMsg() + " orderId = [{}]", orderId);
+            log.error(result.getMessage() + " orderId = [{}]", orderId);
             return null;
         }
 
