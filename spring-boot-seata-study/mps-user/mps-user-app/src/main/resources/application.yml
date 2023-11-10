@@ -9,11 +9,11 @@ spring:
     nacos:
       discovery:
         namespace: dev
-        server-addr: 1.15.226.249:8848
+        server-addr: localhost:8848
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://1.15.226.249:3306/jfTest?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true&useSSL=false&tinyInt1isBit=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost:3306/jfTest?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true&useSSL=false&tinyInt1isBit=false&serverTimezone=GMT%2B8
     username: root
     password: mimazhaowoyao
 
@@ -82,7 +82,7 @@ seata:
     nacos:
       group: SEATA_GROUP
       namespace: seata
-      server-addr: 1.15.226.249:8848
+      server-addr: localhost:8848
       username: nacos
       password: nacos
     type: nacos
@@ -91,7 +91,7 @@ seata:
     nacos:
       application: seata-server
       # nacos 服务地址
-      server-addr: 1.15.226.249:8848
+      server-addr: localhost:8848
       namespace: seata
       group: SEATA_GROUP
 
