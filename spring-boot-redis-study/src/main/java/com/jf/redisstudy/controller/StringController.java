@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 类作用描述
@@ -74,6 +75,15 @@ public class StringController {
 
         String aaa = distributedCacheManager.get("aaa");
         UserDTO userDTO = JSONObject.parseObject(aaa, UserDTO.class);
+        fun();
         return CommonResult.success(userDTO);
+    }
+
+    void fun() {
+        try {
+            TimeUnit.MILLISECONDS.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
