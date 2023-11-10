@@ -40,7 +40,7 @@ public class CacheKeyQueueService {
      * 保证缓存和数据的强一致性，修改DB数据后需要删除缓存。
      */
     public void syncDeleteCache(String cacheKeyId) {
-        String cacheKeyQueueId = IdGenerator.getId();
+        String cacheKeyQueueId = IdGenerator.generateId();
         TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
 
             @Override
