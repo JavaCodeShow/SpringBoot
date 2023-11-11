@@ -11,14 +11,14 @@ spring:
       ds-orders-0:
         type: com.alibaba.druid.pool.DruidDataSource # 使用 阿里druid连接池
         driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://1.15.226.249:3306/lab18_orders_0?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        url: jdbc:mysql://172.28.88.249:3306/lab18_orders_0?useSSL=false&useUnicode=true&characterEncoding=UTF-8
         username: root
         password: mimazhaowoyao
       # 订单 orders 数据源配置 01
       ds-orders-1:
         type: com.alibaba.druid.pool.DruidDataSource # 使用 阿里druid连接池
         driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://1.15.226.249:3306/lab18_orders_1?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        url: jdbc:mysql://172.28.88.249:3306/lab18_orders_1?useSSL=false&useUnicode=true&characterEncoding=UTF-8
         username: root
         password: mimazhaowoyao
     # 分片规则
@@ -63,21 +63,21 @@ spring:
 #      ds-master:
 #        type: com.alibaba.druid.pool.DruidDataSource # 使用 阿里druid连接池
 #        driverClassName: com.mysql.jdbc.Driver
-#        url: jdbc:mysql://1.15.226.249:3306/test_orders?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#        url: jdbc:mysql://172.28.88.249:3306/test_orders?useSSL=false&useUnicode=true&characterEncoding=UTF-8
 #        username: root
 #        password: mimazhaowoyao
 #      # 订单 orders 从库数据源配置
 #      ds-slave-1:
 #        type: com.alibaba.druid.pool.DruidDataSource # 使用 阿里druid连接池
 #        driverClassName: com.mysql.jdbc.Driver
-#        url: jdbc:mysql://1.15.226.249:3306/test_orders_01?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#        url: jdbc:mysql://172.28.88.249:3306/test_orders_01?useSSL=false&useUnicode=true&characterEncoding=UTF-8
 #        username: root
 #        password: mimazhaowoyao
 #      # 订单 orders 从库数据源配置
 #      ds-slave-2:
 #        type: com.alibaba.druid.pool.DruidDataSource # 使用 阿里druid连接池
 #        driverClassName: com.mysql.jdbc.Driver
-#        url: jdbc:mysql://1.15.226.249:3306/test_orders_02?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#        url: jdbc:mysql://172.28.88.249:3306/test_orders_02?useSSL=false&useUnicode=true&characterEncoding=UTF-8
 #        username: root
 #        password: mimazhaowoyao
 #    # 读写分离配置，对应 YamlMasterSlaveRuleConfiguration 配置类
