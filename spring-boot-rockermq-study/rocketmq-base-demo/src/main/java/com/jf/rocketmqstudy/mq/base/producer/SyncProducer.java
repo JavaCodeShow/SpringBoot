@@ -6,8 +6,6 @@ import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 
-import java.util.concurrent.CountDownLatch;
-
 /**
  * 发送同步消息
  *
@@ -19,7 +17,7 @@ public class SyncProducer {
         // 实例化消息生产者Producer
         DefaultMQProducer producer = new DefaultMQProducer("group1");
         // 设置NameServer的地址
-        producer.setNamesrvAddr("1.15.226.249:9876");
+        producer.setNamesrvAddr("172.28.88.249:9876");
         // 启动Producer实例
         producer.start();
         // producer.setSendMessageWithVIPChannel(false);
@@ -40,8 +38,7 @@ public class SyncProducer {
         System.out.println("main");
         // 如果不再发送消息，关闭Producer实例。
         producer.shutdown();
-        CountDownLatch countDownLatch = new CountDownLatch(1);
-        countDownLatch.await();
         System.out.println("exit");
+        System.exit(0);
     }
 }

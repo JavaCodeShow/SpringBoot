@@ -22,7 +22,7 @@ public class ClusterConsumer {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(group);
         System.out.println(group);
         // 指定Namesrv地址信息.
-        consumer.setNamesrvAddr("1.15.226.249:9876");
+        consumer.setNamesrvAddr("172.28.88.249:9876");
         // 订阅Topic
         consumer.subscribe("CSS", "ORDER_CANCEL");
         // 负载均衡模式消费
