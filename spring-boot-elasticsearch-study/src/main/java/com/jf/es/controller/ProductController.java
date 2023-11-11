@@ -30,7 +30,7 @@ public class ProductController {
      */
     @GetMapping("/save")
     public CommonResult<Boolean> save() {
-        //POSTMAN, GET http://localhost:9200/product/_doc/2
+        //POSTMAN, GET http://172.28.88.249:9200/product/_doc/2
         Product product = new Product();
         product.setId(2L);
         product.setTitle("华为手机");
@@ -46,7 +46,7 @@ public class ProductController {
      */
     @GetMapping("/update")
     public CommonResult<Boolean> update() {
-        //POSTMAN, GET http://localhost:9200/product/_doc/2
+        //POSTMAN, GET http://172.28.88.249:9200/product/_doc/2
         Product product = new Product();
         product.setId(2L);
         product.setTitle("小米 2 手机");
@@ -89,7 +89,7 @@ public class ProductController {
      */
     @GetMapping("/delete")
     public CommonResult delete() {
-        //POSTMAN, GET http://localhost:9200/product/_doc/2
+        //POSTMAN, GET http://172.28.88.249:9200/product/_doc/2
         Product product = new Product();
         product.setId(2L);
         productDao.delete(product);

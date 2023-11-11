@@ -9,7 +9,7 @@ app:
   id: MTC                            #应用ID
 apollo:
   cluster: default                           #指定使用哪个集群的配置
-  meta: http://localhost:8080            #DEV环境配置中心地址
+  meta: http://172.28.88.249:8080            #DEV环境配置中心地址
   autoUpdateInjectedSpringProperties: true   #是否开启 Spring 参数自动更新
   bootstrap:
     enabled: true                            #是否开启 Apollo

@@ -12,15 +12,15 @@
 
 4. broker.id 申明当前kafka服务器在集群中的唯一ID，需配置为integer,并且集群中的每一个kafka服务器的id都应是唯一的，我们这里采用默认配置即可
 
-5. listeners 申明此kafka服务器需要监听的端口号，如果是在本机上跑虚拟机运行可以不用配置本项，默认会使用localhost的地址。如果是在远程服务器上运行则必须配置，例如：listeners=PLAINTEXT://
+5. listeners 申明此kafka服务器需要监听的端口号，如果是在本机上跑虚拟机运行可以不用配置本项，默认会使用172.28.88.249的地址。如果是在远程服务器上运行则必须配置，例如：listeners=PLAINTEXT://
    192.168.180.128:9092。并确保服务器的9092端口能够访问，如果想外部电脑上的程序也能访问此kafka，就必须指定ip地址，不然java中会报key为null的错误。zookeeper.connect
-   申明kafka所连接的zookeeper的地址 ，需配置为zookeeper的地址，由于本次使用的是kafka高版本中自带zookeeper，使用默认配置即可 zookeeper.connect=localhost:2181
+   申明kafka所连接的zookeeper的地址 ，需配置为zookeeper的地址，由于本次使用的是kafka高版本中自带zookeeper，使用默认配置即可 zookeeper.connect=172.28.88.249:2181
 
    ```
    修改server.properties
    本机使用：
-           listeners=PLAINTEXT://localhost:9092
-           advertised.listeners=PLAINTEXT://localhost:9092 
+           listeners=PLAINTEXT://172.28.88.249:9092
+           advertised.listeners=PLAINTEXT://172.28.88.249:9092 
    远程使用
     		listeners=PLAINTEXT://内网ip:9092
            advertised.listeners=PLAINTEXT://公网ip:9092 
@@ -55,12 +55,12 @@ bin/kafka-server-start.sh config/server.properties &
 创建一个名为test的topic
 
 ```
-bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test　
+bin/kafka-topics.sh --create --zookeeper 172.28.88.249:2181 --replication-factor 1 --partitions 1 --topic test　
 ```
 
 ### 2.4 查看topic
 
-`bin/kafka-topics.sh --list --zookeeper localhost:2181`
+`bin/kafka-topics.sh --list --zookeeper 172.28.88.249:2181`
 
 ### 2.5 创建消费者
 
@@ -69,15 +69,15 @@ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 -
 在kafka解压目录打开终端，输入
 
 ```
-bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
+bin/kafka-console-consumer.sh --bootstrap-server 172.28.88.249:9092 --topic test --from-beginning
 ```
 
 ### 2.6 创建一个消息生产者
 
 在kafka解压目录打开一个新的终端，输入
 
-bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
+bin/kafka-console-producer.sh --broker-list 172.28.88.249:9092 --topic test
 
 ### 2.7 删除topic
 
-bin/kafka-topics.sh --delete --zookeeper localhost:2181 --topic accreditNotify
+bin/kafka-topics.sh --delete --zookeeper 172.28.88.249:2181 --topic accreditNotify

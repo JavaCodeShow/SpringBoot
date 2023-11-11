@@ -4,7 +4,7 @@
  Source Server         : jfTencentServer
  Source Server Type    : MySQL
  Source Server Version : 80028
- Source Host           : localhost:3306
+ Source Host           : 172.28.88.249:3306
  Source Schema         : jfTest
 
  Target Server Type    : MySQL

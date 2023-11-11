@@ -22,7 +22,7 @@ public class TransactionProducer {
         TransactionListener transactionListener = new TransactionListenerImpl();
         // 创建消息生产者
         TransactionMQProducer producer = new TransactionMQProducer("group6");
-        producer.setNamesrvAddr("localhost:9876");
+        producer.setNamesrvAddr("172.28.88.249:9876");
         // 生产者这是监听器
         producer.setTransactionListener(transactionListener);
         // 启动消息生产者
