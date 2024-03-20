@@ -2,7 +2,7 @@ package com.jf.redisstudy.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.jf.common.aspect.log.MethodLogger;
+import com.jf.common.aspect.log.RpcApi;
 import com.jf.common.redis.generator.CacheKeyGenerator;
 import com.jf.common.redis.manager.cache.ConcurrentProtectedCacheUtils;
 import com.jf.common.redis.manager.cache.DistributedCacheManager;
@@ -34,7 +34,7 @@ public class StringController {
      * 插入数据
      */
     @GetMapping("/set")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f9f4f")
+    @RpcApi(apiId = "6221f12e0a849a10a89f9f4f")
     public CommonResult set() {
 
         UserDTO userOne = UserDTO.getUserOne();
@@ -52,7 +52,7 @@ public class StringController {
      * 批量查询数据
      */
     @GetMapping("/mGet")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f9f50")
+    @RpcApi(apiId = "6221f12e0a849a10a89f9f50")
     public CommonResult<List<UserDTO>> mGet() {
 
         // List<String> list = new ArrayList<>();
@@ -70,7 +70,7 @@ public class StringController {
      * 批量查询数据
      */
     @GetMapping("/get")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f9f54")
+    @RpcApi(apiId = "6221f12e0a849a10a89f9f54")
     public CommonResult<UserDTO> get() {
 
         String aaa = distributedCacheManager.get("aaa");

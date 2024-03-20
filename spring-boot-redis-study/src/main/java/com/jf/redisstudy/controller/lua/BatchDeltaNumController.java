@@ -1,6 +1,6 @@
 package com.jf.redisstudy.controller.lua;
 
-import com.jf.common.aspect.log.MethodLogger;
+import com.jf.common.aspect.log.RpcApi;
 import com.jf.model.response.CommonResult;
 import com.jf.redisstudy.lua.CacheConsts;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ public class BatchDeltaNumController {
     public DefaultRedisScript<Object> batchDeltaNumScript;
 
     @RequestMapping("/batchDeltaNum")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f0000")
+    @RpcApi(apiId = "6221f12e0a849a10a89f0000")
     public CommonResult<String> batchDeltaNum() {
         List<String> keyList = new ArrayList<>();
         keyList.add("k1");

@@ -1,6 +1,6 @@
 package com.jf.redisstudy.controller;
 
-import com.jf.common.aspect.log.MethodLogger;
+import com.jf.common.aspect.log.RpcApi;
 import com.jf.model.response.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class ZsetController {
      * @return
      */
     @GetMapping("/batchZset")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f9f56")
+    @RpcApi(apiId = "6221f12e0a849a10a89f9f56")
     public CommonResult batchZset() {
 
         String keyName = "zset1";
@@ -66,7 +66,7 @@ public class ZsetController {
      * @return
      */
     @GetMapping("/sinterstore")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f9f58")
+    @RpcApi(apiId = "6221f12e0a849a10a89f9f58")
     public CommonResult<Set> sinterstore() {
 
         // Long size = redisTemplate.opsForZSet().intersectAndStore("zset1",
@@ -90,7 +90,7 @@ public class ZsetController {
      * @return
      */
     @GetMapping("/range")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f9f5e")
+    @RpcApi(apiId = "6221f12e0a849a10a89f9f5e")
     public CommonResult<Set> range() {
 
         Set zset3 = redisTemplate.opsForZSet().range("zset3", 0, -1);
@@ -104,7 +104,7 @@ public class ZsetController {
      * @return
      */
     @GetMapping("/rangeWithScores")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f9f60")
+    @RpcApi(apiId = "6221f12e0a849a10a89f9f60")
     public CommonResult<Set> rangeWithScores() {
 
         Set zset3 = redisTemplate.opsForZSet().rangeWithScores("zset3", 0, 10);

@@ -1,6 +1,7 @@
 package com.jf.rocketmqstudy.controller;
 
 
+import com.jf.model.response.CommonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,15 @@ public class MQController {
     private RocketMQTemplate rocketMQTemplate;
 
     @RequestMapping("/send")
-    public CommonResult hello() {
+    public CommonResult<Boolean> hello() {
 
         log.info("send ok");
 
-        rocketMQTemplate.syncSend("ticket:ORDER_CANCEL", "orderId-111");
+        for (int i = 0; i < 5; i++) {
+            rocketMQTemplate.syncSend("topicA:tagA1", "orderId-111");
+            rocketMQTemplate.syncSend("topicA:tagB1", "orderId-222");
+        }
 
-        return CommonResult.success();
+        return CommonResult.success(Boolean.TRUE);
     }
 }

@@ -1,7 +1,7 @@
 package com.jf.redisstudy.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.jf.common.aspect.log.MethodLogger;
+import com.jf.common.aspect.log.RpcApi;
 import com.jf.common.redis.manager.cache.DistributedCacheManager;
 import com.jf.model.response.CommonResult;
 import com.jf.redisstudy.domain.dto.UserDTO;
@@ -33,7 +33,7 @@ public class MapController {
      * 往map里面批量插入数据
      */
     @GetMapping("/hmset")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f9f4b")
+    @RpcApi(apiId = "6221f12e0a849a10a89f9f4b")
     public CommonResult hmset() {
         String key = "hash";
         Map<String, String> map = new HashMap<>();
@@ -47,7 +47,7 @@ public class MapController {
      * 往map里面查询数据
      */
     @GetMapping("/hGet")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f9f4e")
+    @RpcApi(apiId = "6221f12e0a849a10a89f9f4e")
     public CommonResult<UserDTO> hGet() {
         String key = "hash";
         String str = distributedCacheManager.hGet(key, "f1");
@@ -59,7 +59,7 @@ public class MapController {
      * 往map里面批量查询数据
      */
     @GetMapping("/hMGet")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f9f64")
+    @RpcApi(apiId = "6221f12e0a849a10a89f9f64")
     public CommonResult<List<UserDTO>> hMGet() {
         String key = "hash";
         List<String> stringList = Arrays.asList("f1", "f2");

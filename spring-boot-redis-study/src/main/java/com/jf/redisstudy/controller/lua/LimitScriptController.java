@@ -1,6 +1,6 @@
 package com.jf.redisstudy.controller.lua;
 
-import com.jf.common.aspect.log.MethodLogger;
+import com.jf.common.aspect.log.RpcApi;
 import com.jf.model.response.CommonResult;
 import com.jf.redisstudy.config.RedisStoreComponent;
 import com.jf.redisstudy.lua.CacheConsts;
@@ -36,7 +36,7 @@ public class LimitScriptController {
     public DefaultRedisScript<Object> limitScript;
 
     @RequestMapping("/limit")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f1111")
+    @RpcApi(apiId = "6221f12e0a849a10a89f1111")
     public CommonResult<String> limit() {
         // Object result1 = limit1();
         Object result2 = limit2();

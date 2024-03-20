@@ -1,6 +1,6 @@
 package com.jf.redisstudy.controller;
 
-import com.jf.common.aspect.log.MethodLogger;
+import com.jf.common.aspect.log.RpcApi;
 import com.jf.common.redis.annotation.ReSubmitLock;
 import com.jf.common.redis.generator.LockKeyGenerator;
 import com.jf.common.redis.manager.lock.DistributedLockManager;
@@ -25,7 +25,7 @@ public class LockTestController {
      * 测试防止重复提交
      */
     @GetMapping("/redis/testReSubmitLock")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f9f5a")
+    @RpcApi(apiId = "6221f12e0a849a10a89f9f5a")
     @ReSubmitLock
     public CommonResult testReSubmitLock() {
         return CommonResult.success(Boolean.TRUE);
@@ -37,7 +37,7 @@ public class LockTestController {
      * @return
      */
     @GetMapping("/redis/distributeLockService_tryLock")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f9f62")
+    @RpcApi(apiId = "6221f12e0a849a10a89f9f62")
     public CommonResult testDistributeLockServiceTryLock() {
 
         String lockKeyName = LockKeyGenerator.generateLockKey(RedisStudyLockKeyEnum.MIN_PRICE, "111");

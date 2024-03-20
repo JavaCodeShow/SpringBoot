@@ -1,6 +1,6 @@
 package com.jf.redisstudy.controller;
 
-import com.jf.common.aspect.log.MethodLogger;
+import com.jf.common.aspect.log.RpcApi;
 import com.jf.model.response.CommonResult;
 import com.jf.redisstudy.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,13 +22,13 @@ public class HelloController {
     private HelloService helloService;
 
     @RequestMapping("/")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f9f52")
+    @RpcApi(apiId = "6221f12e0a849a10a89f9f52")
     public CommonResult<String> index() {
         return CommonResult.success("springboot-redis");
     }
 
     @RequestMapping("/hello")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f9000")
+    @RpcApi(apiId = "6221f12e0a849a10a89f9000")
     public CommonResult<String> hello() {
         // log.info("666");
         helloService.hello();

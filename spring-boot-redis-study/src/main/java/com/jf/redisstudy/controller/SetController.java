@@ -1,6 +1,6 @@
 package com.jf.redisstudy.controller;
 
-import com.jf.common.aspect.log.MethodLogger;
+import com.jf.common.aspect.log.RpcApi;
 import com.jf.common.redis.manager.cache.DistributedCacheManager;
 import com.jf.model.response.CommonResult;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +30,7 @@ public class SetController {
      * @return
      */
     @GetMapping("/sadd")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f9f4d")
+    @RpcApi(apiId = "6221f12e0a849a10a89f9f4d")
     public CommonResult sadd() {
 
         Set<String> set = new HashSet<>();
@@ -55,7 +55,7 @@ public class SetController {
      * @return
      */
     @GetMapping("/sIsMember")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f9f55")
+    @RpcApi(apiId = "6221f12e0a849a10a89f9f55")
     public CommonResult sIsMember() {
 
         Boolean flag = distributedCacheManager.sIsMember("set1", "555");

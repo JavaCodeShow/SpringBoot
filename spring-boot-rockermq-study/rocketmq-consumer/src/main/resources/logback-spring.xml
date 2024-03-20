@@ -1,60 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
 
     <!-- 日志配置文件logback.xml 需要命名为logback-spring.xml  -->
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <springProperty scope="context" name="SPRING_APPLICATION_NAME" source="spring.application.name"
+                    defaultValue="temp"/>
 
-    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
-    <springProperty scope="context" name="LOG_FILE_NAME" source="spring.application.name"/>
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%level] [%logger{56} %L] [%X{remoteAddr}] [apiId=%X{apiId}] [traceId=%X{traceId}] [spanId=%X{spanId}]: %msg%n"/>
 
     <property name="LOG_FILE_PATH" value="/data/logs"/>
 
-    <!--每天生成日志的类-->
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <property name="INFO_FILE" value="${BASE_PATH}/info"/>
+    <property name="ERROR_FILE" value="${BASE_PATH}/error"/>
+    <property name="ROLL_FILE_PATTERN" value="%d{yyyy-MM-dd}-%i.log.gz"/>
+
+    <property name="CHARSET" value="utf8"/>
+
+    <property name="MAX_FILE_SIZE" value="500MB"/>
+    <property name="MAX_HISTORY" value="30"/>
+    <property name="TOTAL_SIZE_CAP" value="30GB"/>
+
+    <!-- 支持跨线程传递MDC -->
+    <contextListener class="com.ofpay.logback.TtlMdcListener"/>
+
+    <!-- 控制台打印的日志 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <charset>UTF-8</charset>
-            <pattern>${FILE_LOG_PATTERN}</pattern>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>${CHARSET}</charset>
+        </encoder>
+    </appender>
+
+    <!--每天生成日志的类-->
+    <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <charset>${CHARSET}</charset>
+            <pattern>${LOG_PATTERN}</pattern>
         </encoder>
         <!-- 当天日志保存路径 -->
-        <file>${LOG_FILE_PATH}/${LOG_FILE_NAME}/${LOG_FILE_NAME}.log</file>
+        <file>${LOG_FILE_PATH}/${SPRING_APPLICATION_NAME}/info.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!--日志文件轮转的文件名-->
-            <fileNamePattern>${LOG_FILE_PATH}/${LOG_FILE_NAME}/%d{yyyy-MM-dd}/${LOG_FILE_NAME}-%i.log</fileNamePattern>
-            <maxFileSize>100MB</maxFileSize>
-            <maxHistory>10</maxHistory>
-            <totalSizeCap>10GB</totalSizeCap>
+            <fileNamePattern>${LOG_FILE_PATH}/${SPRING_APPLICATION_NAME}/%d{yyyy-MM-dd}/info-%i.log</fileNamePattern>
+            <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+            <totalSizeCap>${TOTAL_SIZE_CAP}</totalSizeCap>
         </rollingPolicy>
     </appender>
 
     <!--每天生成错误日志的类-->
-    <appender name="ErrorFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <encoder>
-            <charset>UTF-8</charset>
-            <pattern>${FILE_LOG_PATTERN}</pattern>
+            <charset>${CHARSET}</charset>
+            <pattern>${LOG_PATTERN}</pattern>
         </encoder>
-        <file>${LOG_FILE_PATH}/${LOG_FILE_NAME}/error/${LOG_FILE_NAME}_error.log</file>
+        <file>${LOG_FILE_PATH}/${SPRING_APPLICATION_NAME}/error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_FILE_PATH}/${LOG_FILE_NAME}/%d{yyyy-MM-dd}/error/${LOG_FILE_NAME}-error-%i.log
+            <fileNamePattern>${LOG_FILE_PATH}/${SPRING_APPLICATION_NAME}/%d{yyyy-MM-dd}/error/error-%i.log
             </fileNamePattern>
-            <maxFileSize>100MB</maxFileSize>
-            <maxHistory>10</maxHistory>
-            <totalSizeCap>10GB</totalSizeCap>
+            <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+            <totalSizeCap>${TOTAL_SIZE_CAP}</totalSizeCap>
         </rollingPolicy>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
         </filter>
     </appender>
 
-
-    <!-- dev环境日志级别为DEBUG -->
-    <springProfile name="dev">
-        <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
-        <root level="DEBUG">
-            <appender-ref ref="CONSOLE"/>
-        </root>
-    </springProfile>
-
+    <!-- 打印info及以上日志级别的日志(全局) -->
     <root level="INFO">
-        <appender-ref ref="FILE"/>
-        <appender-ref ref="ErrorFILE"/>
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="INFO_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
     </root>
+
+    <!-- 指定以下路径可以打印指定级别的日志 -->
+    <logger level="DEBUG" name="com.jf" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="INFO_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+    </logger>
 
 </configuration>

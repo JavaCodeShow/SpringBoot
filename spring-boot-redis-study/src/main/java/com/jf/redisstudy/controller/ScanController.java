@@ -1,6 +1,6 @@
 package com.jf.redisstudy.controller;
 
-import com.jf.common.aspect.log.MethodLogger;
+import com.jf.common.aspect.log.RpcApi;
 import com.jf.common.redis.manager.cache.DistributedCacheManager;
 import com.jf.model.response.CommonResult;
 import com.jf.redisstudy.domain.enums.RedisStudyCacheKeyEnum;
@@ -28,7 +28,7 @@ public class ScanController {
      * 查询所有的都是这个前缀开头的key
      */
     @GetMapping("/scanAllByKeyPrefix")
-    @MethodLogger(apiId = "6221f12e0a849a10a89f111")
+    @RpcApi(apiId = "6221f12e0a849a10a89f111")
     public CommonResult scanAllByKeyPrefix() {
         //需要匹配的key
         String patternKey = RedisStudyCacheKeyEnum.MIN_PRICE.getServiceName() + ":" + RedisStudyCacheKeyEnum.MIN_PRICE;
