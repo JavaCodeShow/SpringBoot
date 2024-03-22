@@ -24,7 +24,7 @@ public class HelloController {
     @RequestMapping("/")
     @RpcApi(apiId = "6221f12e0a849a10a89f9f52")
     public CommonResult<String> index() {
-        return CommonResult.success("springboot-redis");
+        return CommonResult.success("index");
     }
 
     @RequestMapping("/hello")
@@ -35,3 +35,6 @@ public class HelloController {
         return CommonResult.success("hello springboot-redis");
     }
 }
+
+
+
