@@ -12,12 +12,12 @@ public class HelloController {
 
     @GetMapping("/")
     @Transactional
-    public CommonResult index() {
+    public CommonResult<String> index() {
         return CommonResult.success("spring-boot-mybatis-study");
     }
 
     @GetMapping("/hello")
-    public CommonResult hello() {
+    public CommonResult<String> hello() {
         return CommonResult.success("hello");
     }
 }

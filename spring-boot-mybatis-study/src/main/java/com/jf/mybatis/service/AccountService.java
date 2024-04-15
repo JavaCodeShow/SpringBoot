@@ -1,6 +1,7 @@
 package com.jf.mybatis.service;
 
 import com.jf.common.redis.manager.cache.DistributedCacheManager;
+import com.jf.common.utils.bean.ApplicationContextUtils;
 import com.jf.model.request.ParamChecker;
 import com.jf.mybatis.domain.entity.AccountEntity;
 import com.jf.mybatis.domain.param.account.AccountCreateParam;
@@ -39,18 +40,24 @@ public class AccountService {
     /**
      * 账户一向账户二转money。
      */
-    @Transactional(rollbackFor = Exception.class)
+
     public void transAccount(AccountEntity accountEntity1,
                              AccountEntity accountEntity2,
                              Integer money) {
         accountEntity1.setMoney(accountEntity1.getMoney() - money);
         accountEntity2.setMoney(accountEntity2.getMoney() + money);
-        accountMapper.updateMoneyById(accountEntity1);
-        accountMapper.updateMoneyById(accountEntity2);
+
+        ApplicationContextUtils.getBean(AccountService.class).doTransAccount(accountEntity1, accountEntity2);
 
         // 手动异常
         // throw new IllegalArgumentException("出异常了，数据将回滚" + accountMapper.getAccountById(1));
 
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void doTransAccount(AccountEntity accountEntity1, AccountEntity accountEntity2) {
+        accountMapper.updateMoneyById(accountEntity1);
+        accountMapper.updateMoneyById(accountEntity2);
     }
 
     public Integer createAccount(AccountCreateParam param) {

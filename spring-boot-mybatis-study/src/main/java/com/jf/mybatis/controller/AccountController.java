@@ -1,6 +1,6 @@
 package com.jf.mybatis.controller;
 
-import com.jf.common.aspect.log.MethodLogger;
+import com.jf.common.aspect.log.RpcApi;
 import com.jf.model.request.GenericRequest;
 import com.jf.model.response.CommonResult;
 import com.jf.mybatis.domain.entity.AccountEntity;
@@ -26,28 +26,28 @@ public class AccountController {
     private AccountService accountService;
 
     @RequestMapping("/account/{id}")
-    @MethodLogger(apiId = "61dbe11b343ac83c788ff2e3")
+    @RpcApi(apiId = "61dbe11b343ac83c788ff2e3")
     public CommonResult<AccountEntity> findById(@PathVariable String id) {
         AccountEntity accountEntity = accountService.findById(id);
         return CommonResult.success(accountEntity);
     }
 
     @PostMapping("/account/create")
-    @MethodLogger(apiId = "61dbe11b343ac83c788ff2e3")
+    @RpcApi(apiId = "61dbe11b343ac83c788ff2e3")
     public CommonResult<Integer> createAccount(@RequestBody GenericRequest<AccountCreateParam> request) {
         Integer id = accountService.createAccount(request.getParam());
         return CommonResult.success(id);
     }
 
     @PutMapping("/account/update")
-    @MethodLogger(apiId = "61dbe11b343ac83c788ff222")
+    @RpcApi(apiId = "61dbe11b343ac83c788ff222")
     public CommonResult<Boolean> updateAccount(@RequestBody GenericRequest<AccountUpdateParam> request) {
         accountService.updateAccount(request.getParam());
         return CommonResult.success(Boolean.TRUE);
     }
 
     @RequestMapping("/account/transAccount")
-    @MethodLogger(apiId = "61dbe11b343ac83c788ff233")
+    @RpcApi(apiId = "61dbe11b343ac83c788ff233")
     public List<AccountEntity> transAccount() {
         AccountEntity a1 = accountService.findById("1");
         AccountEntity a2 = accountService.findById("2");
