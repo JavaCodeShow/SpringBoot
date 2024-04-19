@@ -1,6 +1,6 @@
 package com.jf.mps.account.controller;
 
-import com.jf.common.aspect.log.MethodLogger;
+import com.jf.common.aspect.log.RpcApi;
 import com.jf.model.request.GenericRequest;
 import com.jf.model.request.IdRequest;
 import com.jf.model.response.CommonResult;
@@ -28,13 +28,13 @@ public class AccountController implements AccountApi {
     @Autowired
     private AccountService accountService;
 
-    @MethodLogger(apiId = "6221deeb0a849a5acc9cb183")
+    @RpcApi(apiId = "6221deeb0a849a5acc9cb183")
     public CommonResult<AccountInfo> findById(IdRequest request) {
         AccountInfo info = accountService.findById(request.getId());
         return CommonResult.success(info);
     }
 
-    @MethodLogger(apiId = "6221deeb0a849a5acc9cb111")
+    @RpcApi(apiId = "6221deeb0a849a5acc9cb111")
     @Override
     public CommonResult<String> createOrUpdate(GenericRequest<AccountCreateOrUpdateParam> request) {
         String id = accountService.createOrUpdate(request.getParam());

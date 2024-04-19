@@ -1,6 +1,6 @@
 package com.jf.mps.user.controller;
 
-import com.jf.common.aspect.log.MethodLogger;
+import com.jf.common.aspect.log.RpcApi;
 import com.jf.model.request.GenericRequest;
 import com.jf.model.request.IdRequest;
 import com.jf.model.response.CommonResult;
@@ -26,7 +26,7 @@ public class UserController implements UserApi {
     @Autowired
     private UserService userService;
 
-    @MethodLogger(apiId = "6221deeb0a849a5acc9cb100")
+    @RpcApi(apiId = "6221deeb0a849a5acc9cb100")
     public CommonResult<UserInfo> findById(IdRequest request) {
         log.info("还不错啊");
         UserEntity userEntity = userService.findById(request.getId());
@@ -36,7 +36,7 @@ public class UserController implements UserApi {
         return CommonResult.success(info);
     }
 
-    @MethodLogger(apiId = "6221deeb0a849a5acc9c2222")
+    @RpcApi(apiId = "6221deeb0a849a5acc9c2222")
     @Override
     public CommonResult<Boolean> updateNameById(GenericRequest<UpdateNameParam> request) {
         userService.updateNameById(request.getParam());

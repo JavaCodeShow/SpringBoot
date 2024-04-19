@@ -64,8 +64,8 @@ public class UserServiceImpl implements UserService {
         log.info("Seata全局事务id=================>{}", RootContext.getXID());
         userMapper.updateNameById(param.getId(), param.getName());
         AccountCreateOrUpdateParam createOrUpdateParam = new AccountCreateOrUpdateParam();
-        createOrUpdateParam.setId(IdGenerator.getId());
-        createOrUpdateParam.setUserId(IdGenerator.getId());
+        createOrUpdateParam.setId(IdGenerator.generateId());
+        createOrUpdateParam.setUserId(IdGenerator.generateId());
         createOrUpdateParam.setMoney(new BigDecimal(111));
         accountProxy.createOrUpdate(createOrUpdateParam);
         TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
