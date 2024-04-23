@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 public class ConsumerInOrder {
     public static void main(String[] args) throws Exception {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("group1");
-        consumer.setNamesrvAddr("172.28.88.249:9876");
+        consumer.setNamesrvAddr("172.31.128.22:9876");
         /**
          * 设置Consumer第一次启动是从队列头部开始消费还是队列尾部开始消费<br>
          * 如果非第一次启动，那么按照上次消费的位置继续消费

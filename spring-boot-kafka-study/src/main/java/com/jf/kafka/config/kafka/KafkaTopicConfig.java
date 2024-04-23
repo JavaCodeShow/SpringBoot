@@ -23,7 +23,7 @@ public class KafkaTopicConfig {
     public KafkaAdmin kafkaAdmin() {
         Map<String, Object> configs = new HashMap<>();
         // 指定多个kafka集群多个地址，例如：192.168.2.11,9092,192.168.2.12:9092,192.168.2.13:9092
-        configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, "172.28.88.249:9092");
+        configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, "172.31.128.22:9092");
         // configs.put(AdminClientConfig.CLIENT_ID_CONFIG, "0");
         return new KafkaAdmin(configs);
     }

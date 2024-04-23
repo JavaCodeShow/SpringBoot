@@ -46,7 +46,7 @@ public class KafkaConsumerConfig {
     public Map<String, Object> consumerConfigs() {
         Map<String, Object> propsMap = new HashMap<>();
         // Kafka地址
-        propsMap.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.28.88.249:9092");
+        propsMap.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.31.128.22:9092");
         // 是否自动提交offset偏移量(默认true)
         propsMap.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
         // 自动提交的频率(ms)

@@ -22,7 +22,7 @@ public class CanalClient {
         //1.获取 canal 连接对象
         CanalConnector canalConnector =
                 CanalConnectors.newSingleConnector(new
-                        InetSocketAddress("172.28.88.249", 11111), "example", "canal", "canal");
+                        InetSocketAddress("172.31.128.22", 11111), "example", "canal", "canal");
 
         System.out.println("canal启动并开始监听数据 ...... ");
         while (true) {

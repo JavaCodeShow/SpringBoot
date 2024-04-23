@@ -23,7 +23,7 @@ public class BroadcastConsumer {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(group);
         System.out.println(group);
         // 指定Namesrv地址信息.
-        consumer.setNamesrvAddr("172.28.88.249:9876");
+        consumer.setNamesrvAddr("172.31.128.22:9876");
         // 订阅Topic
         consumer.subscribe("CSS", "ORDER_CANCEL");
         // 广播模式消费

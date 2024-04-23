@@ -27,7 +27,7 @@ public class ScheduledMessageConsumer {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(
                 "consumerGroup1");
         // 设置NameServer的地址
-        consumer.setNamesrvAddr("172.28.88.249:9876");
+        consumer.setNamesrvAddr("172.31.128.22:9876");
         // 订阅Topics
         consumer.subscribe("topic1", "tagA");
         // 注册消息监听者
