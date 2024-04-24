@@ -13,8 +13,8 @@ public class HelloEventHandler implements EventHandler<MessageModel> {
     private static final AtomicInteger indexGet = new AtomicInteger(0);
 
     @Override
-    public void onEvent(MessageModel event, long sequence, boolean endOfBatch) throws Exception {
-        log.info("共收到消息数量: {}", indexGet.incrementAndGet());
+    public void onEvent(MessageModel event, long sequence, boolean endOfBatch) {
+        log.info("共收到消息数量={},sequence={},endOfBatch={}", indexGet.incrementAndGet(), sequence, endOfBatch);
         try {
             if (event == null) {
                 return;
