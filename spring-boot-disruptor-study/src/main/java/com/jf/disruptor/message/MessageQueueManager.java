@@ -23,7 +23,7 @@ public class MessageQueueManager {
                 factory,
                 bufferSize,
                 Executors.defaultThreadFactory(),
-                ProducerType.MULTI,
+                ProducerType.SINGLE,
                 new BlockingWaitStrategy());
 
         disruptor.handleEventsWith(new HelloEventHandler());
