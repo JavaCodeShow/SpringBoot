@@ -15,7 +15,7 @@ public class SentinelResourceAnnotationTestController {
     @GetMapping("/annotation_test")
     public String ann() {
         // 使用限流规则
-        System.out.println("annotation_test  + " + LocalDateTimeUtil.getLocalDateTimeStr());
+        System.out.println("annotation_test  + " + LocalDateTimeUtil.getStringTimeOfNow());
         return "annotation_test";
     }
 

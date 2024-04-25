@@ -28,7 +28,7 @@ public class FlowRuleTestController {
             // 资源名可使用任意有业务语义的字符串
             entry = SphU.entry("create_order");
             // 被保护的业务逻辑
-            System.out.println("create order success  + " + LocalDateTimeUtil.getLocalDateTimeStr());
+            System.out.println("create order success  + " + LocalDateTimeUtil.getStringTimeOfNow());
             return CommonResult.success("create order success");
         } catch (BlockException e1) {
             // 资源访问阻止，被限流或被降级
