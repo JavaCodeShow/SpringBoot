@@ -77,6 +77,7 @@ public class CacheKeyQueueService {
      * 同步删除缓存，若删除缓存成功则同步删除cache_key_queue表记录
      */
     private void delCacheAndDeleteCacheKeyQueue(String cacheKeyId, String cacheKeyQueueId) {
+        // todo 这里需要延迟双删
         distributedCacheManager.del(cacheKeyId);
         cacheKeyQueueMapper.logicDeleteById(cacheKeyQueueId);
         log.info("事务提交后,删除缓存成功");
